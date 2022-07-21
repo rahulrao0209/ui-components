@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+
 *,
 *::before,
 *::after {
@@ -14,11 +16,12 @@
 
 html {
   font-size: 62.5%;
+  font-family: "Noto Sans", sans-serif;
 }
 
 body {
   box-sizing: border-box;
-  background-color: #fffff7;
+  // background-color: #fffff7;
 }
 
 .button-container {
@@ -76,7 +79,9 @@ body {
   transform: translate(-50%, 0);
   width: 40rem;
   border-radius: 4px;
-  padding: 2.5rem 3rem;
+  padding: 1.8rem 3rem;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   // text
   font-size: 2.4em;
@@ -108,22 +113,29 @@ body {
       left: 54%;
       transform: translate(-50%, -50%);
     }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &--success {
-    background-color: rgb(236, 233, 233);
     color: var(--success-color);
     transition: all 0.5s;
   }
 
   &--warning {
-    background-color: rgb(236, 233, 233);
     color: var(--warning-color);
+    transition: all 0.5s;
   }
 
   &--error {
-    background-color: rgb(236, 233, 233);
     color: var(--error-color);
+    transition: all 0.5s;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 }
 

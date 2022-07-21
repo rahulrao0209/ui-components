@@ -33,7 +33,7 @@ body {
 }
 .button-container > button {
   padding: 1.8rem;
-  border-radius: 10px;
+  border-radius: 100%;
   border: none;
   box-shadow: 6px 6px 12px #afafaf, -6px -6px 12px #ffffff;
   transition: all 0.2s;

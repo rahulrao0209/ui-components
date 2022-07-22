@@ -74,14 +74,15 @@ body {
 }
 .toast > span:nth-child(1) {
   margin-right: 1rem;
-  font-size: inherit;
+  font-size: 1.5em;
 }
 .toast > span:nth-child(2) {
   margin-right: auto;
 }
 .toast > button {
   position: relative;
-  padding: 1.8rem;
+  margin-top: 0.5rem;
+  padding: 1.8em;
   width: 2rem;
   height: 2rem;
   border-radius: 100%;
@@ -90,12 +91,19 @@ body {
 }
 .toast > button > span {
   position: absolute;
-  top: 50%;
-  left: 54%;
+  font-size: 2em;
+  color: grey;
+  top: 52%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
-.toast > button:hover {
+.toast > button:hover, .toast > button:active {
   cursor: pointer;
+  background-color: #f0eeee;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.toast > button:active {
+  box-shadow: none;
 }
 .toast--success {
   color: var(--success-color);

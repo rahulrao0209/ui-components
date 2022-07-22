@@ -6,7 +6,12 @@ const successToast = document.querySelector(".toast--success");
 const warningToast = document.querySelector(".toast--warning");
 const errorToast = document.querySelector(".toast--error");
 
-const toggleToast = (event: any) => {
+/* Selecting close buttons on all the toasts */
+const closeButtons: NodeListOf<HTMLButtonElement | HTMLSpanElement> =
+  document.querySelectorAll(".close-btn");
+console.log("close buttons: ", closeButtons);
+
+const toggleToast = (event) => {
   const button = event.target.closest("button");
 
   const success = button?.classList.contains("button--success");
@@ -37,6 +42,28 @@ const toggleToast = (event: any) => {
   }
 };
 
+const hideToast = (
+  event: Event & { target: HTMLButtonElement | HTMLSpanElement }
+) => {
+  const button = event.target.closest("button");
+
+  const success = button?.classList.contains("close-btn--success");
+  const warning = button?.classList.contains("close-btn--warning");
+  const error = button?.classList.contains("close-btn--error");
+
+  if (success) {
+    successToast?.classList.add("hide");
+  }
+
+  if (warning) {
+    warningToast?.classList.add("hide");
+  }
+
+  if (error) {
+    errorToast?.classList.add("hide");
+  }
+};
+
 /* Add click event listeners to the buttons */
 const init = () => {
   buttonContainer?.addEventListener("click", toggleToast);
@@ -45,6 +72,11 @@ const init = () => {
   successToast?.classList.add("hide");
   warningToast?.classList.add("hide");
   errorToast?.classList.add("hide");
+
+  /* Add event listeners to the toast close buttons */
+  closeButtons.forEach((button: any) => {
+    button.addEventListener("click", hideToast);
+  });
 };
 
 init();

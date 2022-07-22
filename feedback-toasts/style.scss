@@ -15,13 +15,16 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 50%;
   font-family: "Noto Sans", sans-serif;
+
+  @media only screen and (min-width: 500px) {
+    font-size: 62.5%;
+  }
 }
 
 body {
   box-sizing: border-box;
-  // background-color: #fffff7;
 }
 
 .button-container {
@@ -45,7 +48,7 @@ body {
     // Styling the icon
     & > span {
       color: #fff;
-      font-size: 2.5em;
+      font-size: 2em;
     }
 
     &:hover,
@@ -77,15 +80,20 @@ body {
   top: 30%;
   left: 50%;
   transform: translate(-50%, 0);
-  width: 40rem;
+  min-width: 35rem;
   border-radius: 4px;
   padding: 1.8rem 3rem;
   background-color: #fff;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
+  @media only screen and (min-width: 500px) {
+    font-size: 2.4em;
+    min-width: 40rem;
+  }
+
   // text
-  font-size: 2.4em;
+  font-size: 1.8em;
 
   display: flex;
   align-items: center;
@@ -102,20 +110,24 @@ body {
   & > button {
     position: relative;
     margin-top: 0.5rem;
-    padding: 1.8em;
-    width: 2rem;
-    height: 2rem;
+    padding: 1.4em;
+    width: 1.5rem;
+    height: 1.5rem;
     border-radius: 100%;
     border: none;
     background-color: #fff;
 
     & > span {
       position: absolute;
-      font-size: 2em;
+      font-size: 1.4em;
       color: grey;
       top: 52%;
       left: 50%;
       transform: translate(-50%, -50%);
+
+      @media only screen and (min-width: 500px) {
+        font-size: 2em;
+      }
     }
 
     &:hover,
@@ -128,6 +140,12 @@ body {
 
     &:active {
       box-shadow: none;
+    }
+
+    @media only screen and (min-width: 500px) {
+      padding: 1.8em;
+      width: 2rem;
+      height: 2rem;
     }
   }
 

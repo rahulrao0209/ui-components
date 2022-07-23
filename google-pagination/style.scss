@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
 *,
 *::before,
 *::after {
@@ -14,14 +16,74 @@
 }
 
 html {
-  font-size: 50%;
-  font-family: "Noto Sans", sans-serif;
+  font-size: 25%; // 1rem = 4px
+  font-family: "Poppins", sans-serif;
 
-  @media only screen and (min-width: 500px) {
-    font-size: 62.5%;
+  @media only screen and (min-width: 320px) {
+    font-size: 31.25%; // 1rem = 5px
+  }
+
+  @media only screen and (min-width: 400px) {
+    font-size: 37.5%; // 1rem = 6px
+  }
+
+  @media only screen and (min-width: 478px) {
+    font-size: 43.75%; // 1rem = 7px
+  }
+
+  @media only screen and (min-width: 768px) {
+    font-size: 62.5%; // 1rem = 10px
   }
 }
 
 body {
   box-sizing: border-box;
+
+  .container {
+    position: absolute;
+    inset: 50% 50%;
+    transform: translate(-50%, -50%);
+    min-height: 12rem;
+    min-width: 80%;
+    text-align: center;
+  }
+
+  .google-logo {
+    display: flex;
+    font-size: 6em;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    color: var(--google-yellow);
+
+    & > :nth-child(1) {
+      color: var(--google-blue);
+      transform: translate(-2rem, -1.4rem) scale(1.8);
+
+      @media only screen and (min-width: 992px) {
+        transform: translate(-2rem, -1.68rem) scale(1.8);
+      }
+    }
+
+    & > :nth-child(12) {
+      color: var(--google-blue);
+    }
+
+    & > :nth-child(13) {
+      color: var(--google-green);
+    }
+
+    & > :nth-child(14) {
+      color: var(--google-red);
+      transform: rotateZ(-25deg);
+    }
+
+    & > div {
+      padding: 0 0.12rem;
+    }
+
+    @media only screen and (min-width: 992px) {
+      font-size: 8em;
+    }
+  }
 }

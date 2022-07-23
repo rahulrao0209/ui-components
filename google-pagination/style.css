@@ -45,13 +45,18 @@ body {
 body .container {
   position: absolute;
   inset: 50% 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-55%, -50%);
   min-height: 12rem;
   width: 80%;
   max-width: 900px;
   text-align: center;
   display: grid;
   grid-template-areas: "arrow--prev logo arrow--next" "left page-numbers right";
+}
+@media only screen and (min-width: 478px) {
+  body .container {
+    transform: translate(-50%, -50%);
+  }
 }
 body .google-logo {
   grid-area: logo;
@@ -122,7 +127,7 @@ body .arrow > span {
 body .arrow--prev {
   grid-area: "arrow--prev";
   justify-self: start;
-  transform: translateX(-2rem);
+  transform: translateX(-4rem);
 }
 body .arrow--next {
   grid-area: "arrow--next";

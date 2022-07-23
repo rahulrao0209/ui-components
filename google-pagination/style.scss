@@ -42,7 +42,7 @@ body {
   .container {
     position: absolute;
     inset: 50% 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-55%, -50%);
     min-height: 12rem;
     width: 80%;
     max-width: 900px;
@@ -52,6 +52,10 @@ body {
     grid-template-areas:
       "arrow--prev logo arrow--next"
       "left page-numbers right";
+
+    @media only screen and (min-width: 478px) {
+      transform: translate(-50%, -50%);
+    }
   }
 
   .google-logo {
@@ -129,7 +133,7 @@ body {
     &--prev {
       grid-area: "arrow--prev";
       justify-self: start;
-      transform: translateX(-2rem);
+      transform: translateX(-4rem);
     }
 
     &--next {

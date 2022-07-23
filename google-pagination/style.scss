@@ -51,7 +51,7 @@ body {
     display: grid;
     grid-template-areas:
       "arrow--prev logo arrow--next"
-      "left page-numbers right";
+      ". page-numbers .";
 
     @media only screen and (min-width: 478px) {
       transform: translate(-50%, -50%);
@@ -144,6 +144,10 @@ body {
 
     &:hover {
       cursor: pointer;
+    }
+
+    &:hover > span {
+      color: var(--google-green);
     }
   }
 }

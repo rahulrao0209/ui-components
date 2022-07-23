@@ -51,7 +51,7 @@ body .container {
   max-width: 900px;
   text-align: center;
   display: grid;
-  grid-template-areas: "arrow--prev logo arrow--next" "left page-numbers right";
+  grid-template-areas: "arrow--prev logo arrow--next" ". page-numbers .";
 }
 @media only screen and (min-width: 478px) {
   body .container {
@@ -136,6 +136,9 @@ body .arrow--next {
 }
 body .arrow:hover {
   cursor: pointer;
+}
+body .arrow:hover > span {
+  color: var(--google-green);
 }
 
 .active-page-indicator {

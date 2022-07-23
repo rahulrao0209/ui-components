@@ -47,11 +47,14 @@ body .container {
   inset: 50% 50%;
   transform: translate(-50%, -50%);
   min-height: 12rem;
-  min-width: 80%;
+  width: 80%;
+  max-width: 900px;
   text-align: center;
   display: grid;
+  grid-template-areas: "arrow--prev logo arrow--next" "left page-numbers right";
 }
 body .google-logo {
+  grid-area: logo;
   display: flex;
   font-size: 6em;
   font-weight: 600;
@@ -87,6 +90,7 @@ body .google-logo > div {
   }
 }
 body .page-numbers {
+  grid-area: page-numbers;
   display: flex;
   font-size: 3em;
   font-weight: 400;
@@ -102,6 +106,30 @@ body .page-numbers {
     gap: 2.4rem;
     transform: translateX(-1.9rem);
   }
+}
+body .page-numbers > div:hover {
+  cursor: pointer;
+  color: var(--google-red);
+}
+body .arrow {
+  align-self: center;
+}
+body .arrow > span {
+  font-size: 6em;
+  color: var(--google-blue);
+}
+body .arrow--prev {
+  grid-area: "arrow--prev";
+  justify-self: start;
+  transform: translateX(-2rem);
+}
+body .arrow--next {
+  grid-area: "arrow--next";
+  justify-self: end;
+  transform: translateY(0.8rem);
+}
+body .arrow:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

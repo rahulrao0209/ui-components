@@ -44,18 +44,24 @@ body {
     inset: 50% 50%;
     transform: translate(-50%, -50%);
     min-height: 12rem;
-    min-width: 80%;
+    width: 80%;
+    max-width: 900px;
     text-align: center;
 
     display: grid;
+    grid-template-areas:
+      "arrow--prev logo arrow--next"
+      "left page-numbers right";
   }
 
   .google-logo {
+    grid-area: logo;
     display: flex;
     font-size: 6em;
     font-weight: 600;
     justify-content: center;
     align-items: center;
+
     color: var(--google-yellow);
 
     & > :nth-child(1) {
@@ -90,6 +96,7 @@ body {
   }
 
   .page-numbers {
+    grid-area: page-numbers;
     display: flex;
     font-size: 3em;
     font-weight: 400;
@@ -103,6 +110,36 @@ body {
       font-size: 5em;
       gap: 2.4rem;
       transform: translateX(-1.9rem);
+    }
+
+    & > div:hover {
+      cursor: pointer;
+      color: var(--google-red);
+    }
+  }
+
+  .arrow {
+    align-self: center;
+
+    & > span {
+      font-size: 6em;
+      color: var(--google-blue);
+    }
+
+    &--prev {
+      grid-area: "arrow--prev";
+      justify-self: start;
+      transform: translateX(-2rem);
+    }
+
+    &--next {
+      grid-area: "arrow--next";
+      justify-self: end;
+      transform: translateY(0.8rem);
+    }
+
+    &:hover {
+      cursor: pointer;
     }
   }
 }

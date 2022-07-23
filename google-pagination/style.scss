@@ -23,7 +23,7 @@ html {
     font-size: 31.25%; // 1rem = 5px
   }
 
-  @media only screen and (min-width: 400px) {
+  @media only screen and (min-width: 440px) {
     font-size: 37.5%; // 1rem = 6px
   }
 
@@ -42,7 +42,7 @@ body {
   .container {
     position: absolute;
     inset: 50% 50%;
-    transform: translate(-55%, -50%);
+    transform: translate(-50%, -50%);
     min-height: 12rem;
     width: 80%;
     max-width: 900px;
@@ -52,10 +52,6 @@ body {
     grid-template-areas:
       "arrow--prev logo arrow--next"
       ". page-numbers .";
-
-    @media only screen and (min-width: 478px) {
-      transform: translate(-50%, -50%);
-    }
   }
 
   .google-logo {

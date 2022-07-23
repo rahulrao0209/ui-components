@@ -23,7 +23,7 @@ html {
     font-size: 31.25%;
   }
 }
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 440px) {
   html {
     font-size: 37.5%;
   }
@@ -45,18 +45,13 @@ body {
 body .container {
   position: absolute;
   inset: 50% 50%;
-  transform: translate(-55%, -50%);
+  transform: translate(-50%, -50%);
   min-height: 12rem;
   width: 80%;
   max-width: 900px;
   text-align: center;
   display: grid;
   grid-template-areas: "arrow--prev logo arrow--next" ". page-numbers .";
-}
-@media only screen and (min-width: 478px) {
-  body .container {
-    transform: translate(-50%, -50%);
-  }
 }
 body .google-logo {
   grid-area: logo;

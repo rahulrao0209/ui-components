@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 *,
 *::before,
 *::after {
@@ -49,6 +49,7 @@ body .container {
   min-height: 12rem;
   min-width: 80%;
   text-align: center;
+  display: grid;
 }
 body .google-logo {
   display: flex;
@@ -83,6 +84,23 @@ body .google-logo > div {
 @media only screen and (min-width: 992px) {
   body .google-logo {
     font-size: 8em;
+  }
+}
+body .page-numbers {
+  display: flex;
+  font-size: 3em;
+  font-weight: 400;
+  justify-content: center;
+  align-items: center;
+  color: var(--google-blue);
+  gap: 2.2rem;
+  transform: translateX(-1.7rem);
+}
+@media only screen and (min-width: 992px) {
+  body .page-numbers {
+    font-size: 5em;
+    gap: 2.4rem;
+    transform: translateX(-1.9rem);
   }
 }
 

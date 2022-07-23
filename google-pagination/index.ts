@@ -18,6 +18,7 @@ const gotoPage = function (event: any) {
   currentPage = +element.innerText;
 
   console.log("currentPage: ", currentPage);
+  addActiveState();
 };
 
 const handlePagination = function (event: any) {
@@ -35,13 +36,47 @@ const handlePagination = function (event: any) {
   }
 
   console.log("currentPage: ", currentPage);
+  removeActiveState();
+  addActiveState();
+};
+
+const addActiveState = function () {
+  const activePageIndicator = document.querySelector(
+    `.indicator--${currentPage}`
+  );
+
+  const activePageNumber = document.querySelector(`.page--${currentPage}`);
+
+  if (activePageIndicator) {
+    removeActiveState();
+    activePageIndicator.classList.add("active-page-indicator");
+  }
+
+  if (activePageNumber) {
+    activePageNumber.classList.add("active-page-indicator");
+  }
+};
+
+const removeActiveState = function () {
+  const pageIndicators = document.querySelectorAll(".page-indicator");
+  const pageNumbers = document.querySelectorAll(".page-num");
+
+  pageIndicators?.forEach((page) =>
+    page.classList.remove("active-page-indicator")
+  );
+
+  pageNumbers?.forEach((pageNum) =>
+    pageNum.classList.remove("active-page-indicator")
+  );
 };
 
 const init = (function () {
+  /* Set current page on load */
+  currentPage = FIRST_PAGE;
+
   /* Add event listeners to the arrows and the page numbers */
   pageNumbers?.addEventListener("click", gotoPage);
   arrowPrev?.addEventListener("click", handlePagination);
   arrowNext?.addEventListener("click", handlePagination);
-
-  currentPage = FIRST_PAGE;
+  addActiveState();
 })();

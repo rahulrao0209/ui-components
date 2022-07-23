@@ -61,6 +61,7 @@ body .google-logo {
   justify-content: center;
   align-items: center;
   color: var(--google-yellow);
+  transition: color 1s;
 }
 body .google-logo > :nth-child(1) {
   color: var(--google-blue);
@@ -130,6 +131,11 @@ body .arrow--next {
 }
 body .arrow:hover {
   cursor: pointer;
+}
+
+.active-page-indicator {
+  transition: color 0.5s;
+  color: var(--google-red);
 }
 
 /*# sourceMappingURL=style.css.map */

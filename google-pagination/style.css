@@ -1,0 +1,30 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --google-blue: #4285f4;
+  --google-green: #34a853;
+  --google-yellow: #fbbc05;
+  --google-red: #ea4335;
+}
+
+html {
+  font-size: 50%;
+  font-family: "Noto Sans", sans-serif;
+}
+@media only screen and (min-width: 500px) {
+  html {
+    font-size: 62.5%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+}
+
+/*# sourceMappingURL=style.css.map */

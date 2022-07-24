@@ -58,7 +58,7 @@ body {
 .carousel__slider {
   display: flex;
   gap: 2rem;
-  width: 200%;
+  min-width: 200%;
   position: absolute;
   top: 50%;
   left: 2rem;

@@ -56,7 +56,7 @@ body {
 .carousel__slider {
   display: flex;
   gap: 2rem;
-  width: 200%;
+  min-width: 200%;
   position: absolute;
   top: 50%;
   left: 2rem;
@@ -72,7 +72,6 @@ body {
   font-size: 1.8em;
   text-decoration: underline;
   text-underline-offset: 2px;
-  // border: 1px solid rgb(70, 69, 69);
   background-color: #fff;
   border-radius: 6px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,

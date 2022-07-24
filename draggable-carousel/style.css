@@ -40,7 +40,6 @@ body {
   box-sizing: border-box;
   font-size: 2em;
   font-weight: 700;
-  background-color: #eee;
 }
 
 .carousel__container {
@@ -49,13 +48,21 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 60%;
+  height: 30rem;
   overflow: hidden;
+}
+.carousel__container:hover {
+  cursor: grab;
 }
 
 .carousel__slider {
   display: flex;
   gap: 2rem;
   width: 200%;
+  position: absolute;
+  top: 50%;
+  left: 2rem;
+  transform: translate(0, -50%);
 }
 
 .carousel__card {
@@ -68,7 +75,7 @@ body {
   text-underline-offset: 2px;
   background-color: #fff;
   border-radius: 6px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.08), 0 3px 6px 0 rgba(0, 0, 0, 0.03);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 .carousel__card::before {
   content: "";

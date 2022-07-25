@@ -12,18 +12,9 @@
 }
 
 html {
-  font-size: 25%;
+  font-size: 43.75%;
   font-family: "Merriweather", serif;
-}
-@media only screen and (min-width: 320px) {
-  html {
-    font-size: 31.25%;
-  }
-}
-@media only screen and (min-width: 440px) {
-  html {
-    font-size: 37.5%;
-  }
+  scroll-behavior: smooth;
 }
 @media only screen and (min-width: 478px) {
   html {
@@ -47,12 +38,19 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60%;
+  width: 85%;
   height: 30rem;
   overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+  border-radius: 6px;
 }
 .carousel__container:hover {
   cursor: grab;
+}
+@media only screen and (min-width: 768px) {
+  .carousel__container {
+    width: 60%;
+  }
 }
 
 .carousel__slider {
@@ -61,8 +59,10 @@ body {
   min-width: 200%;
   position: absolute;
   top: 50%;
-  left: 2rem;
+  left: 0;
+  margin: 0 1rem;
   transform: translate(0, -50%);
+  pointer-events: none;
 }
 
 .carousel__card {

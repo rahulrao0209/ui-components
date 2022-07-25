@@ -56,11 +56,11 @@ body {
 .carousel__slider {
   display: flex;
   gap: 2rem;
-  min-width: 200%;
   position: absolute;
   top: 50%;
   left: 0;
   margin: 0 1rem;
+  padding-right: 2rem;
   transform: translate(0, -50%);
   pointer-events: none;
 }

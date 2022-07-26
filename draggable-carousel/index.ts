@@ -17,10 +17,18 @@ let positionX: number;
 */
 const allowedExtraDrag = 100;
 
-const handleMouseDown = (event: MouseEvent) => {
+const getXOffset = function (event: MouseEvent | TouchEvent) {
+  if (event instanceof MouseEvent) return event.offsetX;
+  if (event instanceof TouchEvent) return event.touches[0].clientX;
+  return 0;
+};
+
+const handleMouseDown = (event: MouseEvent | TouchEvent) => {
   pressed = true;
+  let xOffset: number = getXOffset(event);
+
   if (carouselSlider) {
-    startingPositionX = event.offsetX - carouselSlider.offsetLeft;
+    startingPositionX = xOffset - carouselSlider.offsetLeft;
   }
 
   if (carouselContainer) carouselContainer.style.cursor = "grabbing";
@@ -31,10 +39,10 @@ const handleMouseUp = function () {
   if (carouselContainer) carouselContainer.style.cursor = "grab";
 };
 
-const handleMouseMove = function (event: MouseEvent) {
+const handleMouseMove = function (event: MouseEvent | TouchEvent) {
   if (!pressed) return;
   event.preventDefault();
-  positionX = event.offsetX;
+  positionX = getXOffset(event);
 
   if (carouselSlider) {
     carouselSlider.style.left = `${positionX - startingPositionX}px`;
@@ -66,4 +74,11 @@ const init = (function () {
   carouselContainer?.addEventListener("mouseup", handleMouseUp);
 
   carouselContainer?.addEventListener("mousemove", handleMouseMove);
+
+  /* Touch Events */
+  carouselContainer?.addEventListener("touchstart", handleMouseDown);
+
+  carouselContainer?.addEventListener("touchend", handleMouseUp);
+
+  carouselContainer?.addEventListener("touchmove", handleMouseMove);
 })();

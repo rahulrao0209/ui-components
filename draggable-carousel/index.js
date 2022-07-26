@@ -10,10 +10,18 @@ var positionX;
   Find the checkBoundary function below to see its usage.
 */
 var allowedExtraDrag = 100;
+var getXOffset = function (event) {
+    if (event instanceof MouseEvent)
+        return event.offsetX;
+    if (event instanceof TouchEvent)
+        return event.touches[0].clientX;
+    return 0;
+};
 var handleMouseDown = function (event) {
     pressed = true;
+    var xOffset = getXOffset(event);
     if (carouselSlider) {
-        startingPositionX = event.offsetX - carouselSlider.offsetLeft;
+        startingPositionX = xOffset - carouselSlider.offsetLeft;
     }
     if (carouselContainer)
         carouselContainer.style.cursor = "grabbing";
@@ -27,7 +35,7 @@ var handleMouseMove = function (event) {
     if (!pressed)
         return;
     event.preventDefault();
-    positionX = event.offsetX;
+    positionX = getXOffset(event);
     if (carouselSlider) {
         carouselSlider.style.left = "".concat(positionX - startingPositionX, "px");
     }
@@ -51,4 +59,8 @@ var init = (function () {
     carouselContainer === null || carouselContainer === void 0 ? void 0 : carouselContainer.addEventListener("mousedown", handleMouseDown);
     carouselContainer === null || carouselContainer === void 0 ? void 0 : carouselContainer.addEventListener("mouseup", handleMouseUp);
     carouselContainer === null || carouselContainer === void 0 ? void 0 : carouselContainer.addEventListener("mousemove", handleMouseMove);
+    /* Touch Events */
+    carouselContainer === null || carouselContainer === void 0 ? void 0 : carouselContainer.addEventListener("touchstart", handleMouseDown);
+    carouselContainer === null || carouselContainer === void 0 ? void 0 : carouselContainer.addEventListener("touchend", handleMouseUp);
+    carouselContainer === null || carouselContainer === void 0 ? void 0 : carouselContainer.addEventListener("touchmove", handleMouseMove);
 })();

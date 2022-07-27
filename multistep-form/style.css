@@ -28,6 +28,7 @@ html {
 }
 
 /* Progress bar number */
+/* Progress bar indicator lines */
 .multistep-form__container {
   position: absolute;
   top: 50%;
@@ -49,6 +50,8 @@ html {
   margin: 2rem 0 0 0;
   font-size: 0.8em;
   color: #121f1a;
+  /* Progress bar numbers */
+  /* Progress bar indicator lines */
 }
 .progress-bar > li {
   position: relative;
@@ -95,6 +98,24 @@ html {
   border-radius: 100%;
   line-height: 3.5rem;
 }
+.progress-bar > li:nth-child(1)::after {
+  content: "";
+  position: absolute;
+  top: -2.25rem;
+  left: 60%;
+  background-color: #f37335;
+  width: 12rem;
+  height: 0.15rem;
+}
+.progress-bar > li:nth-child(2)::after {
+  content: "";
+  position: absolute;
+  top: -2.25rem;
+  left: 60%;
+  background-color: #f37335;
+  width: 12rem;
+  height: 0.15rem;
+}
 
 .form {
   text-align: center;
@@ -123,6 +144,15 @@ html {
 .form input:focus {
   outline: none;
   box-shadow: 1px 1px 4px 2px #ebd4ab;
+}
+
+@keyframes grow {
+  from {
+    width: 0rem;
+  }
+  to {
+    width: 12rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

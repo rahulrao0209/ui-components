@@ -41,6 +41,18 @@ html {
   line-height: 3.5rem;
 }
 
+/* Progress bar indicator lines */
+@mixin progressBarLine {
+  content: "";
+  position: absolute;
+  top: -2.25rem;
+  left: 60%;
+  background-color: #f37335;
+  width: 12rem;
+  height: 0.15rem;
+  // animation: grow 1s linear infinite;
+}
+
 .multistep-form__container {
   position: absolute;
   top: 50%;
@@ -67,6 +79,7 @@ html {
     position: relative;
   }
 
+  /* Progress bar numbers */
   & > li:nth-child(1)::before {
     content: "1";
     @include ProgressBarNumber;
@@ -80,6 +93,15 @@ html {
   & > li:nth-child(3)::before {
     content: "3";
     @include ProgressBarNumber;
+  }
+
+  /* Progress bar indicator lines */
+  & > li:nth-child(1)::after {
+    @include progressBarLine;
+  }
+
+  & > li:nth-child(2)::after {
+    @include progressBarLine;
   }
 }
 
@@ -103,7 +125,6 @@ html {
     border: none;
     border-radius: 4px;
     border: 1px solid #ddd;
-    // background-color: rgb(175, 173, 170);
 
     &::placeholder {
       color: #fff;
@@ -115,5 +136,16 @@ html {
       outline: none;
       box-shadow: 1px 1px 4px 2px #ebd4ab;
     }
+  }
+}
+
+// Animation
+@keyframes grow {
+  from {
+    width: 0rem;
+  }
+
+  to {
+    width: 12rem;
   }
 }

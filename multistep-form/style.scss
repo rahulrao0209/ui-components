@@ -106,8 +106,13 @@ html {
 }
 
 .form {
+  position: relative;
   text-align: center;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  min-height: 37.8rem;
+
+  & h3 {
+    color: #414141;
+  }
 
   & fieldset {
     padding: 3rem 2rem;
@@ -127,9 +132,9 @@ html {
     border: 1px solid #ddd;
 
     &::placeholder {
-      color: #fff;
+      // color: #fff;
       font-weight: 300;
-      font-size: 1.2em;
+      font-size: 1em;
     }
 
     &:focus {
@@ -137,6 +142,50 @@ html {
       box-shadow: 1px 1px 4px 2px #ebd4ab;
     }
   }
+}
+
+.button {
+  margin: 2.5rem 0 0 0;
+  padding: 0.5em 0.25em;
+  min-width: 8em;
+  font-size: 2rem;
+  color: #fff;
+  background-color: #f37335;
+  border: none;
+  border-radius: 4px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  transition: all 0.2s;
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+    background-color: lighten(#f37335, 5%);
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+}
+
+/* fieldsets */
+.form-step {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  min-width: 60rem;
+}
+
+#form-step-1 {
+  z-index: 3;
+}
+
+#form-step-2 {
+  z-index: 2;
+}
+
+#form-step-3 {
+  z-index: 1;
 }
 
 // Animation

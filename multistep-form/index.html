@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
+    <script src="./index.js" defer></script>
     <title>Multistep Form</title>
   </head>
   <body>
@@ -49,75 +50,77 @@
             />
           </div>
 
-          <button aria-label="button" class="button">Next</button>
+          <!-- <button class="button">Prev</button> -->
+          <button class="button" id="next-step-1">Next</button>
         </fieldset>
 
         <fieldset class="form-step" id="form-step-2">
           <h3>More Details</h3>
           <div>
-            <label for="firstname">Firstname</label>
+            <label for="country">Country</label>
             <input
-              id="firstname"
+              id="country"
               class="name"
               type="text"
-              placeholder="Enter firstname"
+              placeholder="Enter country"
             />
           </div>
 
           <div>
-            <label for="lastname">Lastname</label>
+            <label for="state">State</label>
             <input
-              id="lastname"
+              id="state"
               class="name"
               type="text"
-              placeholder="Enter lastname"
+              placeholder="Enter state"
             />
           </div>
 
           <div>
-            <label for="email">Lastname</label>
+            <label for="pincode">Pincode</label>
             <input
-              id="email"
-              class="email"
-              type="email"
-              placeholder="Enter email"
+              id="pincode"
+              class="pincode"
+              type="text"
+              placeholder="Enter pincode"
             />
           </div>
-          <button aria-label="button" class="button">Next</button>
+          <button class="button" id="prev-step-2">Prev</button>
+          <button class="button" id="prev-step-1">Next</button>
         </fieldset>
 
         <fieldset class="form-step" id="form-step-3">
           <h3>Social Handles</h3>
           <div>
-            <label for="firstname">Firstname</label>
+            <label for="twitter">Twitter</label>
             <input
-              id="firstname"
-              class="name"
+              id="twitter"
+              class="twitter"
               type="text"
-              placeholder="Enter firstname"
+              placeholder="Twitter"
             />
           </div>
 
           <div>
-            <label for="lastname">Lastname</label>
+            <label for="instagram">Instagram</label>
             <input
-              id="lastname"
-              class="name"
+              id="instagram"
+              class="instagram"
               type="text"
-              placeholder="Enter lastname"
+              placeholder="Instagram"
             />
           </div>
 
           <div>
-            <label for="email">Lastname</label>
+            <label for="linkedin">LinkedIn</label>
             <input
-              id="email"
-              class="email"
-              type="email"
-              placeholder="Enter email"
+              id="linkedin"
+              class="linkedin"
+              type="text"
+              placeholder="LinkedIn"
             />
           </div>
-          <button aria-label="button" class="button">Next</button>
+          <button class="button" id="prev-step-3">Prev</button>
         </fieldset>
       </form>
     </div>

@@ -9,6 +9,10 @@ var prevStep2 = document.querySelector("#prev-step-2");
 var prevStep3 = document.querySelector("#prev-step-3");
 var handleNext = function (event) {
     event.preventDefault();
+    console.log("TEST");
+    if (step1) {
+        step1.classList.toggle("disappear");
+    }
 };
 /* Initialize event listeners */
 var init = (function () {

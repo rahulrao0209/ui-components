@@ -113,7 +113,9 @@ html {
 .form {
   position: relative;
   text-align: center;
-  min-height: 37.8rem;
+  min-height: 40rem;
+  min-width: 65rem;
+  overflow: hidden;
 
   & h3 {
     color: #414141;
@@ -122,6 +124,11 @@ html {
   & fieldset {
     padding: 3rem 2rem;
     border: none;
+  }
+
+  & fieldset:nth-child(2),
+  & fieldset:nth-child(3) {
+    transform: translateX(110%);
   }
 
   & label {
@@ -176,9 +183,14 @@ html {
 /* fieldsets */
 .form-step {
   position: absolute;
+  inset: 1rem;
   background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   min-width: 60rem;
+  animation-duration: 0.5s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 #form-step-1 {
@@ -193,7 +205,15 @@ html {
   z-index: 1;
 }
 
-// Animation
+.disappear {
+  animation-name: disappear;
+}
+
+.appear {
+  animation-name: appear;
+}
+
+/* Animations */
 @keyframes grow {
   from {
     width: 0rem;
@@ -201,5 +221,39 @@ html {
 
   to {
     width: 12rem;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes appear {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
   }
 }

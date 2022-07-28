@@ -13,6 +13,11 @@ const prevStep3 = document.querySelector("#prev-step-3");
 
 const handleNext = function (event: Event) {
   event.preventDefault();
+  console.log("TEST");
+
+  if (step1) {
+    step1.classList.toggle("disappear");
+  }
 };
 
 /* Initialize event listeners */

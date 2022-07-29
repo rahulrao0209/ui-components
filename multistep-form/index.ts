@@ -11,7 +11,7 @@ const prevStep2 = document.querySelector("#prev-step-2");
 
 const prevStep3 = document.querySelector("#prev-step-3");
 
-const animationClasses = ["disappear", "disappear-rev", "appear", "appear-rev"];
+const animationClasses = ["scale-down", "scale-up", "slide-in", "slide-out"];
 
 const removeAnimationClasses = function (step: Element | null) {
   step?.classList.forEach((stepClass: string) => {
@@ -25,22 +25,22 @@ const handleNext = function (event: Event) {
     (event.target as HTMLElement).dataset.val as string
   );
 
-  // On step 1
+  // Step 1 next button clicked
   if (stepClicked === 1) {
     removeAnimationClasses(step1);
     removeAnimationClasses(step2);
-    step1?.classList.add("disappear");
+    step1?.classList.add("scale-down");
     step1?.classList.add("disappeared"); // Add this class to make the previous form invisible
-    step2?.classList.add("appear");
+    step2?.classList.add("slide-in");
   }
 
-  // On step 2
+  // Step 2 next button clicked
   if (stepClicked === 2) {
     removeAnimationClasses(step2);
     removeAnimationClasses(step3);
-    step2?.classList.add("disappear");
-    step2?.classList.add("disappeared");
-    step3?.classList.add("appear");
+    step2?.classList.add("scale-down");
+    step2?.classList.add("disappeared"); // Add this class to make the previous form invisible
+    step3?.classList.add("slide-in");
   }
 
   console.log("val: ", stepClicked);
@@ -52,20 +52,20 @@ const handlePrev = function (event: Event) {
     (event.target as HTMLElement).dataset.val as string
   );
 
-  // On step 2
+  // Step 2 previous button clicked
   if (stepClicked === 2) {
     removeAnimationClasses(step1);
     removeAnimationClasses(step2);
-    step2?.classList.add("appear-rev");
-    step1?.classList.add("disappear-rev");
+    step2?.classList.add("slide-out");
+    step1?.classList.add("scale-up");
   }
 
-  // On step 3
+  // Step 3 previous button clicked
   if (stepClicked === 3) {
     removeAnimationClasses(step2);
     removeAnimationClasses(step3);
-    step2?.classList.add("disappear-rev");
-    step3?.classList.add("appear-rev");
+    step2?.classList.add("scale-up");
+    step3?.classList.add("slide-out");
   }
 };
 

@@ -198,6 +198,11 @@ html {
   animation-timing-function: ease-in-out;
 }
 
+#form-step-3 {
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
 /* Applying animations using classes */
 .disappear {
   animation-name: disappear;

@@ -11,6 +11,8 @@ const prevStep2 = document.querySelector("#prev-step-2");
 
 const prevStep3 = document.querySelector("#prev-step-3");
 
+const submitButton = document.querySelector("#submit");
+
 const animationClasses = ["scale-down", "scale-up", "slide-in", "slide-out"];
 
 /* Get the CSS color values from the variables */
@@ -134,4 +136,6 @@ const init = (function () {
   prevStep2?.addEventListener("click", handlePrev);
 
   prevStep3?.addEventListener("click", handlePrev);
+
+  submitButton?.addEventListener("click", () => window.location.reload());
 })();

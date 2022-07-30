@@ -7,6 +7,7 @@ var nextStep1 = document.querySelector("#next-step-1");
 var nextStep2 = document.querySelector("#next-step-2");
 var prevStep2 = document.querySelector("#prev-step-2");
 var prevStep3 = document.querySelector("#prev-step-3");
+var submitButton = document.querySelector("#submit");
 var animationClasses = ["scale-down", "scale-up", "slide-in", "slide-out"];
 /* Get the CSS color values from the variables */
 var primaryOrange = getComputedStyle(document.documentElement).getPropertyValue("--primary-orange");
@@ -84,4 +85,5 @@ var init = (function () {
     nextStep2 === null || nextStep2 === void 0 ? void 0 : nextStep2.addEventListener("click", handleNext);
     prevStep2 === null || prevStep2 === void 0 ? void 0 : prevStep2.addEventListener("click", handlePrev);
     prevStep3 === null || prevStep3 === void 0 ? void 0 : prevStep3.addEventListener("click", handlePrev);
+    submitButton === null || submitButton === void 0 ? void 0 : submitButton.addEventListener("click", function () { return window.location.reload(); });
 })();

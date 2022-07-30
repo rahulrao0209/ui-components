@@ -33,7 +33,7 @@ var handleNext = function (event) {
         step2 === null || step2 === void 0 ? void 0 : step2.classList.add("disappeared"); // Add this class to make the previous form invisible
         step3 === null || step3 === void 0 ? void 0 : step3.classList.add("slide-in");
     }
-    console.log("val: ", stepClicked);
+    updateProgress(stepClicked, "next");
 };
 var handlePrev = function (event) {
     event.preventDefault();
@@ -51,6 +51,22 @@ var handlePrev = function (event) {
         removeAnimationClasses(step3);
         step2 === null || step2 === void 0 ? void 0 : step2.classList.add("scale-up");
         step3 === null || step3 === void 0 ? void 0 : step3.classList.add("slide-out");
+    }
+    updateProgress(stepClicked, "prev");
+};
+/* Handle the progress bar indicator as we move through the  steps */
+var updateProgress = function (step, action) {
+    if (action === "next") {
+        var progressLine = document.querySelector(".progress-bar--step".concat(step, " > span:nth-child(2)"));
+        var progressIndicator = document.querySelector(".progress-bar--step".concat(step + 1, " > span:nth-child(1)"));
+        progressLine.style.backgroundColor = "#34a853";
+        progressIndicator.style.backgroundColor = "#34a853";
+    }
+    if (action === "prev") {
+        var progressLine = document.querySelector(".progress-bar--step".concat(step - 1, " > span:nth-child(2)"));
+        var progressIndicator = document.querySelector(".progress-bar--step".concat(step, " > span:nth-child(1)"));
+        progressLine.style.backgroundColor = "#f37335";
+        progressIndicator.style.backgroundColor = "#f37335";
     }
 };
 /* Initialize event listeners */

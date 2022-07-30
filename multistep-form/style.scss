@@ -44,6 +44,7 @@ html {
   height: 3.5rem;
   border-radius: 100%;
   line-height: 3.5rem;
+  z-index: 3;
 }
 
 /* Progress bar indicator lines */
@@ -51,10 +52,11 @@ html {
   content: "";
   position: absolute;
   top: -2.25rem;
-  left: 60%;
+  left: 61.5%;
   background-color: var(--primary-orange);
   width: 12rem;
   height: 0.15rem;
+  z-index: 1;
   // animation: grow 1s linear infinite;
 }
 
@@ -78,11 +80,64 @@ html {
   justify-content: center;
   margin: 2rem 0 0 0;
   font-size: 0.8em;
-  color: rgb(18, 31, 26);
 
   & > li {
     position: relative;
+    // color: var(--primary-green);
   }
+
+  // Progress bar step 1 is always active
+  .progress-bar--step1 {
+    & > span:nth-child(1) {
+      @include ProgressBarNumber;
+      background-color: var(--primary-green);
+    }
+
+    & > span:nth-child(2) {
+      @include progressBarLine;
+      z-index: 2;
+    }
+  }
+
+  // Progress Bar step 2
+  .progress-bar--step2 {
+    & > span:nth-child(1) {
+      @include ProgressBarNumber;
+    }
+
+    & > span:nth-child(2) {
+      @include progressBarLine;
+      z-index: 2;
+    }
+  }
+
+  // Progress Bar step 3
+  .progress-bar--step3 {
+    & > span:nth-child(1) {
+      @include ProgressBarNumber;
+    }
+  }
+
+  // & > li:nth-child(1),
+  // & > li:nth-child(2) {
+  //   & > span:nth-child(1) {
+  //     @include ProgressBarNumber;
+  //     background-color: var(--primary-green);
+  //   }
+
+  //   & > span:nth-child(2) {
+  //     @include progressBarLine;
+  //     background-color: var(--primary-green);
+  //     z-index: 2;
+  //   }
+  // }
+
+  // & > li:nth-child(3) {
+  //   & > span:nth-child(1) {
+  //     @include ProgressBarNumber;
+  //     background-color: var(--primary-green);
+  //   }
+  // }
 
   /* Progress bar numbers */
   & > li:nth-child(1)::before {

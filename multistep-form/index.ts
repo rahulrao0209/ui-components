@@ -43,7 +43,7 @@ const handleNext = function (event: Event) {
     step3?.classList.add("slide-in");
   }
 
-  console.log("val: ", stepClicked);
+  updateProgress(stepClicked, "next");
 };
 
 const handlePrev = function (event: Event) {
@@ -66,6 +66,35 @@ const handlePrev = function (event: Event) {
     removeAnimationClasses(step3);
     step2?.classList.add("scale-up");
     step3?.classList.add("slide-out");
+  }
+
+  updateProgress(stepClicked, "prev");
+};
+
+/* Handle the progress bar indicator as we move through the  steps */
+const updateProgress = function (step: number, action: string) {
+  if (action === "next") {
+    const progressLine = document.querySelector(
+      `.progress-bar--step${step} > span:nth-child(2)`
+    );
+
+    const progressIndicator = document.querySelector(
+      `.progress-bar--step${step + 1} > span:nth-child(1)`
+    );
+    (progressLine as HTMLElement).style.backgroundColor = "#34a853";
+    (progressIndicator as HTMLElement).style.backgroundColor = "#34a853";
+  }
+
+  if (action === "prev") {
+    const progressLine = document.querySelector(
+      `.progress-bar--step${step - 1} > span:nth-child(2)`
+    );
+
+    const progressIndicator = document.querySelector(
+      `.progress-bar--step${step} > span:nth-child(1)`
+    );
+    (progressLine as HTMLElement).style.backgroundColor = "#f37335";
+    (progressIndicator as HTMLElement).style.backgroundColor = "#f37335";
   }
 };
 

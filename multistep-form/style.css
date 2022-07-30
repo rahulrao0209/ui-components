@@ -54,12 +54,76 @@ html {
   justify-content: center;
   margin: 2rem 0 0 0;
   font-size: 0.8em;
-  color: #121f1a;
   /* Progress bar numbers */
   /* Progress bar indicator lines */
 }
 .progress-bar > li {
   position: relative;
+}
+.progress-bar .progress-bar--step1 > span:nth-child(1) {
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: #fff;
+  background-color: var(--primary-orange);
+  padding: 0 0 0 1.28rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 100%;
+  line-height: 3.5rem;
+  z-index: 3;
+  background-color: var(--primary-green);
+}
+.progress-bar .progress-bar--step1 > span:nth-child(2) {
+  content: "";
+  position: absolute;
+  top: -2.25rem;
+  left: 61.5%;
+  background-color: var(--primary-orange);
+  width: 12rem;
+  height: 0.15rem;
+  z-index: 1;
+  z-index: 2;
+}
+.progress-bar .progress-bar--step2 > span:nth-child(1) {
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: #fff;
+  background-color: var(--primary-orange);
+  padding: 0 0 0 1.28rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 100%;
+  line-height: 3.5rem;
+  z-index: 3;
+}
+.progress-bar .progress-bar--step2 > span:nth-child(2) {
+  content: "";
+  position: absolute;
+  top: -2.25rem;
+  left: 61.5%;
+  background-color: var(--primary-orange);
+  width: 12rem;
+  height: 0.15rem;
+  z-index: 1;
+  z-index: 2;
+}
+.progress-bar .progress-bar--step3 > span:nth-child(1) {
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: #fff;
+  background-color: var(--primary-orange);
+  padding: 0 0 0 1.28rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 100%;
+  line-height: 3.5rem;
+  z-index: 3;
 }
 .progress-bar > li:nth-child(1)::before {
   content: "1";
@@ -74,6 +138,7 @@ html {
   height: 3.5rem;
   border-radius: 100%;
   line-height: 3.5rem;
+  z-index: 3;
 }
 .progress-bar > li:nth-child(2)::before {
   content: "2";
@@ -88,6 +153,7 @@ html {
   height: 3.5rem;
   border-radius: 100%;
   line-height: 3.5rem;
+  z-index: 3;
 }
 .progress-bar > li:nth-child(3)::before {
   content: "3";
@@ -102,24 +168,27 @@ html {
   height: 3.5rem;
   border-radius: 100%;
   line-height: 3.5rem;
+  z-index: 3;
 }
 .progress-bar > li:nth-child(1)::after {
   content: "";
   position: absolute;
   top: -2.25rem;
-  left: 60%;
+  left: 61.5%;
   background-color: var(--primary-orange);
   width: 12rem;
   height: 0.15rem;
+  z-index: 1;
 }
 .progress-bar > li:nth-child(2)::after {
   content: "";
   position: absolute;
   top: -2.25rem;
-  left: 60%;
+  left: 61.5%;
   background-color: var(--primary-orange);
   width: 12rem;
   height: 0.15rem;
+  z-index: 1;
 }
 
 .form {

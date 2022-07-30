@@ -57,7 +57,6 @@ html {
   width: 12rem;
   height: 0.15rem;
   z-index: 1;
-  // animation: grow 1s linear infinite;
 }
 
 .multistep-form__container {
@@ -83,7 +82,7 @@ html {
 
   & > li {
     position: relative;
-    // color: var(--primary-green);
+    color: var(--primary-orange);
   }
 
   // Progress bar step 1 is always active
@@ -96,6 +95,10 @@ html {
     & > span:nth-child(2) {
       @include progressBarLine;
       z-index: 2;
+    }
+
+    & > span:nth-child(3) {
+      color: var(--primary-green);
     }
   }
 
@@ -117,27 +120,6 @@ html {
       @include ProgressBarNumber;
     }
   }
-
-  // & > li:nth-child(1),
-  // & > li:nth-child(2) {
-  //   & > span:nth-child(1) {
-  //     @include ProgressBarNumber;
-  //     background-color: var(--primary-green);
-  //   }
-
-  //   & > span:nth-child(2) {
-  //     @include progressBarLine;
-  //     background-color: var(--primary-green);
-  //     z-index: 2;
-  //   }
-  // }
-
-  // & > li:nth-child(3) {
-  //   & > span:nth-child(1) {
-  //     @include ProgressBarNumber;
-  //     background-color: var(--primary-green);
-  //   }
-  // }
 
   /* Progress bar numbers */
   & > li:nth-child(1)::before {
@@ -199,7 +181,6 @@ html {
     border: 1px solid #ddd;
 
     &::placeholder {
-      // color: #fff;
       font-weight: 300;
       font-size: 1em;
     }

@@ -59,14 +59,18 @@ var updateProgress = function (step, action) {
     if (action === "next") {
         var progressLine = document.querySelector(".progress-bar--step".concat(step, " > span:nth-child(2)"));
         var progressIndicator = document.querySelector(".progress-bar--step".concat(step + 1, " > span:nth-child(1)"));
+        var progressLabel = document.querySelector(".progress-bar--step".concat(step + 1, " > span:nth-child(3)"));
         progressLine.style.backgroundColor = "#34a853";
         progressIndicator.style.backgroundColor = "#34a853";
+        progressLabel.style.color = "#34a853";
     }
     if (action === "prev") {
         var progressLine = document.querySelector(".progress-bar--step".concat(step - 1, " > span:nth-child(2)"));
         var progressIndicator = document.querySelector(".progress-bar--step".concat(step, " > span:nth-child(1)"));
+        var progressLabel = document.querySelector(".progress-bar--step".concat(step, " > span:nth-child(3)"));
         progressLine.style.backgroundColor = "#f37335";
         progressIndicator.style.backgroundColor = "#f37335";
+        progressLabel.style.color = "#f37335";
     }
 };
 /* Initialize event listeners */

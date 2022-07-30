@@ -81,8 +81,14 @@ const updateProgress = function (step: number, action: string) {
     const progressIndicator = document.querySelector(
       `.progress-bar--step${step + 1} > span:nth-child(1)`
     );
+
+    const progressLabel = document.querySelector(
+      `.progress-bar--step${step + 1} > span:nth-child(3)`
+    );
+
     (progressLine as HTMLElement).style.backgroundColor = "#34a853";
     (progressIndicator as HTMLElement).style.backgroundColor = "#34a853";
+    (progressLabel as HTMLElement).style.color = "#34a853";
   }
 
   if (action === "prev") {
@@ -93,8 +99,13 @@ const updateProgress = function (step: number, action: string) {
     const progressIndicator = document.querySelector(
       `.progress-bar--step${step} > span:nth-child(1)`
     );
+
+    const progressLabel = document.querySelector(
+      `.progress-bar--step${step} > span:nth-child(3)`
+    );
     (progressLine as HTMLElement).style.backgroundColor = "#f37335";
     (progressIndicator as HTMLElement).style.backgroundColor = "#f37335";
+    (progressLabel as HTMLElement).style.color = "#f37335";
   }
 };
 

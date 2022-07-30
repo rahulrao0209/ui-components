@@ -134,34 +134,43 @@ html {
 .form {
   position: relative;
   text-align: center;
-  min-height: 40rem;
+  min-height: 42rem;
   min-width: 70rem;
   overflow: hidden;
-}
-.form h3 {
-  color: #757575;
 }
 .form fieldset {
   padding: 3rem 2rem;
   border: none;
 }
+.form h3 {
+  color: #757575;
+}
+.form__field {
+  position: relative;
+}
 .form fieldset:nth-child(2), .form fieldset:nth-child(3) {
   transform: translateX(110%);
 }
 .form label {
-  display: none;
+  position: absolute;
+  top: 0.3rem;
+  left: 7.5rem;
+  background-color: #fff;
+  display: inline-block;
+  font-weight: 300;
+  font-size: 0.6em;
+  color: #757575;
 }
 .form input {
   width: 80%;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   padding: 1.5rem 2.5rem;
   border: none;
   border-radius: 4px;
   border: 1px solid #ddd;
 }
 .form input::placeholder {
-  font-weight: 300;
-  font-size: 1em;
+  visibility: hidden;
 }
 .form input:focus {
   outline: none;

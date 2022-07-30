@@ -13,6 +13,23 @@ const prevStep3 = document.querySelector("#prev-step-3");
 
 const animationClasses = ["scale-down", "scale-up", "slide-in", "slide-out"];
 
+/* Get the CSS color values from the variables */
+const primaryOrange = getComputedStyle(
+  document.documentElement
+).getPropertyValue("--primary-orange");
+
+const primaryGreen = getComputedStyle(
+  document.documentElement
+).getPropertyValue("--primary-green");
+
+const primaryGrey = getComputedStyle(document.documentElement).getPropertyValue(
+  "--primary-grey"
+);
+
+const darkGrey = getComputedStyle(document.documentElement).getPropertyValue(
+  "--dark-grey"
+);
+
 const removeAnimationClasses = function (step: Element | null) {
   step?.classList.forEach((stepClass: string) => {
     if (animationClasses.includes(stepClass)) step.classList.remove(stepClass);
@@ -86,9 +103,9 @@ const updateProgress = function (step: number, action: string) {
       `.progress-bar--step${step + 1} > span:nth-child(3)`
     );
 
-    (progressLine as HTMLElement).style.backgroundColor = "#34a853";
-    (progressIndicator as HTMLElement).style.backgroundColor = "#34a853";
-    (progressLabel as HTMLElement).style.color = "#34a853";
+    (progressLine as HTMLElement).style.backgroundColor = primaryGreen;
+    (progressIndicator as HTMLElement).style.backgroundColor = primaryGreen;
+    (progressLabel as HTMLElement).style.color = primaryGreen;
   }
 
   if (action === "prev") {
@@ -103,9 +120,9 @@ const updateProgress = function (step: number, action: string) {
     const progressLabel = document.querySelector(
       `.progress-bar--step${step} > span:nth-child(3)`
     );
-    (progressLine as HTMLElement).style.backgroundColor = "#f37335";
-    (progressIndicator as HTMLElement).style.backgroundColor = "#f37335";
-    (progressLabel as HTMLElement).style.color = "#f37335";
+    (progressLine as HTMLElement).style.backgroundColor = primaryGrey;
+    (progressIndicator as HTMLElement).style.backgroundColor = primaryGrey;
+    (progressLabel as HTMLElement).style.color = darkGrey;
   }
 };
 

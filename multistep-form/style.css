@@ -9,6 +9,8 @@
 
 :root {
   --primary-orange: #f37335;
+  --primary-grey: #bebebe;
+  --dark-grey: #9e9e9e;
   --primary-green: #34a853;
 }
 
@@ -55,11 +57,10 @@ html {
   margin: 2rem 0 0 0;
   font-size: 0.8em;
   /* Progress bar numbers */
-  /* Progress bar indicator lines */
 }
 .progress-bar > li {
   position: relative;
-  color: var(--primary-orange);
+  color: var(--dark-grey);
 }
 .progress-bar .progress-bar--step1 > span:nth-child(1) {
   position: absolute;
@@ -67,7 +68,7 @@ html {
   left: 50%;
   transform: translate(-50%, 0);
   color: #fff;
-  background-color: var(--primary-orange);
+  background-color: var(--primary-grey);
   padding: 0 0 0 1.28rem;
   width: 3.5rem;
   height: 3.5rem;
@@ -81,7 +82,7 @@ html {
   position: absolute;
   top: -2.25rem;
   left: 61.5%;
-  background-color: var(--primary-orange);
+  background-color: var(--primary-grey);
   width: 12rem;
   height: 0.15rem;
   z-index: 1;
@@ -96,7 +97,7 @@ html {
   left: 50%;
   transform: translate(-50%, 0);
   color: #fff;
-  background-color: var(--primary-orange);
+  background-color: var(--primary-grey);
   padding: 0 0 0 1.28rem;
   width: 3.5rem;
   height: 3.5rem;
@@ -109,7 +110,7 @@ html {
   position: absolute;
   top: -2.25rem;
   left: 61.5%;
-  background-color: var(--primary-orange);
+  background-color: var(--primary-grey);
   width: 12rem;
   height: 0.15rem;
   z-index: 1;
@@ -121,78 +122,13 @@ html {
   left: 50%;
   transform: translate(-50%, 0);
   color: #fff;
-  background-color: var(--primary-orange);
+  background-color: var(--primary-grey);
   padding: 0 0 0 1.28rem;
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 100%;
   line-height: 3.5rem;
   z-index: 3;
-}
-.progress-bar > li:nth-child(1)::before {
-  content: "1";
-  position: absolute;
-  top: -4rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-  color: #fff;
-  background-color: var(--primary-orange);
-  padding: 0 0 0 1.28rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 100%;
-  line-height: 3.5rem;
-  z-index: 3;
-}
-.progress-bar > li:nth-child(2)::before {
-  content: "2";
-  position: absolute;
-  top: -4rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-  color: #fff;
-  background-color: var(--primary-orange);
-  padding: 0 0 0 1.28rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 100%;
-  line-height: 3.5rem;
-  z-index: 3;
-}
-.progress-bar > li:nth-child(3)::before {
-  content: "3";
-  position: absolute;
-  top: -4rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-  color: #fff;
-  background-color: var(--primary-orange);
-  padding: 0 0 0 1.28rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 100%;
-  line-height: 3.5rem;
-  z-index: 3;
-}
-.progress-bar > li:nth-child(1)::after {
-  content: "";
-  position: absolute;
-  top: -2.25rem;
-  left: 61.5%;
-  background-color: var(--primary-orange);
-  width: 12rem;
-  height: 0.15rem;
-  z-index: 1;
-}
-.progress-bar > li:nth-child(2)::after {
-  content: "";
-  position: absolute;
-  top: -2.25rem;
-  left: 61.5%;
-  background-color: var(--primary-orange);
-  width: 12rem;
-  height: 0.15rem;
-  z-index: 1;
 }
 
 .form {
@@ -203,7 +139,7 @@ html {
   overflow: hidden;
 }
 .form h3 {
-  color: #414141;
+  color: #757575;
 }
 .form fieldset {
   padding: 3rem 2rem;

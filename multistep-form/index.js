@@ -8,6 +8,11 @@ var nextStep2 = document.querySelector("#next-step-2");
 var prevStep2 = document.querySelector("#prev-step-2");
 var prevStep3 = document.querySelector("#prev-step-3");
 var animationClasses = ["scale-down", "scale-up", "slide-in", "slide-out"];
+/* Get the CSS color values from the variables */
+var primaryOrange = getComputedStyle(document.documentElement).getPropertyValue("--primary-orange");
+var primaryGreen = getComputedStyle(document.documentElement).getPropertyValue("--primary-green");
+var primaryGrey = getComputedStyle(document.documentElement).getPropertyValue("--primary-grey");
+var darkGrey = getComputedStyle(document.documentElement).getPropertyValue("--dark-grey");
 var removeAnimationClasses = function (step) {
     step === null || step === void 0 ? void 0 : step.classList.forEach(function (stepClass) {
         if (animationClasses.includes(stepClass))
@@ -60,17 +65,17 @@ var updateProgress = function (step, action) {
         var progressLine = document.querySelector(".progress-bar--step".concat(step, " > span:nth-child(2)"));
         var progressIndicator = document.querySelector(".progress-bar--step".concat(step + 1, " > span:nth-child(1)"));
         var progressLabel = document.querySelector(".progress-bar--step".concat(step + 1, " > span:nth-child(3)"));
-        progressLine.style.backgroundColor = "#34a853";
-        progressIndicator.style.backgroundColor = "#34a853";
-        progressLabel.style.color = "#34a853";
+        progressLine.style.backgroundColor = primaryGreen;
+        progressIndicator.style.backgroundColor = primaryGreen;
+        progressLabel.style.color = primaryGreen;
     }
     if (action === "prev") {
         var progressLine = document.querySelector(".progress-bar--step".concat(step - 1, " > span:nth-child(2)"));
         var progressIndicator = document.querySelector(".progress-bar--step".concat(step, " > span:nth-child(1)"));
         var progressLabel = document.querySelector(".progress-bar--step".concat(step, " > span:nth-child(3)"));
-        progressLine.style.backgroundColor = "#f37335";
-        progressIndicator.style.backgroundColor = "#f37335";
-        progressLabel.style.color = "#f37335";
+        progressLine.style.backgroundColor = primaryGrey;
+        progressIndicator.style.backgroundColor = primaryGrey;
+        progressLabel.style.color = darkGrey;
     }
 };
 /* Initialize event listeners */

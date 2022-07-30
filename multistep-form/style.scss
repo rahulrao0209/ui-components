@@ -10,6 +10,8 @@
 
 :root {
   --primary-orange: #f37335;
+  --primary-grey: #bebebe;
+  --dark-grey: #9e9e9e;
   --primary-green: #34a853;
 }
 
@@ -38,7 +40,7 @@ html {
   left: 50%;
   transform: translate(-50%, 0);
   color: #fff;
-  background-color: var(--primary-orange);
+  background-color: var(--primary-grey);
   padding: 0 0 0 1.28rem;
   width: 3.5rem;
   height: 3.5rem;
@@ -53,7 +55,7 @@ html {
   position: absolute;
   top: -2.25rem;
   left: 61.5%;
-  background-color: var(--primary-orange);
+  background-color: var(--primary-grey);
   width: 12rem;
   height: 0.15rem;
   z-index: 1;
@@ -82,7 +84,7 @@ html {
 
   & > li {
     position: relative;
-    color: var(--primary-orange);
+    color: var(--dark-grey);
   }
 
   // Progress bar step 1 is always active
@@ -122,29 +124,29 @@ html {
   }
 
   /* Progress bar numbers */
-  & > li:nth-child(1)::before {
-    content: "1";
-    @include ProgressBarNumber;
-  }
+  // & > li:nth-child(1)::before {
+  //   content: "1";
+  //   @include ProgressBarNumber;
+  // }
 
-  & > li:nth-child(2)::before {
-    content: "2";
-    @include ProgressBarNumber;
-  }
+  // & > li:nth-child(2)::before {
+  //   content: "2";
+  //   @include ProgressBarNumber;
+  // }
 
-  & > li:nth-child(3)::before {
-    content: "3";
-    @include ProgressBarNumber;
-  }
+  // & > li:nth-child(3)::before {
+  //   content: "3";
+  //   @include ProgressBarNumber;
+  // }
 
-  /* Progress bar indicator lines */
-  & > li:nth-child(1)::after {
-    @include progressBarLine;
-  }
+  // /* Progress bar indicator lines */
+  // & > li:nth-child(1)::after {
+  //   @include progressBarLine;
+  // }
 
-  & > li:nth-child(2)::after {
-    @include progressBarLine;
-  }
+  // & > li:nth-child(2)::after {
+  //   @include progressBarLine;
+  // }
 }
 
 .form {
@@ -155,7 +157,7 @@ html {
   overflow: hidden;
 
   & h3 {
-    color: #414141;
+    color: darken(#9e9e9e, 16%);
   }
 
   & fieldset {

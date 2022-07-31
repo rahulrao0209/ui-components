@@ -20,12 +20,17 @@ body {
 
 html {
   font-family: "Mukta", sans-serif;
-  font-size: 43.75%;
+  font-size: 31.25%;
   scroll-behavior: smooth;
+}
+@media only screen and (min-width: 360px) {
+  html {
+    font-size: 37.5%;
+  }
 }
 @media only screen and (min-width: 478px) {
   html {
-    font-size: 43.75%;
+    font-size: 50%;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -41,12 +46,27 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  padding: 2rem 1rem;
   font-size: 2.5em;
-  min-width: 60rem;
+  min-width: 300px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4rem;
   border-radius: 6px;
+}
+@media only screen and (min-width: 478px) {
+  .multistep-form__container {
+    min-width: 60rem;
+    max-width: 60rem;
+    padding: 0;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .multistep-form__container {
+    min-width: 60rem;
+    max-width: 60rem;
+  }
 }
 
 .progress-bar {
@@ -134,8 +154,8 @@ html {
 .form {
   position: relative;
   text-align: center;
-  min-height: 42rem;
-  min-width: 70rem;
+  min-height: 47rem;
+  width: 100%;
   overflow: hidden;
 }
 .form fieldset {
@@ -176,6 +196,17 @@ html {
   outline: none;
   box-shadow: 1px 1px 4px 2px #ebd4ab;
 }
+@media only screen and (min-width: 478px) {
+  .form {
+    min-height: 45rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .form {
+    min-height: 42rem;
+    min-width: 70rem;
+  }
+}
 
 .button {
   margin: 2.5rem 0.5rem 0;
@@ -202,8 +233,13 @@ html {
   position: absolute;
   inset: 1rem 2.5rem;
   background-color: #fff;
-  min-width: 60rem;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  min-width: 80%;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+@media only screen and (min-width: 768px) {
+  .form-step {
+    min-width: 60rem;
+  }
 }
 
 #form-step-1 {
@@ -268,7 +304,7 @@ html {
     opacity: 1;
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.03);
     opacity: 1;
   }
   100% {
@@ -310,7 +346,7 @@ html {
     opacity: 0;
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.03);
     opacity: 1;
   }
   100% {

@@ -58,14 +58,14 @@ html {
 @media only screen and (min-width: 478px) {
   .multistep-form__container {
     min-width: 60rem;
-    max-width: 60rem;
+    width: auto;
     padding: 0;
   }
 }
 @media only screen and (min-width: 768px) {
   .multistep-form__container {
     min-width: 60rem;
-    max-width: 60rem;
+    width: auto;
   }
 }
 

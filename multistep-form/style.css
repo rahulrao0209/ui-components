@@ -52,7 +52,7 @@ html {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 0rem;
   border-radius: 6px;
 }
 @media only screen and (min-width: 478px) {
@@ -154,7 +154,7 @@ html {
 .form {
   position: relative;
   text-align: center;
-  min-height: 47rem;
+  min-height: 45rem;
   width: 100%;
   overflow: hidden;
 }
@@ -198,18 +198,18 @@ html {
 }
 @media only screen and (min-width: 478px) {
   .form {
-    min-height: 45rem;
+    min-height: 42rem;
   }
 }
 @media only screen and (min-width: 768px) {
   .form {
-    min-height: 42rem;
+    min-height: 41rem;
     min-width: 70rem;
   }
 }
 
 .button {
-  margin: 2.5rem 0.5rem 0;
+  margin: 1rem 0.5rem;
   padding: 0.45em 0.25em;
   min-width: 6em;
   font-size: 1.8rem;
@@ -290,14 +290,6 @@ html {
 }
 
 /* Animations */
-@keyframes grow {
-  from {
-    width: 0rem;
-  }
-  to {
-    width: 12rem;
-  }
-}
 @keyframes scaleDown {
   0% {
     transform: scale(1);

@@ -8,7 +8,14 @@ var nextStep2 = document.querySelector("#next-step-2");
 var prevStep2 = document.querySelector("#prev-step-2");
 var prevStep3 = document.querySelector("#prev-step-3");
 var submitButton = document.querySelector("#submit");
-var animationClasses = ["scale-down", "scale-up", "slide-in", "slide-out"];
+var animationClasses = [
+    "scale-down",
+    "scale-up",
+    "slide-in",
+    "slide-out",
+    "add-grow",
+    "add-shrink",
+];
 /* Get the CSS color values from the variables */
 var primaryOrange = getComputedStyle(document.documentElement).getPropertyValue("--primary-orange");
 var primaryGreen = getComputedStyle(document.documentElement).getPropertyValue("--primary-green");
@@ -63,18 +70,23 @@ var handlePrev = function (event) {
 /* Handle the progress bar indicator as we move through the  steps */
 var updateProgress = function (step, action) {
     if (action === "next") {
-        var progressLine = document.querySelector(".progress-bar--step".concat(step, " > span:nth-child(2)"));
         var progressIndicator = document.querySelector(".progress-bar--step".concat(step + 1, " > span:nth-child(1)"));
+        var progressLine = document.querySelector(".progress-bar--step".concat(step, " > span:nth-child(2)"));
         var progressLabel = document.querySelector(".progress-bar--step".concat(step + 1, " > span:nth-child(3)"));
+        /* Remove any animation classes */
+        removeAnimationClasses(progressLine);
+        progressLine === null || progressLine === void 0 ? void 0 : progressLine.classList.add("add-grow");
         progressLine.style.backgroundColor = primaryGreen;
         progressIndicator.style.backgroundColor = primaryGreen;
         progressLabel.style.color = primaryGreen;
     }
     if (action === "prev") {
-        var progressLine = document.querySelector(".progress-bar--step".concat(step - 1, " > span:nth-child(2)"));
         var progressIndicator = document.querySelector(".progress-bar--step".concat(step, " > span:nth-child(1)"));
+        var progressLine = document.querySelector(".progress-bar--step".concat(step - 1, " > span:nth-child(2)"));
         var progressLabel = document.querySelector(".progress-bar--step".concat(step, " > span:nth-child(3)"));
-        progressLine.style.backgroundColor = primaryGrey;
+        /* Remove any animation classes */
+        removeAnimationClasses(progressLine);
+        progressLine === null || progressLine === void 0 ? void 0 : progressLine.classList.add("add-shrink");
         progressIndicator.style.backgroundColor = primaryGrey;
         progressLabel.style.color = darkGrey;
     }

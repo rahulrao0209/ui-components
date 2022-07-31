@@ -76,7 +76,8 @@ html {
   justify-content: center;
   margin: 2rem 0 0 0;
   font-size: 0.8em;
-  /* Progress bar numbers */
+  /* Progress bar placeholder numbers (using before after selectors) */
+  /* Progress bar placeholder indicator lines (using before after selectors) */
 }
 .progress-bar > li {
   position: relative;
@@ -106,6 +107,8 @@ html {
   width: 12rem;
   height: 0.15rem;
   z-index: 1;
+  width: 0;
+  animation-fill-mode: forwards;
   z-index: 2;
 }
 .progress-bar .progress-bar--step1 > span:nth-child(3) {
@@ -124,6 +127,7 @@ html {
   border-radius: 100%;
   line-height: 3.5rem;
   z-index: 3;
+  transition-delay: 0.5s;
 }
 .progress-bar .progress-bar--step2 > span:nth-child(2) {
   content: "";
@@ -134,6 +138,8 @@ html {
   width: 12rem;
   height: 0.15rem;
   z-index: 1;
+  width: 0;
+  animation-fill-mode: forwards;
   z-index: 2;
 }
 .progress-bar .progress-bar--step3 > span:nth-child(1) {
@@ -149,6 +155,72 @@ html {
   border-radius: 100%;
   line-height: 3.5rem;
   z-index: 3;
+  transition-delay: 0.5s;
+}
+.progress-bar > li:nth-child(1)::before {
+  content: "1";
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: #fff;
+  background-color: var(--primary-grey);
+  padding: 0 0 0 1.28rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 100%;
+  line-height: 3.5rem;
+  z-index: 3;
+}
+.progress-bar > li:nth-child(2)::before {
+  content: "2";
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: #fff;
+  background-color: var(--primary-grey);
+  padding: 0 0 0 1.28rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 100%;
+  line-height: 3.5rem;
+  z-index: 3;
+}
+.progress-bar > li:nth-child(3)::before {
+  content: "3";
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: #fff;
+  background-color: var(--primary-grey);
+  padding: 0 0 0 1.28rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 100%;
+  line-height: 3.5rem;
+  z-index: 3;
+}
+.progress-bar > li:nth-child(1)::after {
+  content: "";
+  position: absolute;
+  top: -2.25rem;
+  left: 61.5%;
+  background-color: var(--primary-grey);
+  width: 12rem;
+  height: 0.15rem;
+  z-index: 1;
+}
+.progress-bar > li:nth-child(2)::after {
+  content: "";
+  position: absolute;
+  top: -2.25rem;
+  left: 61.5%;
+  background-color: var(--primary-grey);
+  width: 12rem;
+  height: 0.15rem;
+  z-index: 1;
 }
 
 .form {
@@ -290,6 +362,22 @@ html {
 }
 
 /* Animations */
+@keyframes grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 12rem;
+  }
+}
+@keyframes shrink {
+  from {
+    width: 12rem;
+  }
+  to {
+    width: 0;
+  }
+}
 @keyframes scaleDown {
   0% {
     transform: scale(1);
@@ -345,6 +433,15 @@ html {
     transform: scale(1);
     opacity: 1;
   }
+}
+.add-grow {
+  animation-name: grow;
+  animation-duration: 1s;
+}
+
+.add-shrink {
+  animation-name: shrink;
+  animation-duration: 1s;
 }
 
 /*# sourceMappingURL=style.css.map */

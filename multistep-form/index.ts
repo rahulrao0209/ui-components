@@ -13,7 +13,14 @@ const prevStep3 = document.querySelector("#prev-step-3");
 
 const submitButton = document.querySelector("#submit");
 
-const animationClasses = ["scale-down", "scale-up", "slide-in", "slide-out"];
+const animationClasses = [
+  "scale-down",
+  "scale-up",
+  "slide-in",
+  "slide-out",
+  "add-grow",
+  "add-shrink",
+];
 
 /* Get the CSS color values from the variables */
 const primaryOrange = getComputedStyle(
@@ -93,36 +100,44 @@ const handlePrev = function (event: Event) {
 /* Handle the progress bar indicator as we move through the  steps */
 const updateProgress = function (step: number, action: string) {
   if (action === "next") {
-    const progressLine = document.querySelector(
-      `.progress-bar--step${step} > span:nth-child(2)`
-    );
-
     const progressIndicator = document.querySelector(
       `.progress-bar--step${step + 1} > span:nth-child(1)`
+    );
+
+    const progressLine = document.querySelector(
+      `.progress-bar--step${step} > span:nth-child(2)`
     );
 
     const progressLabel = document.querySelector(
       `.progress-bar--step${step + 1} > span:nth-child(3)`
     );
 
+    /* Remove any animation classes */
+    removeAnimationClasses(progressLine);
+
+    progressLine?.classList.add("add-grow");
     (progressLine as HTMLElement).style.backgroundColor = primaryGreen;
     (progressIndicator as HTMLElement).style.backgroundColor = primaryGreen;
     (progressLabel as HTMLElement).style.color = primaryGreen;
   }
 
   if (action === "prev") {
-    const progressLine = document.querySelector(
-      `.progress-bar--step${step - 1} > span:nth-child(2)`
-    );
-
     const progressIndicator = document.querySelector(
       `.progress-bar--step${step} > span:nth-child(1)`
+    );
+
+    const progressLine = document.querySelector(
+      `.progress-bar--step${step - 1} > span:nth-child(2)`
     );
 
     const progressLabel = document.querySelector(
       `.progress-bar--step${step} > span:nth-child(3)`
     );
-    (progressLine as HTMLElement).style.backgroundColor = primaryGrey;
+
+    /* Remove any animation classes */
+    removeAnimationClasses(progressLine);
+
+    progressLine?.classList.add("add-shrink");
     (progressIndicator as HTMLElement).style.backgroundColor = primaryGrey;
     (progressLabel as HTMLElement).style.color = darkGrey;
   }

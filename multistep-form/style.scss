@@ -113,6 +113,8 @@ html {
 
     & > span:nth-child(2) {
       @include progressBarLine;
+      width: 0; // set width to 0 here to animate the progress line
+      animation-fill-mode: forwards;
       z-index: 2;
     }
 
@@ -125,10 +127,13 @@ html {
   .progress-bar--step2 {
     & > span:nth-child(1) {
       @include ProgressBarNumber;
+      transition-delay: 0.5s;
     }
 
     & > span:nth-child(2) {
       @include progressBarLine;
+      width: 0; // set width to 0 here to animate the progress line
+      animation-fill-mode: forwards;
       z-index: 2;
     }
   }
@@ -137,33 +142,34 @@ html {
   .progress-bar--step3 {
     & > span:nth-child(1) {
       @include ProgressBarNumber;
+      transition-delay: 0.5s;
     }
   }
 
-  /* Progress bar numbers */
-  // & > li:nth-child(1)::before {
-  //   content: "1";
-  //   @include ProgressBarNumber;
-  // }
+  /* Progress bar placeholder numbers (using before after selectors) */
+  & > li:nth-child(1)::before {
+    content: "1";
+    @include ProgressBarNumber;
+  }
 
-  // & > li:nth-child(2)::before {
-  //   content: "2";
-  //   @include ProgressBarNumber;
-  // }
+  & > li:nth-child(2)::before {
+    content: "2";
+    @include ProgressBarNumber;
+  }
 
-  // & > li:nth-child(3)::before {
-  //   content: "3";
-  //   @include ProgressBarNumber;
-  // }
+  & > li:nth-child(3)::before {
+    content: "3";
+    @include ProgressBarNumber;
+  }
 
-  // /* Progress bar indicator lines */
-  // & > li:nth-child(1)::after {
-  //   @include progressBarLine;
-  // }
+  /* Progress bar placeholder indicator lines (using before after selectors) */
+  & > li:nth-child(1)::after {
+    @include progressBarLine;
+  }
 
-  // & > li:nth-child(2)::after {
-  //   @include progressBarLine;
-  // }
+  & > li:nth-child(2)::after {
+    @include progressBarLine;
+  }
 }
 
 .form {
@@ -316,15 +322,25 @@ html {
 }
 
 /* Animations */
-// @keyframes grow {
-//   from {
-//     width: 0rem;
-//   }
+@keyframes grow {
+  from {
+    width: 0;
+  }
 
-//   to {
-//     width: 12rem;
-//   }
-// }
+  to {
+    width: 12rem;
+  }
+}
+
+@keyframes shrink {
+  from {
+    width: 12rem;
+  }
+
+  to {
+    width: 0;
+  }
+}
 
 @keyframes scaleDown {
   0% {
@@ -392,4 +408,16 @@ html {
     transform: scale(1);
     opacity: 1;
   }
+}
+
+// TEST
+
+.add-grow {
+  animation-name: grow;
+  animation-duration: 1s;
+}
+
+.add-shrink {
+  animation-name: shrink;
+  animation-duration: 1s;
 }

@@ -326,7 +326,7 @@ html {
   animation-fill-mode: forwards;
 }
 
-/* Applying animations using classes */
+/* Applying animation classes for the form */
 .scale-down {
   animation-name: scaleDown;
   animation-direction: normal;
@@ -359,6 +359,17 @@ html {
 .disappeared {
   transform: scale(0);
   opacity: 0;
+}
+
+/* Applying animation classes for the progress bar animation */
+.add-grow {
+  animation-name: grow;
+  animation-duration: 1s;
+}
+
+.add-shrink {
+  animation-name: shrink;
+  animation-duration: 1s;
 }
 
 /* Animations */
@@ -433,15 +444,6 @@ html {
     transform: scale(1);
     opacity: 1;
   }
-}
-.add-grow {
-  animation-name: grow;
-  animation-duration: 1s;
-}
-
-.add-shrink {
-  animation-name: shrink;
-  animation-duration: 1s;
 }
 
 /*# sourceMappingURL=style.css.map */

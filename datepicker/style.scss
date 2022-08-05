@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;700&display=swap");
+
 *,
 *::before,
 *::after {
@@ -6,8 +8,13 @@
   box-sizing: inherit;
 }
 
+:root {
+  --primary-color: #5b86e5;
+}
+
 body {
   box-sizing: border-box;
+  font-family: "Catamaran", sans-serif;
 }
 
 html {
@@ -24,5 +31,48 @@ html {
 
   @media only screen and (min-width: 768px) {
     font-size: 62.5%; // 1rem = 10px
+  }
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.datepicker {
+  min-width: 45rem;
+  min-height: 40rem;
+  margin: 2rem 0;
+  border-radius: 4px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+  &__controls {
+    width: 100%;
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: rgb(85, 85, 85);
+    border-radius: inherit;
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+
+    & div {
+      border: none;
+      display: block;
+      padding: 0.25em 2em;
+      width: 50%;
+      background-color: rgb(224, 221, 216);
+      transition: all 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #fff;
+        border-bottom: 1px solid #000;
+      }
+    }
   }
 }

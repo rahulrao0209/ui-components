@@ -60,20 +60,37 @@ html {
     justify-content: center;
     gap: 0.25rem;
 
+    /* Styling the controls for the month and year */
     & div {
       border: none;
-      border-radius: 4px 4px 0 0;
       display: block;
       padding: 0.25em 2em;
       width: 50%;
       background-color: rgb(224, 221, 216);
+      background-color: var(--primary-color);
+      color: #fff;
       transition: all 0.2s;
 
-      &:hover {
+      &:hover,
+      &:focus {
         cursor: pointer;
         background-color: #fff;
-        border-bottom: 1px solid #000;
+        color: var(--primary-color);
+        border-bottom: 1px solid currentColor;
       }
+
+      &:active {
+        transform: scale(0.8);
+      }
+    }
+
+    /* Setting up border radius for the controls */
+    .controls--month {
+      border-radius: 4px 0 0 0;
+    }
+
+    .controls--year {
+      border-radius: 0 4px 0 0;
     }
   }
 }

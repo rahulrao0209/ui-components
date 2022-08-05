@@ -60,20 +60,33 @@ html {
   display: flex;
   justify-content: center;
   gap: 0.25rem;
+  /* Styling the controls for the month and year */
+  /* Setting up border radius for the controls */
 }
 .datepicker__controls div {
   border: none;
-  border-radius: 4px 4px 0 0;
   display: block;
   padding: 0.25em 2em;
   width: 50%;
   background-color: #e0ddd8;
+  background-color: var(--primary-color);
+  color: #fff;
   transition: all 0.2s;
 }
-.datepicker__controls div:hover {
+.datepicker__controls div:hover, .datepicker__controls div:focus {
   cursor: pointer;
   background-color: #fff;
-  border-bottom: 1px solid #000;
+  color: var(--primary-color);
+  border-bottom: 1px solid currentColor;
+}
+.datepicker__controls div:active {
+  transform: scale(0.8);
+}
+.datepicker__controls .controls--month {
+  border-radius: 4px 0 0 0;
+}
+.datepicker__controls .controls--year {
+  border-radius: 0 4px 0 0;
 }
 
 /*# sourceMappingURL=style.css.map */

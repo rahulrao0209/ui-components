@@ -71,6 +71,7 @@ html {
   background-color: #e0ddd8;
   background-color: var(--primary-color);
   color: #fff;
+  border-bottom: 1px solid transparent;
   transition: all 0.2s;
 }
 .datepicker__controls div:hover, .datepicker__controls div:focus {
@@ -87,6 +88,17 @@ html {
 }
 .datepicker__controls .controls--year {
   border-radius: 0 4px 0 0;
+}
+
+.calendar {
+  margin: 1.5rem 0;
+}
+.calendar__days {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.8rem;
+  color: grey;
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=style.css.map */

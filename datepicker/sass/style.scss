@@ -69,6 +69,7 @@ html {
       background-color: rgb(224, 221, 216);
       background-color: var(--primary-color);
       color: #fff;
+      border-bottom: 1px solid transparent;
       transition: all 0.2s;
 
       &:hover,
@@ -92,5 +93,17 @@ html {
     .controls--year {
       border-radius: 0 4px 0 0;
     }
+  }
+}
+
+.calendar {
+  margin: 1.5rem 0;
+
+  &__days {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.8rem;
+    color: grey;
+    font-weight: 700;
   }
 }

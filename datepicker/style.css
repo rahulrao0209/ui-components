@@ -63,6 +63,7 @@ html {
 }
 .datepicker__controls div {
   border: none;
+  border-radius: 4px 4px 0 0;
   display: block;
   padding: 0.25em 2em;
   width: 50%;

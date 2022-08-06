@@ -8,7 +8,8 @@
 }
 
 :root {
-  --primary-color: #5b86e5;
+  --primary-purple: #5b86e5;
+  --primary-green: #34a853;
   --primary-grey: #8a8a8a;
   --primary-grey-light: #cecece;
   --primary-grey-faded: #ececec;
@@ -70,7 +71,7 @@ html {
   display: block;
   padding: 0.25em 2em;
   width: 50%;
-  background-color: var(--primary-color);
+  background-color: var(--primary-purple);
   color: #fff;
   border-bottom: 1px solid transparent;
   transition: all 0.2s;
@@ -78,7 +79,7 @@ html {
 .datepicker__controls div:hover, .datepicker__controls div:focus {
   cursor: pointer;
   background-color: #fff;
-  color: var(--primary-color);
+  color: var(--primary-purple);
   border-bottom: 1px solid currentColor;
 }
 .datepicker__controls div:active {

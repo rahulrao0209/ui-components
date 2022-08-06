@@ -1,3 +1,19 @@
+/* Get the CSS color values from the variables */
+// const primaryPurple = getComputedStyle(
+//   document.documentElement
+// ).getPropertyValue("--primary-purple");
+// const primaryGreen = getComputedStyle(
+//   document.documentElement
+// ).getPropertyValue("--primary-green");
+// const primaryGrey = getComputedStyle(document.documentElement).getPropertyValue(
+//   "--primary-grey"
+// );
+// const primaryGreyLight = getComputedStyle(
+//   document.documentElement
+// ).getPropertyValue("--primary-grey-light");
+// const primaryGreyFaded = getComputedStyle(
+//   document.documentElement
+// ).getPropertyValue("--primary-grey-faded");
 var getCurrentMonthData = function (month) {
     if (month === void 0) { month = new Date().getMonth(); }
     var date = new Date(); // Will always be today's date
@@ -74,7 +90,7 @@ var loadMonth = function () {
     previousMonthDays.forEach(function (day) {
         var dateDiv = document.createElement("div");
         dateDiv.innerText = day.dayNumeric.toString();
-        dateDiv.style.color = "grey";
+        dateDiv.style.color = "#8a8a8a";
         daysBlock === null || daysBlock === void 0 ? void 0 : daysBlock.appendChild(dateDiv);
     });
     /* Add the current month days */
@@ -87,7 +103,7 @@ var loadMonth = function () {
     nextMonthDays.forEach(function (day) {
         var dateDiv = document.createElement("div");
         dateDiv.innerText = day.dayNumeric.toString();
-        dateDiv.style.color = "grey";
+        dateDiv.style.color = "#8a8a8a";
         daysBlock === null || daysBlock === void 0 ? void 0 : daysBlock.appendChild(dateDiv);
     });
 };

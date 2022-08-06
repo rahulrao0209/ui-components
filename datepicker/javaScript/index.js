@@ -33,7 +33,7 @@ var getCurrentMonthData = function (month) {
             year: dateYear
         });
     }
-    /* Collect all month days */
+    /* Collect all current month days */
     for (var i = 0; i < noOfCurrentMonthDays; i++) {
         var date_2 = new Date(year, month, i + 1);
         var day = date_2.getDate();
@@ -49,6 +49,22 @@ var getCurrentMonthData = function (month) {
             year: dateYear
         });
     }
+    /* Collect all current month days */
+    for (var i = 0; i < noOfNextMonthDays; i++) {
+        var date_3 = new Date(year, month + 1, i + 1);
+        var day = date_3.getDate();
+        var dateYear = date_3.getFullYear();
+        var _c = date_3
+            .toLocaleDateString("en-in", { weekday: "short", month: "short" })
+            .split(" "), monthString = _c[0], dayString = _c[1];
+        console.log("Current ".concat(dayString, " ").concat(monthString, " ").concat(day, " ").concat(dateYear));
+        nextMonthDays.push({
+            day: dayString,
+            month: monthString,
+            dayNumeric: day,
+            year: dateYear
+        });
+    }
     return { previousMonthDays: previousMonthDays, currentMonthDays: currentMonthDays, nextMonthDays: nextMonthDays };
 };
 var loadMonth = function () {
@@ -58,6 +74,7 @@ var loadMonth = function () {
     previousMonthDays.forEach(function (day) {
         var dateDiv = document.createElement("div");
         dateDiv.innerText = day.dayNumeric.toString();
+        dateDiv.style.color = "grey";
         daysBlock === null || daysBlock === void 0 ? void 0 : daysBlock.appendChild(dateDiv);
     });
     /* Add the current month days */
@@ -70,6 +87,7 @@ var loadMonth = function () {
     nextMonthDays.forEach(function (day) {
         var dateDiv = document.createElement("div");
         dateDiv.innerText = day.dayNumeric.toString();
+        dateDiv.style.color = "grey";
         daysBlock === null || daysBlock === void 0 ? void 0 : daysBlock.appendChild(dateDiv);
     });
 };

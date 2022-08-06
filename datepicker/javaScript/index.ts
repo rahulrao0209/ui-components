@@ -58,7 +58,7 @@ const getCurrentMonthData = (month = new Date().getMonth()) => {
     });
   }
 
-  /* Collect all month days */
+  /* Collect all current month days */
   for (let i = 0; i < noOfCurrentMonthDays; i++) {
     const date = new Date(year, month, i + 1);
     const day = date.getDate();
@@ -70,6 +70,25 @@ const getCurrentMonthData = (month = new Date().getMonth()) => {
     console.log(`Current ${dayString} ${monthString} ${day} ${dateYear}`);
 
     currentMonthDays.push({
+      day: dayString,
+      month: monthString,
+      dayNumeric: day,
+      year: dateYear,
+    });
+  }
+
+  /* Collect all current month days */
+  for (let i = 0; i < noOfNextMonthDays; i++) {
+    const date = new Date(year, month + 1, i + 1);
+    const day = date.getDate();
+    const dateYear = date.getFullYear();
+    const [monthString, dayString] = date
+      .toLocaleDateString("en-in", { weekday: "short", month: "short" })
+      .split(" ");
+
+    console.log(`Current ${dayString} ${monthString} ${day} ${dateYear}`);
+
+    nextMonthDays.push({
       day: dayString,
       month: monthString,
       dayNumeric: day,
@@ -90,6 +109,7 @@ const loadMonth = function () {
   previousMonthDays.forEach((day: DateDetails) => {
     const dateDiv = document.createElement("div");
     dateDiv.innerText = day.dayNumeric.toString();
+    dateDiv.style.color = "grey";
     daysBlock?.appendChild(dateDiv);
   });
 
@@ -104,6 +124,7 @@ const loadMonth = function () {
   nextMonthDays.forEach((day: DateDetails) => {
     const dateDiv = document.createElement("div");
     dateDiv.innerText = day.dayNumeric.toString();
+    dateDiv.style.color = "grey";
     daysBlock?.appendChild(dateDiv);
   });
 };

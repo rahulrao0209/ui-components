@@ -1,3 +1,30 @@
+var getMonthDays = function (monthType, noOfMonthDays, monthDays, year, month) {
+    for (var i = 0; i < noOfMonthDays; i++) {
+        /* Use proper expression for calculating the day value according to the monthType aka previous | current | next */
+        var dayValueExp = void 0;
+        if (monthType === "previous") {
+            dayValueExp = 0 - i;
+        }
+        else {
+            dayValueExp = i + 1;
+        }
+        var date = new Date(year, month, dayValueExp);
+        var dayNumeric = date.getDate();
+        var monthNumeric = date.getMonth();
+        var dateYear = date.getFullYear();
+        var _a = date
+            .toLocaleDateString("en-in", { weekday: "short", month: "short" })
+            .split(" "), monthString = _a[0], dayString = _a[1];
+        console.log("Previous ".concat(dayString, " ").concat(monthString, " ").concat(dayNumeric, " ").concat(dateYear));
+        monthDays.push({
+            day: dayString,
+            month: monthString,
+            dayNumeric: dayNumeric,
+            monthNumeric: monthNumeric,
+            year: dateYear
+        });
+    }
+};
 /* Get the CSS color values from the variables */
 // const primaryPurple = getComputedStyle(
 //   document.documentElement
@@ -37,65 +64,12 @@ var getMonthData = function (month) {
     var currentMonthDays = [];
     var previousMonthDays = [];
     var nextMonthDays = [];
-    console.log("first weekday of month: ", firstWeekdayOfMonth);
-    console.log("first weekday of next month: ", firstWeekdayOfNextMonth);
-    console.log("Number of current month days: ", noOfCurrentMonthDays);
-    console.log("Number of previous month days: ", noOfPreviousMonthDays);
-    console.log("Number of next month days: ", noOfNextMonthDays);
     /* Collect all trailing days from the previous month */
-    for (var i = 0; i < noOfPreviousMonthDays; i++) {
-        var date_1 = new Date(year, month, 0 - i);
-        var dayNumeric = date_1.getDate();
-        var monthNumeric = date_1.getMonth();
-        var dateYear = date_1.getFullYear();
-        var _a = date_1
-            .toLocaleDateString("en-in", { weekday: "short", month: "short" })
-            .split(" "), monthString = _a[0], dayString = _a[1];
-        console.log("Previous ".concat(dayString, " ").concat(monthString, " ").concat(dayNumeric, " ").concat(dateYear));
-        previousMonthDays.push({
-            day: dayString,
-            month: monthString,
-            dayNumeric: dayNumeric,
-            monthNumeric: monthNumeric,
-            year: dateYear
-        });
-    }
+    getMonthDays("previous", noOfPreviousMonthDays, previousMonthDays, year, month);
     /* Collect all current month days */
-    for (var i = 0; i < noOfCurrentMonthDays; i++) {
-        var date_2 = new Date(year, month, i + 1);
-        var dayNumeric = date_2.getDate();
-        var monthNumeric = date_2.getMonth();
-        var dateYear = date_2.getFullYear();
-        var _b = date_2
-            .toLocaleDateString("en-in", { weekday: "short", month: "short" })
-            .split(" "), monthString = _b[0], dayString = _b[1];
-        console.log("Current ".concat(dayString, " ").concat(monthString, " ").concat(dayNumeric, " ").concat(dateYear));
-        currentMonthDays.push({
-            day: dayString,
-            month: monthString,
-            dayNumeric: dayNumeric,
-            monthNumeric: monthNumeric,
-            year: dateYear
-        });
-    }
-    /* Collect all current month days */
-    for (var i = 0; i < noOfNextMonthDays; i++) {
-        var date_3 = new Date(year, month + 1, i + 1);
-        var dayNumeric = date_3.getDate();
-        var monthNumeric = date_3.getMonth();
-        var dateYear = date_3.getFullYear();
-        var _c = date_3
-            .toLocaleDateString("en-in", { weekday: "short", month: "short" })
-            .split(" "), monthString = _c[0], dayString = _c[1];
-        console.log("Current ".concat(dayString, " ").concat(monthString, " ").concat(dayNumeric, " ").concat(dateYear));
-        nextMonthDays.push({
-            day: dayString,
-            month: monthString,
-            dayNumeric: dayNumeric,
-            monthNumeric: monthNumeric,
-            year: dateYear
-        });
-    }
+    getMonthDays("current", noOfCurrentMonthDays, currentMonthDays, year, month);
+    /* Collect all next month days */
+    getMonthDays("next", noOfNextMonthDays, nextMonthDays, year, month + 1);
     return { previousMonthDays: previousMonthDays, currentMonthDays: currentMonthDays, nextMonthDays: nextMonthDays };
 };
 var loadMonth = function () {

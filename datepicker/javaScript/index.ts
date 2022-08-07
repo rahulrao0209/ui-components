@@ -8,6 +8,45 @@ type DateDetails = {
 
 type Month = "previous" | "current" | "next";
 
+const getMonthDays = function (
+  monthType: Month,
+  noOfMonthDays: number,
+  monthDays: DateDetails[],
+  year: number,
+  month: number
+) {
+  for (let i = 0; i < noOfMonthDays; i++) {
+    /* Use proper expression for calculating the day value according to the monthType aka previous | current | next */
+    let dayValueExp: number;
+
+    if (monthType === "previous") {
+      dayValueExp = 0 - i;
+    } else {
+      dayValueExp = i + 1;
+    }
+
+    const date = new Date(year, month, dayValueExp);
+    const dayNumeric = date.getDate();
+    const monthNumeric = date.getMonth();
+    const dateYear = date.getFullYear();
+    const [monthString, dayString] = date
+      .toLocaleDateString("en-in", { weekday: "short", month: "short" })
+      .split(" ");
+
+    console.log(
+      `Previous ${dayString} ${monthString} ${dayNumeric} ${dateYear}`
+    );
+
+    monthDays.push({
+      day: dayString,
+      month: monthString,
+      dayNumeric: dayNumeric,
+      monthNumeric: monthNumeric,
+      year: dateYear,
+    });
+  }
+};
+
 /* Get the CSS color values from the variables */
 // const primaryPurple = getComputedStyle(
 //   document.documentElement
@@ -70,80 +109,20 @@ const getMonthData = (month = new Date().getMonth()) => {
   const previousMonthDays: DateDetails[] = [];
   const nextMonthDays: DateDetails[] = [];
 
-  console.log("first weekday of month: ", firstWeekdayOfMonth);
-  console.log("first weekday of next month: ", firstWeekdayOfNextMonth);
-  console.log("Number of current month days: ", noOfCurrentMonthDays);
-  console.log("Number of previous month days: ", noOfPreviousMonthDays);
-  console.log("Number of next month days: ", noOfNextMonthDays);
-
   /* Collect all trailing days from the previous month */
-  for (let i = 0; i < noOfPreviousMonthDays; i++) {
-    const date = new Date(year, month, 0 - i);
-    const dayNumeric = date.getDate();
-    const monthNumeric = date.getMonth();
-    const dateYear = date.getFullYear();
-    const [monthString, dayString] = date
-      .toLocaleDateString("en-in", { weekday: "short", month: "short" })
-      .split(" ");
-
-    console.log(
-      `Previous ${dayString} ${monthString} ${dayNumeric} ${dateYear}`
-    );
-
-    previousMonthDays.push({
-      day: dayString,
-      month: monthString,
-      dayNumeric: dayNumeric,
-      monthNumeric: monthNumeric,
-      year: dateYear,
-    });
-  }
+  getMonthDays(
+    "previous",
+    noOfPreviousMonthDays,
+    previousMonthDays,
+    year,
+    month
+  );
 
   /* Collect all current month days */
-  for (let i = 0; i < noOfCurrentMonthDays; i++) {
-    const date = new Date(year, month, i + 1);
-    const dayNumeric = date.getDate();
-    const monthNumeric = date.getMonth();
-    const dateYear = date.getFullYear();
-    const [monthString, dayString] = date
-      .toLocaleDateString("en-in", { weekday: "short", month: "short" })
-      .split(" ");
+  getMonthDays("current", noOfCurrentMonthDays, currentMonthDays, year, month);
 
-    console.log(
-      `Current ${dayString} ${monthString} ${dayNumeric} ${dateYear}`
-    );
-
-    currentMonthDays.push({
-      day: dayString,
-      month: monthString,
-      dayNumeric: dayNumeric,
-      monthNumeric: monthNumeric,
-      year: dateYear,
-    });
-  }
-
-  /* Collect all current month days */
-  for (let i = 0; i < noOfNextMonthDays; i++) {
-    const date = new Date(year, month + 1, i + 1);
-    const dayNumeric = date.getDate();
-    const monthNumeric = date.getMonth();
-    const dateYear = date.getFullYear();
-    const [monthString, dayString] = date
-      .toLocaleDateString("en-in", { weekday: "short", month: "short" })
-      .split(" ");
-
-    console.log(
-      `Current ${dayString} ${monthString} ${dayNumeric} ${dateYear}`
-    );
-
-    nextMonthDays.push({
-      day: dayString,
-      month: monthString,
-      dayNumeric: dayNumeric,
-      monthNumeric: monthNumeric,
-      year: dateYear,
-    });
-  }
+  /* Collect all next month days */
+  getMonthDays("next", noOfNextMonthDays, nextMonthDays, year, month + 1);
 
   return { previousMonthDays, currentMonthDays, nextMonthDays };
 };

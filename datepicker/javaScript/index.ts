@@ -2,6 +2,7 @@ type DateDetails = {
   day: string;
   month: string;
   dayNumeric: number;
+  monthNumeric: number;
   year: number;
 };
 
@@ -25,6 +26,19 @@ type DateDetails = {
 // const primaryGreyFaded = getComputedStyle(
 //   document.documentElement
 // ).getPropertyValue("--primary-grey-faded");
+
+const checkCurrentDay = function (currentDay: DateDetails) {
+  const today = new Date();
+  const todayDayNumeric = today.getDate();
+  const todayMonth = today.getMonth();
+  const todayYear = today.getFullYear();
+
+  return (
+    todayDayNumeric === currentDay.dayNumeric &&
+    todayMonth === currentDay.dayNumeric &&
+    todayYear === currentDay.year
+  );
+};
 
 const getCurrentMonthData = (month = new Date().getMonth()) => {
   const date = new Date(); // Will always be today's date
@@ -63,18 +77,22 @@ const getCurrentMonthData = (month = new Date().getMonth()) => {
   /* Collect all trailing days from the previous month */
   for (let i = 0; i < noOfPreviousMonthDays; i++) {
     const date = new Date(year, month, 0 - i);
-    const day = date.getDate();
+    const dayNumeric = date.getDate();
+    const monthNumeric = date.getMonth();
     const dateYear = date.getFullYear();
     const [monthString, dayString] = date
       .toLocaleDateString("en-in", { weekday: "short", month: "short" })
       .split(" ");
 
-    console.log(`Previous ${dayString} ${monthString} ${day} ${dateYear}`);
+    console.log(
+      `Previous ${dayString} ${monthString} ${dayNumeric} ${dateYear}`
+    );
 
     previousMonthDays.push({
       day: dayString,
       month: monthString,
-      dayNumeric: day,
+      dayNumeric: dayNumeric,
+      monthNumeric: monthNumeric,
       year: dateYear,
     });
   }
@@ -82,18 +100,22 @@ const getCurrentMonthData = (month = new Date().getMonth()) => {
   /* Collect all current month days */
   for (let i = 0; i < noOfCurrentMonthDays; i++) {
     const date = new Date(year, month, i + 1);
-    const day = date.getDate();
+    const dayNumeric = date.getDate();
+    const monthNumeric = date.getMonth();
     const dateYear = date.getFullYear();
     const [monthString, dayString] = date
       .toLocaleDateString("en-in", { weekday: "short", month: "short" })
       .split(" ");
 
-    console.log(`Current ${dayString} ${monthString} ${day} ${dateYear}`);
+    console.log(
+      `Current ${dayString} ${monthString} ${dayNumeric} ${dateYear}`
+    );
 
     currentMonthDays.push({
       day: dayString,
       month: monthString,
-      dayNumeric: day,
+      dayNumeric: dayNumeric,
+      monthNumeric: monthNumeric,
       year: dateYear,
     });
   }
@@ -101,18 +123,22 @@ const getCurrentMonthData = (month = new Date().getMonth()) => {
   /* Collect all current month days */
   for (let i = 0; i < noOfNextMonthDays; i++) {
     const date = new Date(year, month + 1, i + 1);
-    const day = date.getDate();
+    const dayNumeric = date.getDate();
+    const monthNumeric = date.getMonth();
     const dateYear = date.getFullYear();
     const [monthString, dayString] = date
       .toLocaleDateString("en-in", { weekday: "short", month: "short" })
       .split(" ");
 
-    console.log(`Current ${dayString} ${monthString} ${day} ${dateYear}`);
+    console.log(
+      `Current ${dayString} ${monthString} ${dayNumeric} ${dateYear}`
+    );
 
     nextMonthDays.push({
       day: dayString,
       month: monthString,
-      dayNumeric: day,
+      dayNumeric: dayNumeric,
+      monthNumeric: monthNumeric,
       year: dateYear,
     });
   }
@@ -139,6 +165,12 @@ const loadMonth = function () {
     const dateDiv = document.createElement("div");
     dateDiv.innerText = day.dayNumeric.toString();
     daysBlock?.appendChild(dateDiv);
+
+    /* Highlight today */
+    if (checkCurrentDay(day)) {
+      dateDiv.style.backgroundColor = "#5b86e5";
+      dateDiv.style.color = "#fff";
+    }
   });
 
   /* Add the next month days */

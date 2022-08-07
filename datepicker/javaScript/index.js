@@ -25,6 +25,22 @@ var getMonthDays = function (monthType, noOfMonthDays, monthDays, year, month) {
         });
     }
 };
+var addMonthDays = function (monthType, monthDays) {
+    var daysBlock = document.querySelector(".calendar__days");
+    monthDays.forEach(function (day) {
+        var dateDiv = document.createElement("div");
+        dateDiv.innerText = day.dayNumeric.toString();
+        daysBlock === null || daysBlock === void 0 ? void 0 : daysBlock.appendChild(dateDiv);
+        if (monthType !== "current") {
+            dateDiv.style.color = "#8a8a8a";
+        }
+        /* Highlight today */
+        if (monthType === "current" && isToday(day)) {
+            dateDiv.style.backgroundColor = "#5b86e5";
+            dateDiv.style.color = "#fff";
+        }
+    });
+};
 /* Get the CSS color values from the variables */
 // const primaryPurple = getComputedStyle(
 //   document.documentElement
@@ -74,31 +90,11 @@ var getMonthData = function (month) {
 };
 var loadMonth = function () {
     var _a = getMonthData(), previousMonthDays = _a.previousMonthDays, currentMonthDays = _a.currentMonthDays, nextMonthDays = _a.nextMonthDays;
-    var daysBlock = document.querySelector(".calendar__days");
     /* Add the previous month days */
-    previousMonthDays.forEach(function (day) {
-        var dateDiv = document.createElement("div");
-        dateDiv.innerText = day.dayNumeric.toString();
-        dateDiv.style.color = "#8a8a8a";
-        daysBlock === null || daysBlock === void 0 ? void 0 : daysBlock.appendChild(dateDiv);
-    });
+    addMonthDays("previous", previousMonthDays);
     /* Add the current month days */
-    currentMonthDays.forEach(function (day) {
-        var dateDiv = document.createElement("div");
-        dateDiv.innerText = day.dayNumeric.toString();
-        daysBlock === null || daysBlock === void 0 ? void 0 : daysBlock.appendChild(dateDiv);
-        /* Highlight today */
-        if (isToday(day)) {
-            dateDiv.style.backgroundColor = "#5b86e5";
-            dateDiv.style.color = "#fff";
-        }
-    });
+    addMonthDays("current", currentMonthDays);
     /* Add the next month days */
-    nextMonthDays.forEach(function (day) {
-        var dateDiv = document.createElement("div");
-        dateDiv.innerText = day.dayNumeric.toString();
-        dateDiv.style.color = "#8a8a8a";
-        daysBlock === null || daysBlock === void 0 ? void 0 : daysBlock.appendChild(dateDiv);
-    });
+    addMonthDays("next", nextMonthDays);
 };
 loadMonth();

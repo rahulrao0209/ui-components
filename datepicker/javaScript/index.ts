@@ -47,6 +47,26 @@ const getMonthDays = function (
   }
 };
 
+const addMonthDays = function (monthType: Month, monthDays: DateDetails[]) {
+  const daysBlock = document.querySelector(".calendar__days");
+
+  monthDays.forEach((day: DateDetails) => {
+    const dateDiv = document.createElement("div");
+    dateDiv.innerText = day.dayNumeric.toString();
+    daysBlock?.appendChild(dateDiv);
+
+    if (monthType !== "current") {
+      dateDiv.style.color = "#8a8a8a";
+    }
+
+    /* Highlight today */
+    if (monthType === "current" && isToday(day)) {
+      dateDiv.style.backgroundColor = "#5b86e5";
+      dateDiv.style.color = "#fff";
+    }
+  });
+};
+
 /* Get the CSS color values from the variables */
 // const primaryPurple = getComputedStyle(
 //   document.documentElement
@@ -130,36 +150,14 @@ const getMonthData = (month = new Date().getMonth()) => {
 const loadMonth = function () {
   const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData();
 
-  const daysBlock = document.querySelector(".calendar__days");
-
   /* Add the previous month days */
-  previousMonthDays.forEach((day: DateDetails) => {
-    const dateDiv = document.createElement("div");
-    dateDiv.innerText = day.dayNumeric.toString();
-    dateDiv.style.color = "#8a8a8a";
-    daysBlock?.appendChild(dateDiv);
-  });
+  addMonthDays("previous", previousMonthDays);
 
   /* Add the current month days */
-  currentMonthDays.forEach((day: DateDetails) => {
-    const dateDiv = document.createElement("div");
-    dateDiv.innerText = day.dayNumeric.toString();
-    daysBlock?.appendChild(dateDiv);
-
-    /* Highlight today */
-    if (isToday(day)) {
-      dateDiv.style.backgroundColor = "#5b86e5";
-      dateDiv.style.color = "#fff";
-    }
-  });
+  addMonthDays("current", currentMonthDays);
 
   /* Add the next month days */
-  nextMonthDays.forEach((day: DateDetails) => {
-    const dateDiv = document.createElement("div");
-    dateDiv.innerText = day.dayNumeric.toString();
-    dateDiv.style.color = "#8a8a8a";
-    daysBlock?.appendChild(dateDiv);
-  });
+  addMonthDays("next", nextMonthDays);
 };
 
 loadMonth();

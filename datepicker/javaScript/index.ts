@@ -33,10 +33,6 @@ const getMonthDays = function (
       .toLocaleDateString("en-in", { weekday: "short", month: "short" })
       .split(" ");
 
-    console.log(
-      `Previous ${dayString} ${monthString} ${dayNumeric} ${dateYear}`
-    );
-
     monthDays.push({
       day: dayString,
       month: monthString,
@@ -66,27 +62,6 @@ const addMonthDays = function (monthType: Month, monthDays: DateDetails[]) {
     }
   });
 };
-
-/* Get the CSS color values from the variables */
-// const primaryPurple = getComputedStyle(
-//   document.documentElement
-// ).getPropertyValue("--primary-purple");
-
-// const primaryGreen = getComputedStyle(
-//   document.documentElement
-// ).getPropertyValue("--primary-green");
-
-// const primaryGrey = getComputedStyle(document.documentElement).getPropertyValue(
-//   "--primary-grey"
-// );
-
-// const primaryGreyLight = getComputedStyle(
-//   document.documentElement
-// ).getPropertyValue("--primary-grey-light");
-
-// const primaryGreyFaded = getComputedStyle(
-//   document.documentElement
-// ).getPropertyValue("--primary-grey-faded");
 
 const isToday = function (currentDay: DateDetails) {
   const today = new Date();

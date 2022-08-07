@@ -14,7 +14,7 @@
 // const primaryGreyFaded = getComputedStyle(
 //   document.documentElement
 // ).getPropertyValue("--primary-grey-faded");
-var checkCurrentDay = function (currentDay) {
+var isToday = function (currentDay) {
     var today = new Date();
     var todayDayNumeric = today.getDate();
     var todayMonth = today.getMonth();
@@ -23,7 +23,7 @@ var checkCurrentDay = function (currentDay) {
         todayMonth === currentDay.dayNumeric &&
         todayYear === currentDay.year);
 };
-var getCurrentMonthData = function (month) {
+var getMonthData = function (month) {
     if (month === void 0) { month = new Date().getMonth(); }
     var date = new Date(); // Will always be today's date
     var year = date.getFullYear();
@@ -99,7 +99,7 @@ var getCurrentMonthData = function (month) {
     return { previousMonthDays: previousMonthDays, currentMonthDays: currentMonthDays, nextMonthDays: nextMonthDays };
 };
 var loadMonth = function () {
-    var _a = getCurrentMonthData(), previousMonthDays = _a.previousMonthDays, currentMonthDays = _a.currentMonthDays, nextMonthDays = _a.nextMonthDays;
+    var _a = getMonthData(), previousMonthDays = _a.previousMonthDays, currentMonthDays = _a.currentMonthDays, nextMonthDays = _a.nextMonthDays;
     var daysBlock = document.querySelector(".calendar__days");
     /* Add the previous month days */
     previousMonthDays.forEach(function (day) {
@@ -114,7 +114,7 @@ var loadMonth = function () {
         dateDiv.innerText = day.dayNumeric.toString();
         daysBlock === null || daysBlock === void 0 ? void 0 : daysBlock.appendChild(dateDiv);
         /* Highlight today */
-        if (checkCurrentDay(day)) {
+        if (isToday(day)) {
             dateDiv.style.backgroundColor = "#5b86e5";
             dateDiv.style.color = "#fff";
         }

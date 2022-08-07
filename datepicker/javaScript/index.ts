@@ -6,6 +6,8 @@ type DateDetails = {
   year: number;
 };
 
+type Month = "previous" | "current" | "next";
+
 /* Get the CSS color values from the variables */
 // const primaryPurple = getComputedStyle(
 //   document.documentElement
@@ -27,7 +29,7 @@ type DateDetails = {
 //   document.documentElement
 // ).getPropertyValue("--primary-grey-faded");
 
-const checkCurrentDay = function (currentDay: DateDetails) {
+const isToday = function (currentDay: DateDetails) {
   const today = new Date();
   const todayDayNumeric = today.getDate();
   const todayMonth = today.getMonth();
@@ -40,7 +42,7 @@ const checkCurrentDay = function (currentDay: DateDetails) {
   );
 };
 
-const getCurrentMonthData = (month = new Date().getMonth()) => {
+const getMonthData = (month = new Date().getMonth()) => {
   const date = new Date(); // Will always be today's date
   const year = date.getFullYear();
 
@@ -147,8 +149,7 @@ const getCurrentMonthData = (month = new Date().getMonth()) => {
 };
 
 const loadMonth = function () {
-  const { previousMonthDays, currentMonthDays, nextMonthDays } =
-    getCurrentMonthData();
+  const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData();
 
   const daysBlock = document.querySelector(".calendar__days");
 
@@ -167,7 +168,7 @@ const loadMonth = function () {
     daysBlock?.appendChild(dateDiv);
 
     /* Highlight today */
-    if (checkCurrentDay(day)) {
+    if (isToday(day)) {
       dateDiv.style.backgroundColor = "#5b86e5";
       dateDiv.style.color = "#fff";
     }

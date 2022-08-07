@@ -8,6 +8,13 @@ type DateDetails = {
 
 type Month = "previous" | "current" | "next";
 
+/* Get all the necessary DOM nodes and initialize any global variables if required */
+const calendarDays = document.querySelector(".calendar__days");
+const calendarMonths = document.querySelector(".calendar__months");
+const calendarYears = document.querySelector(".calendar__years");
+const monthButton = document.querySelector(".controls--month");
+const yearButton = document.querySelector(".controls--year");
+
 const getMonthDays = function (
   monthType: Month,
   noOfMonthDays: number,
@@ -135,4 +142,13 @@ const loadMonth = function () {
   addMonthDays("next", nextMonthDays);
 };
 
-loadMonth();
+/* Add event listeners and load the month */
+const init = (function () {
+  loadMonth();
+
+  calendarDays?.addEventListener("click", () => {});
+  calendarMonths?.addEventListener("click", () => {});
+  calendarYears?.addEventListener("click", () => {});
+  monthButton?.addEventListener("click", () => {});
+  yearButton?.addEventListener("click", () => {});
+})();

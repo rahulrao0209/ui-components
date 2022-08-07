@@ -1,33 +1,39 @@
-var getMonthDays = function (monthType, noOfMonthDays, monthDays, year, month) {
-    for (var i = 0; i < noOfMonthDays; i++) {
+/* Get all the necessary DOM nodes and initialize any global variables if required */
+const calendarDays = document.querySelector(".calendar__days");
+const calendarMonths = document.querySelector(".calendar__months");
+const calendarYears = document.querySelector(".calendar__years");
+const monthButton = document.querySelector(".controls--month");
+const yearButton = document.querySelector(".controls--year");
+const getMonthDays = function (monthType, noOfMonthDays, monthDays, year, month) {
+    for (let i = 0; i < noOfMonthDays; i++) {
         /* Use proper expression for calculating the day value according to the monthType aka previous | current | next */
-        var dayValueExp = void 0;
+        let dayValueExp;
         if (monthType === "previous") {
             dayValueExp = 0 - i;
         }
         else {
             dayValueExp = i + 1;
         }
-        var date = new Date(year, month, dayValueExp);
-        var dayNumeric = date.getDate();
-        var monthNumeric = date.getMonth();
-        var dateYear = date.getFullYear();
-        var _a = date
+        const date = new Date(year, month, dayValueExp);
+        const dayNumeric = date.getDate();
+        const monthNumeric = date.getMonth();
+        const dateYear = date.getFullYear();
+        const [monthString, dayString] = date
             .toLocaleDateString("en-in", { weekday: "short", month: "short" })
-            .split(" "), monthString = _a[0], dayString = _a[1];
+            .split(" ");
         monthDays.push({
             day: dayString,
             month: monthString,
             dayNumeric: dayNumeric,
             monthNumeric: monthNumeric,
-            year: dateYear
+            year: dateYear,
         });
     }
 };
-var addMonthDays = function (monthType, monthDays) {
-    var daysBlock = document.querySelector(".calendar__days");
-    monthDays.forEach(function (day) {
-        var dateDiv = document.createElement("div");
+const addMonthDays = function (monthType, monthDays) {
+    const daysBlock = document.querySelector(".calendar__days");
+    monthDays.forEach((day) => {
+        const dateDiv = document.createElement("div");
         dateDiv.innerText = day.dayNumeric.toString();
         daysBlock === null || daysBlock === void 0 ? void 0 : daysBlock.appendChild(dateDiv);
         if (monthType !== "current") {
@@ -40,39 +46,38 @@ var addMonthDays = function (monthType, monthDays) {
         }
     });
 };
-var isToday = function (currentDay) {
-    var today = new Date();
-    var todayDayNumeric = today.getDate();
-    var todayMonth = today.getMonth();
-    var todayYear = today.getFullYear();
+const isToday = function (currentDay) {
+    const today = new Date();
+    const todayDayNumeric = today.getDate();
+    const todayMonth = today.getMonth();
+    const todayYear = today.getFullYear();
     return (todayDayNumeric === currentDay.dayNumeric &&
         todayMonth === currentDay.dayNumeric &&
         todayYear === currentDay.year);
 };
-var getMonthData = function (month) {
-    if (month === void 0) { month = new Date().getMonth(); }
-    var date = new Date(); // Will always be today's date
-    var year = date.getFullYear();
-    var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    var firstWeekdayOfMonth = new Date(year, month, 1).toLocaleDateString("en-us", { weekday: "short" });
-    var firstWeekdayOfNextMonth = new Date(year, month + 1, 1).toLocaleDateString("en-us", { weekday: "short" });
-    var noOfPreviousMonthDays = weekdays.indexOf(firstWeekdayOfMonth);
+const getMonthData = (month = new Date().getMonth()) => {
+    const date = new Date(); // Will always be today's date
+    const year = date.getFullYear();
+    const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const firstWeekdayOfMonth = new Date(year, month, 1).toLocaleDateString("en-us", { weekday: "short" });
+    const firstWeekdayOfNextMonth = new Date(year, month + 1, 1).toLocaleDateString("en-us", { weekday: "short" });
+    const noOfPreviousMonthDays = weekdays.indexOf(firstWeekdayOfMonth);
     /* 0 as input for the day fetches the last day of the previous month */
-    var noOfCurrentMonthDays = new Date(year, month + 1, 0).getDate();
-    var noOfNextMonthDays = 7 - weekdays.indexOf(firstWeekdayOfNextMonth);
-    var currentMonthDays = [];
-    var previousMonthDays = [];
-    var nextMonthDays = [];
+    const noOfCurrentMonthDays = new Date(year, month + 1, 0).getDate();
+    const noOfNextMonthDays = 7 - weekdays.indexOf(firstWeekdayOfNextMonth);
+    const currentMonthDays = [];
+    const previousMonthDays = [];
+    const nextMonthDays = [];
     /* Collect all trailing days from the previous month */
     getMonthDays("previous", noOfPreviousMonthDays, previousMonthDays, year, month);
     /* Collect all current month days */
     getMonthDays("current", noOfCurrentMonthDays, currentMonthDays, year, month);
     /* Collect all next month days */
     getMonthDays("next", noOfNextMonthDays, nextMonthDays, year, month + 1);
-    return { previousMonthDays: previousMonthDays, currentMonthDays: currentMonthDays, nextMonthDays: nextMonthDays };
+    return { previousMonthDays, currentMonthDays, nextMonthDays };
 };
-var loadMonth = function () {
-    var _a = getMonthData(), previousMonthDays = _a.previousMonthDays, currentMonthDays = _a.currentMonthDays, nextMonthDays = _a.nextMonthDays;
+const loadMonth = function () {
+    const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData();
     /* Add the previous month days */
     addMonthDays("previous", previousMonthDays);
     /* Add the current month days */
@@ -80,4 +85,12 @@ var loadMonth = function () {
     /* Add the next month days */
     addMonthDays("next", nextMonthDays);
 };
-loadMonth();
+/* Add event listeners and load the month */
+const init = (function () {
+    loadMonth();
+    calendarDays === null || calendarDays === void 0 ? void 0 : calendarDays.addEventListener("click", () => { });
+    calendarMonths === null || calendarMonths === void 0 ? void 0 : calendarMonths.addEventListener("click", () => { });
+    calendarYears === null || calendarYears === void 0 ? void 0 : calendarYears.addEventListener("click", () => { });
+    monthButton === null || monthButton === void 0 ? void 0 : monthButton.addEventListener("click", () => { });
+    yearButton === null || yearButton === void 0 ? void 0 : yearButton.addEventListener("click", () => { });
+})();

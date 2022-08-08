@@ -95,7 +95,7 @@ html {
 .calendar {
   position: relative;
   margin: 1.5rem 0;
-  min-height: 35rem;
+  min-height: 40rem;
   /* Styling the monthdays grid including the week and days */
   /* Serves as a wrapper for week and days */
   /* Styling the month grid */
@@ -127,7 +127,7 @@ html {
   align-content: center;
   text-align: center;
   grid-template-columns: repeat(7, minmax(5rem, 1fr));
-  grid-auto-rows: minmax(6.4rem, auto);
+  grid-auto-rows: minmax(6rem, auto);
   margin: 0 auto;
 }
 .calendar__days div {
@@ -182,11 +182,6 @@ html {
 .hide {
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-}
-
-.show {
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
 }
 
 /*# sourceMappingURL=style.css.map */

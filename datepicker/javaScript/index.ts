@@ -10,6 +10,7 @@ type Month = "previous" | "current" | "next";
 
 /* Get all the necessary DOM nodes and initialize any global variables if required */
 const calendarMonthDays = document.querySelector(".calendar__monthdays");
+const calendarDays = document.querySelector(".calendar__days");
 const calendarMonths = document.querySelector(".calendar__months");
 const calendarYears = document.querySelector(".calendar__years");
 const monthButton = document.querySelector(".controls--month");
@@ -83,7 +84,7 @@ const addMonthDays = function (monthType: Month, monthDays: DateDetails[]) {
   });
 };
 
-const getMonthData = (month = new Date().getMonth()) => {
+const getMonthData = (month: number) => {
   const date = new Date(); // Will always be today's date
   const year = date.getFullYear();
 
@@ -129,8 +130,9 @@ const getMonthData = (month = new Date().getMonth()) => {
   return { previousMonthDays, currentMonthDays, nextMonthDays };
 };
 
-const loadMonth = function () {
-  const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData();
+const loadMonth = function (month = new Date().getMonth()) {
+  const { previousMonthDays, currentMonthDays, nextMonthDays } =
+    getMonthData(month);
 
   /* Add the previous month days */
   addMonthDays("previous", previousMonthDays);
@@ -151,12 +153,24 @@ const handleMonthControl = function () {
   calendarMonths.classList.remove("hide");
 };
 
-const handleMonth = function () {
+const handleMonth = function (event: MouseEvent) {
   // TODO
   console.log("Handling months");
 
   calendarMonths.classList.add("hide");
   calendarMonthDays.classList.remove("hide");
+
+  const monthClicked = (event.target as HTMLDivElement).textContent;
+  console.log("Month Index: ", (event.target as HTMLDivElement).dataset.month);
+
+  const monthIndex = (event.target as HTMLDivElement).dataset.month;
+
+  /* Clear previously rendered month */
+  calendarDays.innerHTML = "";
+
+  /* Load the new selected month */
+  loadMonth(+monthIndex);
+  monthButton.textContent = monthClicked;
 };
 
 const handleYearControl = function () {

@@ -1,5 +1,6 @@
 /* Get all the necessary DOM nodes and initialize any global variables if required */
 const calendarMonthDays = document.querySelector(".calendar__monthdays");
+const calendarDays = document.querySelector(".calendar__days");
 const calendarMonths = document.querySelector(".calendar__months");
 const calendarYears = document.querySelector(".calendar__years");
 const monthButton = document.querySelector(".controls--month");
@@ -55,7 +56,7 @@ const addMonthDays = function (monthType, monthDays) {
         }
     });
 };
-const getMonthData = (month = new Date().getMonth()) => {
+const getMonthData = (month) => {
     const date = new Date(); // Will always be today's date
     const year = date.getFullYear();
     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -76,8 +77,8 @@ const getMonthData = (month = new Date().getMonth()) => {
     getMonthDays("next", noOfNextMonthDays, nextMonthDays, year, month + 1);
     return { previousMonthDays, currentMonthDays, nextMonthDays };
 };
-const loadMonth = function () {
-    const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData();
+const loadMonth = function (month = new Date().getMonth()) {
+    const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData(month);
     /* Add the previous month days */
     addMonthDays("previous", previousMonthDays);
     /* Add the current month days */
@@ -92,11 +93,19 @@ const handleMonthControl = function () {
     calendarMonthDays.classList.add("hide");
     calendarMonths.classList.remove("hide");
 };
-const handleMonth = function () {
+const handleMonth = function (event) {
     // TODO
     console.log("Handling months");
     calendarMonths.classList.add("hide");
     calendarMonthDays.classList.remove("hide");
+    const monthClicked = event.target.textContent;
+    console.log("Month Index: ", event.target.dataset.month);
+    const monthIndex = event.target.dataset.month;
+    /* Clear previously rendered month */
+    calendarDays.innerHTML = "";
+    /* Load the new selected month */
+    loadMonth(+monthIndex);
+    monthButton.textContent = monthClicked;
 };
 const handleYearControl = function () {
     // TODO

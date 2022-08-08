@@ -94,6 +94,10 @@ html {
 
 .calendar {
   margin: 1.5rem 0;
+  /* Serves as a wrapper for week and days */
+}
+.calendar__monthdays {
+  transition: all 0.5s ease;
 }
 .calendar__week {
   display: flex;
@@ -126,6 +130,12 @@ html {
 .calendar__days div:hover {
   cursor: pointer;
   background-color: var(--primary-grey-faded);
+}
+
+/* Show and hide calendar grids */
+.hide {
+  transform: scale(0);
+  opacity: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

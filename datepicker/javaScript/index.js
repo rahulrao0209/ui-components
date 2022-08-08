@@ -1,5 +1,5 @@
 /* Get all the necessary DOM nodes and initialize any global variables if required */
-const calendarDays = document.querySelector(".calendar__days");
+const calendarMonthDays = document.querySelector(".calendar__monthdays");
 const calendarMonths = document.querySelector(".calendar__months");
 const calendarYears = document.querySelector(".calendar__years");
 const monthButton = document.querySelector(".controls--month");
@@ -85,12 +85,21 @@ const loadMonth = function () {
     /* Add the next month days */
     addMonthDays("next", nextMonthDays);
 };
+const handleMonth = function () {
+    // TODO
+    console.log("Clicked on month button");
+    calendarMonthDays.classList.toggle("hide");
+};
+const handleYear = function () {
+    // TODO
+    console.log("Clicked on year button");
+};
 /* Add event listeners and load the month */
 const init = (function () {
     loadMonth();
-    calendarDays === null || calendarDays === void 0 ? void 0 : calendarDays.addEventListener("click", () => { });
+    calendarMonthDays === null || calendarMonthDays === void 0 ? void 0 : calendarMonthDays.addEventListener("click", () => { });
     calendarMonths === null || calendarMonths === void 0 ? void 0 : calendarMonths.addEventListener("click", () => { });
     calendarYears === null || calendarYears === void 0 ? void 0 : calendarYears.addEventListener("click", () => { });
-    monthButton === null || monthButton === void 0 ? void 0 : monthButton.addEventListener("click", () => { });
-    yearButton === null || yearButton === void 0 ? void 0 : yearButton.addEventListener("click", () => { });
+    monthButton === null || monthButton === void 0 ? void 0 : monthButton.addEventListener("click", handleMonth);
+    yearButton === null || yearButton === void 0 ? void 0 : yearButton.addEventListener("click", handleYear);
 })();

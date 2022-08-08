@@ -101,6 +101,11 @@ html {
 .calendar {
   margin: 1.5rem 0;
 
+  /* Serves as a wrapper for week and days */
+  &__monthdays {
+    transition: all 0.5s ease;
+  }
+
   &__week {
     display: flex;
     justify-content: space-around;
@@ -137,4 +142,10 @@ html {
       }
     }
   }
+}
+
+/* Show and hide calendar grids */
+.hide {
+  transform: scale(0);
+  opacity: 0;
 }

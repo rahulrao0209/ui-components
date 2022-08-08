@@ -9,7 +9,7 @@ type DateDetails = {
 type Month = "previous" | "current" | "next";
 
 /* Get all the necessary DOM nodes and initialize any global variables if required */
-const calendarDays = document.querySelector(".calendar__days");
+const calendarMonthDays = document.querySelector(".calendar__monthdays");
 const calendarMonths = document.querySelector(".calendar__months");
 const calendarYears = document.querySelector(".calendar__years");
 const monthButton = document.querySelector(".controls--month");
@@ -142,13 +142,24 @@ const loadMonth = function () {
   addMonthDays("next", nextMonthDays);
 };
 
+const handleMonth = function () {
+  // TODO
+  console.log("Clicked on month button");
+  calendarMonthDays.classList.toggle("hide");
+};
+
+const handleYear = function () {
+  // TODO
+  console.log("Clicked on year button");
+};
+
 /* Add event listeners and load the month */
 const init = (function () {
   loadMonth();
 
-  calendarDays?.addEventListener("click", () => {});
+  calendarMonthDays?.addEventListener("click", () => {});
   calendarMonths?.addEventListener("click", () => {});
   calendarYears?.addEventListener("click", () => {});
-  monthButton?.addEventListener("click", () => {});
-  yearButton?.addEventListener("click", () => {});
+  monthButton?.addEventListener("click", handleMonth);
+  yearButton?.addEventListener("click", handleYear);
 })();

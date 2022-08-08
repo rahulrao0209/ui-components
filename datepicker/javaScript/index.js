@@ -85,12 +85,20 @@ const loadMonth = function () {
     /* Add the next month days */
     addMonthDays("next", nextMonthDays);
 };
-const handleMonth = function () {
+const handleMonthControl = function () {
     // TODO
     console.log("Clicked on month button");
-    calendarMonthDays.classList.toggle("hide");
+    calendarYears.classList.add("hide");
+    calendarMonthDays.classList.add("hide");
+    calendarMonths.classList.remove("hide");
 };
-const handleYear = function () {
+const handleMonth = function () {
+    // TODO
+    console.log("Handling months");
+    calendarMonths.classList.add("hide");
+    calendarMonthDays.classList.remove("hide");
+};
+const handleYearControl = function () {
     // TODO
     console.log("Clicked on year button");
 };
@@ -98,8 +106,8 @@ const handleYear = function () {
 const init = (function () {
     loadMonth();
     calendarMonthDays === null || calendarMonthDays === void 0 ? void 0 : calendarMonthDays.addEventListener("click", () => { });
-    calendarMonths === null || calendarMonths === void 0 ? void 0 : calendarMonths.addEventListener("click", () => { });
+    calendarMonths === null || calendarMonths === void 0 ? void 0 : calendarMonths.addEventListener("click", handleMonth);
     calendarYears === null || calendarYears === void 0 ? void 0 : calendarYears.addEventListener("click", () => { });
-    monthButton === null || monthButton === void 0 ? void 0 : monthButton.addEventListener("click", handleMonth);
-    yearButton === null || yearButton === void 0 ? void 0 : yearButton.addEventListener("click", handleYear);
+    monthButton === null || monthButton === void 0 ? void 0 : monthButton.addEventListener("click", handleMonthControl);
+    yearButton === null || yearButton === void 0 ? void 0 : yearButton.addEventListener("click", handleYearControl);
 })();

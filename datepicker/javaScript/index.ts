@@ -142,13 +142,24 @@ const loadMonth = function () {
   addMonthDays("next", nextMonthDays);
 };
 
-const handleMonth = function () {
+const handleMonthControl = function () {
   // TODO
   console.log("Clicked on month button");
-  calendarMonthDays.classList.toggle("hide");
+  calendarYears.classList.add("hide");
+  calendarMonthDays.classList.add("hide");
+
+  calendarMonths.classList.remove("hide");
 };
 
-const handleYear = function () {
+const handleMonth = function () {
+  // TODO
+  console.log("Handling months");
+
+  calendarMonths.classList.add("hide");
+  calendarMonthDays.classList.remove("hide");
+};
+
+const handleYearControl = function () {
   // TODO
   console.log("Clicked on year button");
 };
@@ -158,8 +169,8 @@ const init = (function () {
   loadMonth();
 
   calendarMonthDays?.addEventListener("click", () => {});
-  calendarMonths?.addEventListener("click", () => {});
+  calendarMonths?.addEventListener("click", handleMonth);
   calendarYears?.addEventListener("click", () => {});
-  monthButton?.addEventListener("click", handleMonth);
-  yearButton?.addEventListener("click", handleYear);
+  monthButton?.addEventListener("click", handleMonthControl);
+  yearButton?.addEventListener("click", handleYearControl);
 })();

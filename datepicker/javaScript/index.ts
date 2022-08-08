@@ -50,6 +50,19 @@ const getMonthDays = function (
   }
 };
 
+const isToday = function (currentDay: DateDetails) {
+  const today = new Date();
+  const todayDayNumeric = today.getDate();
+  const todayMonth = today.getMonth();
+  const todayYear = today.getFullYear();
+
+  return (
+    todayDayNumeric === currentDay.dayNumeric &&
+    todayMonth === currentDay.monthNumeric &&
+    todayYear === currentDay.year
+  );
+};
+
 const addMonthDays = function (monthType: Month, monthDays: DateDetails[]) {
   const daysBlock = document.querySelector(".calendar__days");
 
@@ -68,19 +81,6 @@ const addMonthDays = function (monthType: Month, monthDays: DateDetails[]) {
       dateDiv.style.color = "#fff";
     }
   });
-};
-
-const isToday = function (currentDay: DateDetails) {
-  const today = new Date();
-  const todayDayNumeric = today.getDate();
-  const todayMonth = today.getMonth();
-  const todayYear = today.getFullYear();
-
-  return (
-    todayDayNumeric === currentDay.dayNumeric &&
-    todayMonth === currentDay.dayNumeric &&
-    todayYear === currentDay.year
-  );
 };
 
 const getMonthData = (month = new Date().getMonth()) => {

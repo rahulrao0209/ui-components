@@ -65,12 +65,10 @@ const isToday = function (currentDay: DateDetails) {
 };
 
 const addMonthDays = function (monthType: Month, monthDays: DateDetails[]) {
-  const daysBlock = document.querySelector(".calendar__days");
-
   monthDays.forEach((day: DateDetails) => {
     const dateDiv = document.createElement("div");
     dateDiv.innerText = day.dayNumeric.toString();
-    daysBlock?.appendChild(dateDiv);
+    calendarDays?.appendChild(dateDiv);
 
     if (monthType !== "current") {
       dateDiv.style.color = "#8a8a8a";
@@ -82,6 +80,20 @@ const addMonthDays = function (monthType: Month, monthDays: DateDetails[]) {
       dateDiv.style.color = "#fff";
     }
   });
+};
+
+const addYears = function (currentCentury: string, currentDecadeYear: string) {
+  const decadeYearPrefix = currentDecadeYear[0]; // ex: 22 -> prefix 2;
+
+  /* Clear all the years which may be currently displayed */
+  calendarYears.innerHTML = "";
+
+  /* Use a for loop to add all the years in the concerned decade */
+  for (let i = 0; i < 10; i++) {
+    const yearDiv = document.createElement("div");
+    yearDiv.innerText = currentCentury + decadeYearPrefix + i;
+    calendarYears.appendChild(yearDiv);
+  }
 };
 
 const getMonthData = (month: number) => {
@@ -154,7 +166,6 @@ const handleMonthControl = function () {
 };
 
 const handleMonth = function (event: MouseEvent) {
-  // TODO
   console.log("Handling months");
 
   calendarMonths.classList.add("hide");
@@ -173,9 +184,17 @@ const handleMonth = function (event: MouseEvent) {
   monthButton.textContent = monthClicked;
 };
 
-const handleYearControl = function () {
-  // TODO
+const handleYearControl = function (event: MouseEvent) {
   console.log("Clicked on year button");
+
+  /* Need to display the year selection options over 10 year periods/intervals 
+     Hence we're collecting the last two digits from our full year below.
+  */
+  const year = (event.target as HTMLDivElement).innerText;
+  const currentDecadeYear = year.slice(-2);
+  const currentCentury = year.slice(0, year.length - 2);
+
+  addYears(currentCentury, currentDecadeYear);
 };
 
 /* Add event listeners and load the month */

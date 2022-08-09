@@ -41,11 +41,10 @@ const isToday = function (currentDay) {
         todayYear === currentDay.year);
 };
 const addMonthDays = function (monthType, monthDays) {
-    const daysBlock = document.querySelector(".calendar__days");
     monthDays.forEach((day) => {
         const dateDiv = document.createElement("div");
         dateDiv.innerText = day.dayNumeric.toString();
-        daysBlock === null || daysBlock === void 0 ? void 0 : daysBlock.appendChild(dateDiv);
+        calendarDays === null || calendarDays === void 0 ? void 0 : calendarDays.appendChild(dateDiv);
         if (monthType !== "current") {
             dateDiv.style.color = "#8a8a8a";
         }
@@ -55,6 +54,17 @@ const addMonthDays = function (monthType, monthDays) {
             dateDiv.style.color = "#fff";
         }
     });
+};
+const addYears = function (currentCentury, currentDecadeYear) {
+    const decadeYearPrefix = currentDecadeYear[0]; // ex: 22 -> prefix 2;
+    /* Clear all the years which may be currently displayed */
+    calendarYears.innerHTML = "";
+    /* Use a for loop to add all the years in the concerned decade */
+    for (let i = 0; i < 10; i++) {
+        const yearDiv = document.createElement("div");
+        yearDiv.innerText = currentCentury + decadeYearPrefix + i;
+        calendarYears.appendChild(yearDiv);
+    }
 };
 const getMonthData = (month) => {
     const date = new Date(); // Will always be today's date
@@ -94,7 +104,6 @@ const handleMonthControl = function () {
     calendarMonths.classList.remove("hide");
 };
 const handleMonth = function (event) {
-    // TODO
     console.log("Handling months");
     calendarMonths.classList.add("hide");
     calendarMonthDays.classList.remove("hide");
@@ -107,9 +116,15 @@ const handleMonth = function (event) {
     loadMonth(+monthIndex);
     monthButton.textContent = monthClicked;
 };
-const handleYearControl = function () {
-    // TODO
+const handleYearControl = function (event) {
     console.log("Clicked on year button");
+    /* Need to display the year selection options over 10 year periods/intervals
+       Hence we're collecting the last two digits from our full year below.
+    */
+    const year = event.target.innerText;
+    const currentDecadeYear = year.slice(-2);
+    const currentCentury = year.slice(0, year.length - 2);
+    addYears(currentCentury, currentDecadeYear);
 };
 /* Add event listeners and load the month */
 const init = (function () {

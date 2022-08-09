@@ -67,8 +67,6 @@ const addYears = function (currentCentury, currentDecadeYear) {
     }
 };
 const getMonthData = (month, year) => {
-    const date = new Date(); // Will always be today's date
-    // const year = date.getFullYear();
     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const firstWeekdayOfMonth = new Date(year, month, 1).toLocaleDateString("en-us", { weekday: "short" });
     const firstWeekdayOfNextMonth = new Date(year, month + 1, 1).toLocaleDateString("en-us", { weekday: "short" });
@@ -88,11 +86,9 @@ const getMonthData = (month, year) => {
     return { previousMonthDays, currentMonthDays, nextMonthDays };
 };
 const loadMonth = function (month = new Date().getMonth(), year = new Date().getFullYear()) {
-    console.log("Year: ", year);
-    console.log("Month: ", month);
     const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData(month, year);
     /* Add the previous month days */
-    addMonthDays("previous", previousMonthDays);
+    addMonthDays("previous", [...previousMonthDays].reverse());
     /* Add the current month days */
     addMonthDays("current", currentMonthDays);
     /* Add the next month days */
@@ -124,9 +120,11 @@ const handleMonth = function (event) {
     const monthIndex = event.target.dataset.month;
     /* Clear previously rendered month */
     calendarDays.innerHTML = "";
-    /* Load the new selected month */
-    loadMonth(+monthIndex);
+    /* Load the new calendar date based on the currently selected month and year */
+    const currentSelectedYear = yearButton.textContent;
+    loadMonth(+monthIndex, +currentSelectedYear);
     monthButton.textContent = monthClicked;
+    monthButton.dataset.month = `${monthIndex}`;
 };
 const handleYearControl = function () {
     console.log("Clicked on year button");
@@ -140,16 +138,29 @@ const handleYear = function (event) {
     calendarYears.classList.add("hide");
     calendarMonthDays.classList.remove("hide");
     const yearClicked = event.target.textContent;
-    // console.log("Clicked on year: ", yearClicked);
     /* Clear previously rendered month */
     calendarDays.innerHTML = "";
     /* Load the new calendar date based on the currently selected month and year */
-    const currentSelectedMonth = 0;
+    const currentSelectedMonth = monthButton.dataset.month;
     loadMonth(+currentSelectedMonth, +yearClicked);
     yearButton.textContent = yearClicked;
+    console.log("current year being shown: ", yearClicked);
+    console.log("current month being shown: ", currentSelectedMonth);
+};
+const populateToday = function () {
+    const today = new Date();
+    const monthString = today.toLocaleDateString("en-us", { month: "long" });
+    const month = today.getMonth();
+    const year = today.getFullYear();
+    /* Populate the markup with the initial data */
+    monthButton.textContent = monthString;
+    monthButton.dataset.month = `${month}`;
+    yearButton.textContent = `${year}`;
 };
 /* Add event listeners and load the month */
 const init = (function () {
+    /* Add initial data for current month and year */
+    populateToday();
     loadMonth();
     loadYears();
     calendarMonthDays === null || calendarMonthDays === void 0 ? void 0 : calendarMonthDays.addEventListener("click", () => { });

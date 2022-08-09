@@ -97,9 +97,6 @@ const addYears = function (currentCentury: string, currentDecadeYear: string) {
 };
 
 const getMonthData = (month: number, year: number) => {
-  const date = new Date(); // Will always be today's date
-  // const year = date.getFullYear();
-
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const firstWeekdayOfMonth = new Date(year, month, 1).toLocaleDateString(
@@ -146,15 +143,13 @@ const loadMonth = function (
   month = new Date().getMonth(),
   year = new Date().getFullYear()
 ) {
-  console.log("Year: ", year);
-  console.log("Month: ", month);
   const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData(
     month,
     year
   );
 
   /* Add the previous month days */
-  addMonthDays("previous", previousMonthDays);
+  addMonthDays("previous", [...previousMonthDays].reverse());
 
   /* Add the current month days */
   addMonthDays("current", currentMonthDays);
@@ -199,9 +194,11 @@ const handleMonth = function (event: MouseEvent) {
   /* Clear previously rendered month */
   calendarDays.innerHTML = "";
 
-  /* Load the new selected month */
-  loadMonth(+monthIndex);
+  /* Load the new calendar date based on the currently selected month and year */
+  const currentSelectedYear = yearButton.textContent;
+  loadMonth(+monthIndex, +currentSelectedYear);
   monthButton.textContent = monthClicked;
+  (monthButton as HTMLDivElement).dataset.month = `${monthIndex}`;
 };
 
 const handleYearControl = function () {
@@ -220,20 +217,36 @@ const handleYear = function (event: MouseEvent) {
   calendarMonthDays.classList.remove("hide");
 
   const yearClicked = (event.target as HTMLDivElement).textContent;
-  // console.log("Clicked on year: ", yearClicked);
 
   /* Clear previously rendered month */
   calendarDays.innerHTML = "";
 
   /* Load the new calendar date based on the currently selected month and year */
-  const currentSelectedMonth = 0;
+  const currentSelectedMonth = (monthButton as HTMLDivElement).dataset.month;
 
   loadMonth(+currentSelectedMonth, +yearClicked);
   yearButton.textContent = yearClicked;
+
+  console.log("current year being shown: ", yearClicked);
+  console.log("current month being shown: ", currentSelectedMonth);
+};
+
+const populateToday = function () {
+  const today = new Date();
+  const monthString = today.toLocaleDateString("en-us", { month: "long" });
+  const month = today.getMonth();
+  const year = today.getFullYear();
+
+  /* Populate the markup with the initial data */
+  monthButton.textContent = monthString;
+  (monthButton as HTMLDivElement).dataset.month = `${month}`;
+  yearButton.textContent = `${year}`;
 };
 
 /* Add event listeners and load the month */
 const init = (function () {
+  /* Add initial data for current month and year */
+  populateToday();
   loadMonth();
   loadYears();
 

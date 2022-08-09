@@ -99,6 +99,7 @@ html {
   /* Styling the monthdays grid including the week and days */
   /* Serves as a wrapper for week and days */
   /* Styling the month grid */
+  /* Styling the year grid */
 }
 .calendar__monthdays {
   position: absolute;
@@ -175,6 +176,34 @@ html {
   background-color: var(--primary-grey-faded);
 }
 .calendar__months div:active {
+  transform: scale(0.8);
+}
+.calendar__years {
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(6.5rem, auto);
+  padding: 0 0.5rem;
+}
+.calendar__years div {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-grey);
+  line-height: 6.5rem;
+  width: 100%;
+  min-height: 6.5rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.calendar__years div:hover {
+  cursor: pointer;
+  background-color: var(--primary-grey-faded);
+}
+.calendar__years div:active {
   transform: scale(0.8);
 }
 

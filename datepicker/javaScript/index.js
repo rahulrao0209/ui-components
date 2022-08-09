@@ -66,9 +66,9 @@ const addYears = function (currentCentury, currentDecadeYear) {
         calendarYears.appendChild(yearDiv);
     }
 };
-const getMonthData = (month) => {
+const getMonthData = (month, year) => {
     const date = new Date(); // Will always be today's date
-    const year = date.getFullYear();
+    // const year = date.getFullYear();
     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const firstWeekdayOfMonth = new Date(year, month, 1).toLocaleDateString("en-us", { weekday: "short" });
     const firstWeekdayOfNextMonth = new Date(year, month + 1, 1).toLocaleDateString("en-us", { weekday: "short" });
@@ -87,8 +87,10 @@ const getMonthData = (month) => {
     getMonthDays("next", noOfNextMonthDays, nextMonthDays, year, month + 1);
     return { previousMonthDays, currentMonthDays, nextMonthDays };
 };
-const loadMonth = function (month = new Date().getMonth()) {
-    const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData(month);
+const loadMonth = function (month = new Date().getMonth(), year = new Date().getFullYear()) {
+    console.log("Year: ", year);
+    console.log("Month: ", month);
+    const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData(month, year);
     /* Add the previous month days */
     addMonthDays("previous", previousMonthDays);
     /* Add the current month days */
@@ -96,8 +98,18 @@ const loadMonth = function (month = new Date().getMonth()) {
     /* Add the next month days */
     addMonthDays("next", nextMonthDays);
 };
+const getYearsData = function (year) {
+    const yearString = year.toString();
+    const currentDecadeYear = yearString.slice(-2);
+    const currentCentury = yearString.slice(0, yearString.length - 2);
+    return { currentCentury, currentDecadeYear };
+};
+/* Load the years in the current decade and populate the years grid */
+const loadYears = function (year = new Date().getFullYear()) {
+    const { currentCentury, currentDecadeYear } = getYearsData(year);
+    addYears(currentCentury, currentDecadeYear);
+};
 const handleMonthControl = function () {
-    // TODO
     console.log("Clicked on month button");
     calendarYears.classList.add("hide");
     calendarMonthDays.classList.add("hide");
@@ -116,22 +128,33 @@ const handleMonth = function (event) {
     loadMonth(+monthIndex);
     monthButton.textContent = monthClicked;
 };
-const handleYearControl = function (event) {
+const handleYearControl = function () {
     console.log("Clicked on year button");
-    /* Need to display the year selection options over 10 year periods/intervals
-       Hence we're collecting the last two digits from our full year below.
-    */
-    const year = event.target.innerText;
-    const currentDecadeYear = year.slice(-2);
-    const currentCentury = year.slice(0, year.length - 2);
-    addYears(currentCentury, currentDecadeYear);
+    /* Change the display */
+    calendarMonthDays.classList.add("hide");
+    calendarMonths.classList.add("hide");
+    calendarYears.classList.remove("hide");
+};
+const handleYear = function (event) {
+    console.log("Handling years");
+    calendarYears.classList.add("hide");
+    calendarMonthDays.classList.remove("hide");
+    const yearClicked = event.target.textContent;
+    // console.log("Clicked on year: ", yearClicked);
+    /* Clear previously rendered month */
+    calendarDays.innerHTML = "";
+    /* Load the new calendar date based on the currently selected month and year */
+    const currentSelectedMonth = 0;
+    loadMonth(+currentSelectedMonth, +yearClicked);
+    yearButton.textContent = yearClicked;
 };
 /* Add event listeners and load the month */
 const init = (function () {
     loadMonth();
+    loadYears();
     calendarMonthDays === null || calendarMonthDays === void 0 ? void 0 : calendarMonthDays.addEventListener("click", () => { });
     calendarMonths === null || calendarMonths === void 0 ? void 0 : calendarMonths.addEventListener("click", handleMonth);
-    calendarYears === null || calendarYears === void 0 ? void 0 : calendarYears.addEventListener("click", () => { });
+    calendarYears === null || calendarYears === void 0 ? void 0 : calendarYears.addEventListener("click", handleYear);
     monthButton === null || monthButton === void 0 ? void 0 : monthButton.addEventListener("click", handleMonthControl);
     yearButton === null || yearButton === void 0 ? void 0 : yearButton.addEventListener("click", handleYearControl);
 })();

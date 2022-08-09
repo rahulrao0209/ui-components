@@ -96,9 +96,9 @@ const addYears = function (currentCentury: string, currentDecadeYear: string) {
   }
 };
 
-const getMonthData = (month: number) => {
+const getMonthData = (month: number, year: number) => {
   const date = new Date(); // Will always be today's date
-  const year = date.getFullYear();
+  // const year = date.getFullYear();
 
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -142,9 +142,16 @@ const getMonthData = (month: number) => {
   return { previousMonthDays, currentMonthDays, nextMonthDays };
 };
 
-const loadMonth = function (month = new Date().getMonth()) {
-  const { previousMonthDays, currentMonthDays, nextMonthDays } =
-    getMonthData(month);
+const loadMonth = function (
+  month = new Date().getMonth(),
+  year = new Date().getFullYear()
+) {
+  console.log("Year: ", year);
+  console.log("Month: ", month);
+  const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData(
+    month,
+    year
+  );
 
   /* Add the previous month days */
   addMonthDays("previous", previousMonthDays);
@@ -156,8 +163,21 @@ const loadMonth = function (month = new Date().getMonth()) {
   addMonthDays("next", nextMonthDays);
 };
 
+const getYearsData = function (year: number) {
+  const yearString = year.toString();
+  const currentDecadeYear = yearString.slice(-2);
+  const currentCentury = yearString.slice(0, yearString.length - 2);
+
+  return { currentCentury, currentDecadeYear };
+};
+
+/* Load the years in the current decade and populate the years grid */
+const loadYears = function (year = new Date().getFullYear()) {
+  const { currentCentury, currentDecadeYear } = getYearsData(year);
+  addYears(currentCentury, currentDecadeYear);
+};
+
 const handleMonthControl = function () {
-  // TODO
   console.log("Clicked on month button");
   calendarYears.classList.add("hide");
   calendarMonthDays.classList.add("hide");
@@ -184,26 +204,42 @@ const handleMonth = function (event: MouseEvent) {
   monthButton.textContent = monthClicked;
 };
 
-const handleYearControl = function (event: MouseEvent) {
+const handleYearControl = function () {
   console.log("Clicked on year button");
+  /* Change the display */
+  calendarMonthDays.classList.add("hide");
+  calendarMonths.classList.add("hide");
 
-  /* Need to display the year selection options over 10 year periods/intervals 
-     Hence we're collecting the last two digits from our full year below.
-  */
-  const year = (event.target as HTMLDivElement).innerText;
-  const currentDecadeYear = year.slice(-2);
-  const currentCentury = year.slice(0, year.length - 2);
+  calendarYears.classList.remove("hide");
+};
 
-  addYears(currentCentury, currentDecadeYear);
+const handleYear = function (event: MouseEvent) {
+  console.log("Handling years");
+
+  calendarYears.classList.add("hide");
+  calendarMonthDays.classList.remove("hide");
+
+  const yearClicked = (event.target as HTMLDivElement).textContent;
+  // console.log("Clicked on year: ", yearClicked);
+
+  /* Clear previously rendered month */
+  calendarDays.innerHTML = "";
+
+  /* Load the new calendar date based on the currently selected month and year */
+  const currentSelectedMonth = 0;
+
+  loadMonth(+currentSelectedMonth, +yearClicked);
+  yearButton.textContent = yearClicked;
 };
 
 /* Add event listeners and load the month */
 const init = (function () {
   loadMonth();
+  loadYears();
 
   calendarMonthDays?.addEventListener("click", () => {});
   calendarMonths?.addEventListener("click", handleMonth);
-  calendarYears?.addEventListener("click", () => {});
+  calendarYears?.addEventListener("click", handleYear);
   monthButton?.addEventListener("click", handleMonthControl);
   yearButton?.addEventListener("click", handleYearControl);
 })();

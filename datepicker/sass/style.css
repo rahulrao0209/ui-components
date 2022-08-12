@@ -179,6 +179,12 @@ html {
   transform: scale(0.8);
 }
 .calendar__years {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease;
   display: grid;
   justify-items: center;
   justify-content: center;

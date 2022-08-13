@@ -4,9 +4,10 @@ const calendarDays = document.querySelector(".calendar__days");
 const calendarMonths = document.querySelector(".calendar__months");
 const calendarYears = document.querySelector(".calendar__years");
 const calendarDecade = document.querySelector(".years--decade");
-const decadeControls = document.querySelector(".years--controls");
 const monthButton = document.querySelector(".controls--month");
 const yearButton = document.querySelector(".controls--year");
+const nextDecadeButton = document.querySelector(".years--controls > span:nth-child(1)");
+const previousDecadeButton = document.querySelector(".years--controls > span:nth-child(2)");
 const getMonthDays = function (monthType, noOfMonthDays, monthDays, year, month) {
     for (let i = 0; i < noOfMonthDays; i++) {
         /* Use proper expression for calculating the day value according to the monthType aka previous | current | next */
@@ -66,8 +67,11 @@ const addYears = function (currentCentury, currentDecadeYear) {
         const yearDiv = document.createElement("div");
         yearDiv.innerText = currentCentury + decadeYearPrefix + i;
         calendarDecade.appendChild(yearDiv);
+        /* Highlight the current year */
+        if (new Date().getFullYear() === +yearDiv.innerText) {
+            yearDiv.style.color = "#5b86e5";
+        }
     }
-    /* Insert the calendar controls */
 };
 const getMonthData = (month, year) => {
     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -138,9 +142,12 @@ const handleYearControl = function () {
 };
 const handleYear = function (event) {
     console.log("Handling years");
+    const yearClicked = event.target.textContent;
+    /* If a year option is not the target then return */
+    if (!+yearClicked)
+        return;
     calendarYears.classList.add("hide");
     calendarMonthDays.classList.remove("hide");
-    const yearClicked = event.target.textContent;
     /* Clear previously rendered month */
     calendarDays.innerHTML = "";
     /* Load the new calendar date based on the currently selected month and year */

@@ -14,9 +14,14 @@ const calendarDays = document.querySelector(".calendar__days");
 const calendarMonths = document.querySelector(".calendar__months");
 const calendarYears = document.querySelector(".calendar__years");
 const calendarDecade = document.querySelector(".years--decade");
-const decadeControls = document.querySelector(".years--controls");
 const monthButton = document.querySelector(".controls--month");
 const yearButton = document.querySelector(".controls--year");
+const nextDecadeButton = document.querySelector(
+  ".years--controls > span:nth-child(1)"
+);
+const previousDecadeButton = document.querySelector(
+  ".years--controls > span:nth-child(2)"
+);
 
 const getMonthDays = function (
   monthType: Month,
@@ -95,9 +100,12 @@ const addYears = function (currentCentury: string, currentDecadeYear: string) {
     const yearDiv = document.createElement("div");
     yearDiv.innerText = currentCentury + decadeYearPrefix + i;
     calendarDecade.appendChild(yearDiv);
-  }
 
-  /* Insert the calendar controls */
+    /* Highlight the current year */
+    if (new Date().getFullYear() === +yearDiv.innerText) {
+      yearDiv.style.color = "#5b86e5";
+    }
+  }
 };
 
 const getMonthData = (month: number, year: number) => {
@@ -217,10 +225,13 @@ const handleYearControl = function () {
 const handleYear = function (event: MouseEvent) {
   console.log("Handling years");
 
+  const yearClicked = (event.target as HTMLDivElement).textContent;
+
+  /* If a year option is not the target then return */
+  if (!+yearClicked) return;
+
   calendarYears.classList.add("hide");
   calendarMonthDays.classList.remove("hide");
-
-  const yearClicked = (event.target as HTMLDivElement).textContent;
 
   /* Clear previously rendered month */
   calendarDays.innerHTML = "";

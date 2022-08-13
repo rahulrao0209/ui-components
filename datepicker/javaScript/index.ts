@@ -13,6 +13,8 @@ const calendarMonthDays = document.querySelector(".calendar__monthdays");
 const calendarDays = document.querySelector(".calendar__days");
 const calendarMonths = document.querySelector(".calendar__months");
 const calendarYears = document.querySelector(".calendar__years");
+const calendarDecade = document.querySelector(".years--decade");
+const decadeControls = document.querySelector(".years--controls");
 const monthButton = document.querySelector(".controls--month");
 const yearButton = document.querySelector(".controls--year");
 
@@ -86,14 +88,16 @@ const addYears = function (currentCentury: string, currentDecadeYear: string) {
   const decadeYearPrefix = currentDecadeYear[0]; // ex: 22 -> prefix 2;
 
   /* Clear all the years which may be currently displayed */
-  calendarYears.innerHTML = "";
+  calendarDecade.innerHTML = "";
 
   /* Use a for loop to add all the years in the concerned decade */
   for (let i = 0; i < 10; i++) {
     const yearDiv = document.createElement("div");
     yearDiv.innerText = currentCentury + decadeYearPrefix + i;
-    calendarYears.appendChild(yearDiv);
+    calendarDecade.appendChild(yearDiv);
   }
+
+  /* Insert the calendar controls */
 };
 
 const getMonthData = (month: number, year: number) => {

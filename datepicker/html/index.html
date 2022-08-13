@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../sass/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <script src="../javaScript/index.js" defer></script>
     <title>Datepicker</title>
   </head>
@@ -47,7 +51,17 @@
             <div data-month="12">December</div>
           </div>
 
-          <div class="calendar__years hide"></div>
+          <div class="calendar__years hide">
+            <div class="years--decade"></div>
+            <div class="years--controls">
+              <span role="button" class="material-symbols-outlined"
+                >arrow_back</span
+              >
+              <span role="button" class="material-symbols-outlined"
+                >arrow_forward</span
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>

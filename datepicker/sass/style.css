@@ -185,6 +185,8 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   transition: all 0.5s ease;
+}
+.calendar__years > .years--decade {
   display: grid;
   justify-items: center;
   justify-content: center;
@@ -195,7 +197,7 @@ html {
   grid-auto-rows: minmax(6.5rem, auto);
   padding: 0 0.5rem;
 }
-.calendar__years div {
+.calendar__years > .years--decade div {
   font-size: 2rem;
   font-weight: 700;
   color: var(--primary-grey);
@@ -205,12 +207,30 @@ html {
   border-radius: 4px;
   transition: all 0.2s;
 }
-.calendar__years div:hover {
+.calendar__years > .years--decade div:hover {
   cursor: pointer;
   background-color: var(--primary-grey-faded);
 }
-.calendar__years div:active {
+.calendar__years > .years--decade div:active {
   transform: scale(0.8);
+}
+.calendar .years--controls {
+  text-align: center;
+  padding: 1rem 0;
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-purple);
+}
+.calendar .years--controls span {
+  border-radius: 100%;
+  padding: 0.8rem;
+  font-size: 2.5em;
+}
+.calendar .years--controls span:hover {
+  cursor: pointer;
+  background-color: var(--primary-grey-faded);
 }
 
 /* Show and hide calendar grids */

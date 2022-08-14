@@ -195,7 +195,6 @@ const loadYears = function (year = new Date().getFullYear()) {
 };
 
 const handleMonthControl = function () {
-  console.log("Clicked on month button");
   calendarYears.classList.add("hide");
   calendarMonthDays.classList.add("hide");
 
@@ -203,14 +202,12 @@ const handleMonthControl = function () {
 };
 
 const handleMonth = function (event: MouseEvent) {
-  console.log("Handling months");
+  ("Handling months");
 
   calendarMonths.classList.add("hide");
   calendarMonthDays.classList.remove("hide");
 
   const monthClicked = (event.target as HTMLDivElement).textContent;
-  console.log("Month Index: ", (event.target as HTMLDivElement).dataset.month);
-
   const monthIndex = (event.target as HTMLDivElement).dataset.month;
 
   /* Clear previously rendered month */
@@ -224,7 +221,7 @@ const handleMonth = function (event: MouseEvent) {
 };
 
 const handleYearControl = function () {
-  console.log("Clicked on year button");
+  ("Clicked on year button");
   /* Change the display */
   calendarMonthDays.classList.add("hide");
   calendarMonths.classList.add("hide");
@@ -233,7 +230,7 @@ const handleYearControl = function () {
 };
 
 const handleYear = function (event: MouseEvent) {
-  console.log("Handling years");
+  ("Handling years");
 
   const yearClicked = (event.target as HTMLDivElement).textContent;
 
@@ -251,9 +248,6 @@ const handleYear = function (event: MouseEvent) {
 
   loadMonth(+currentSelectedMonth, +yearClicked);
   yearButton.textContent = yearClicked;
-
-  console.log("current year being shown: ", yearClicked);
-  console.log("current month being shown: ", currentSelectedMonth);
 };
 
 const populateToday = function () {

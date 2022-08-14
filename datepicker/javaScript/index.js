@@ -122,17 +122,15 @@ const loadYears = function (year = new Date().getFullYear()) {
     addYears(year);
 };
 const handleMonthControl = function () {
-    console.log("Clicked on month button");
     calendarYears.classList.add("hide");
     calendarMonthDays.classList.add("hide");
     calendarMonths.classList.remove("hide");
 };
 const handleMonth = function (event) {
-    console.log("Handling months");
+    ("Handling months");
     calendarMonths.classList.add("hide");
     calendarMonthDays.classList.remove("hide");
     const monthClicked = event.target.textContent;
-    console.log("Month Index: ", event.target.dataset.month);
     const monthIndex = event.target.dataset.month;
     /* Clear previously rendered month */
     calendarDays.innerHTML = "";
@@ -143,14 +141,14 @@ const handleMonth = function (event) {
     monthButton.dataset.month = `${monthIndex}`;
 };
 const handleYearControl = function () {
-    console.log("Clicked on year button");
+    ("Clicked on year button");
     /* Change the display */
     calendarMonthDays.classList.add("hide");
     calendarMonths.classList.add("hide");
     calendarYears.classList.remove("hide");
 };
 const handleYear = function (event) {
-    console.log("Handling years");
+    ("Handling years");
     const yearClicked = event.target.textContent;
     /* If a year option is not the target then return */
     if (!+yearClicked)
@@ -163,8 +161,6 @@ const handleYear = function (event) {
     const currentSelectedMonth = monthButton.dataset.month;
     loadMonth(+currentSelectedMonth, +yearClicked);
     yearButton.textContent = yearClicked;
-    console.log("current year being shown: ", yearClicked);
-    console.log("current month being shown: ", currentSelectedMonth);
 };
 const populateToday = function () {
     const today = new Date();

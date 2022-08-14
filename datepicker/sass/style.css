@@ -138,10 +138,14 @@ html {
   width: 60%;
   height: 60%;
   border-radius: 100%;
+  transition: all 0.2s;
 }
 .calendar__days div:hover {
   cursor: pointer;
   background-color: var(--primary-grey-faded);
+}
+.calendar__days div:active {
+  transform: scale(0.8);
 }
 .calendar__months {
   position: absolute;
@@ -237,6 +241,36 @@ html {
 .hide {
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
+}
+
+/* Style the date selected field */
+.date-selected {
+  width: 100%;
+  border: 1px solid var(--primary-purple);
+  border-radius: 4px;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.date-selected .icon {
+  color: var(--primary-purple);
+  padding: 1rem;
+  border-radius: 100%;
+  font-size: 2.5em;
+  transition: all 0.2s;
+}
+.date-selected .icon:hover {
+  cursor: pointer;
+  background-color: var(--primary-grey-faded);
+}
+.date-selected .icon:active {
+  transform: scale(0.8);
+}
+.date-selected--date {
+  font-size: 2em;
+  color: var(--primary-purple);
 }
 
 /*# sourceMappingURL=style.css.map */

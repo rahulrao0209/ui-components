@@ -16,6 +16,7 @@ const calendarYears = document.querySelector(".calendar__years");
 const calendarDecade = document.querySelector(".years--decade");
 const monthButton = document.querySelector(".controls--month");
 const yearButton = document.querySelector(".controls--year");
+const dateSelected = document.querySelector(".date-selected--date");
 const nextDecadeButton = document.querySelector(
   ".years--controls > span:nth-child(1)"
 );
@@ -250,6 +251,14 @@ const handleYear = function (event: MouseEvent) {
   yearButton.textContent = yearClicked;
 };
 
+const selectDay = function (event: MouseEvent) {
+  const dayClicked = (event.target as HTMLDivElement).textContent;
+
+  if (+dayClicked) {
+    dateSelected.textContent = `${monthButton.textContent} ${dayClicked} ${yearButton.textContent}`;
+  }
+};
+
 const populateToday = function () {
   const today = new Date();
   const monthString = today.toLocaleDateString("en-us", { month: "long" });
@@ -260,6 +269,9 @@ const populateToday = function () {
   monthButton.textContent = monthString;
   (monthButton as HTMLDivElement).dataset.month = `${month}`;
   yearButton.textContent = `${year}`;
+
+  /* Populate the selected date display with today's date on load */
+  dateSelected.textContent = `${monthString} ${today.getDate()} ${year}`;
 };
 
 /* Add event listeners and load the month */
@@ -269,7 +281,7 @@ const init = (function () {
   loadMonth();
   loadYears();
 
-  calendarMonthDays?.addEventListener("click", () => {});
+  calendarMonthDays?.addEventListener("click", selectDay);
   calendarMonths?.addEventListener("click", handleMonth);
   calendarYears?.addEventListener("click", handleYear);
   monthButton?.addEventListener("click", handleMonthControl);

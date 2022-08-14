@@ -6,6 +6,7 @@ const calendarYears = document.querySelector(".calendar__years");
 const calendarDecade = document.querySelector(".years--decade");
 const monthButton = document.querySelector(".controls--month");
 const yearButton = document.querySelector(".controls--year");
+const dateSelected = document.querySelector(".date-selected--date");
 const nextDecadeButton = document.querySelector(".years--controls > span:nth-child(1)");
 const previousDecadeButton = document.querySelector(".years--controls > span:nth-child(2)");
 const switchDecade = function (event) {
@@ -162,6 +163,12 @@ const handleYear = function (event) {
     loadMonth(+currentSelectedMonth, +yearClicked);
     yearButton.textContent = yearClicked;
 };
+const selectDay = function (event) {
+    const dayClicked = event.target.textContent;
+    if (+dayClicked) {
+        dateSelected.textContent = `${monthButton.textContent} ${dayClicked} ${yearButton.textContent}`;
+    }
+};
 const populateToday = function () {
     const today = new Date();
     const monthString = today.toLocaleDateString("en-us", { month: "long" });
@@ -171,6 +178,8 @@ const populateToday = function () {
     monthButton.textContent = monthString;
     monthButton.dataset.month = `${month}`;
     yearButton.textContent = `${year}`;
+    /* Populate the selected date display with today's date on load */
+    dateSelected.textContent = `${monthString} ${today.getDate()} ${year}`;
 };
 /* Add event listeners and load the month */
 const init = (function () {
@@ -178,7 +187,7 @@ const init = (function () {
     populateToday();
     loadMonth();
     loadYears();
-    calendarMonthDays === null || calendarMonthDays === void 0 ? void 0 : calendarMonthDays.addEventListener("click", () => { });
+    calendarMonthDays === null || calendarMonthDays === void 0 ? void 0 : calendarMonthDays.addEventListener("click", selectDay);
     calendarMonths === null || calendarMonths === void 0 ? void 0 : calendarMonths.addEventListener("click", handleMonth);
     calendarYears === null || calendarYears === void 0 ? void 0 : calendarYears.addEventListener("click", handleYear);
     monthButton === null || monthButton === void 0 ? void 0 : monthButton.addEventListener("click", handleMonthControl);

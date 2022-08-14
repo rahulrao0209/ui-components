@@ -8,6 +8,16 @@ const monthButton = document.querySelector(".controls--month");
 const yearButton = document.querySelector(".controls--year");
 const nextDecadeButton = document.querySelector(".years--controls > span:nth-child(1)");
 const previousDecadeButton = document.querySelector(".years--controls > span:nth-child(2)");
+const switchDecade = function (event) {
+    const currentYearDisplayed = +yearButton.textContent;
+    if (event.target.textContent.includes("forward")) {
+        yearButton.textContent = `${currentYearDisplayed + 10}`;
+    }
+    else {
+        yearButton.textContent = `${currentYearDisplayed - 10}`;
+    }
+    addYears(+yearButton.textContent);
+};
 const getMonthDays = function (monthType, noOfMonthDays, monthDays, year, month) {
     for (let i = 0; i < noOfMonthDays; i++) {
         /* Use proper expression for calculating the day value according to the monthType aka previous | current | next */
@@ -58,14 +68,14 @@ const addMonthDays = function (monthType, monthDays) {
         }
     });
 };
-const addYears = function (currentCentury, currentDecadeYear) {
-    const decadeYearPrefix = currentDecadeYear[0]; // ex: 22 -> prefix 2;
+const addYears = function (currentDecadeYear) {
+    const decadeStartYear = currentDecadeYear - (currentDecadeYear % 10);
     /* Clear all the years which may be currently displayed */
     calendarDecade.innerHTML = "";
     /* Use a for loop to add all the years in the concerned decade */
     for (let i = 0; i < 10; i++) {
         const yearDiv = document.createElement("div");
-        yearDiv.innerText = currentCentury + decadeYearPrefix + i;
+        yearDiv.innerText = `${decadeStartYear + i}`;
         calendarDecade.appendChild(yearDiv);
         /* Highlight the current year */
         if (new Date().getFullYear() === +yearDiv.innerText) {
@@ -109,8 +119,7 @@ const getYearsData = function (year) {
 };
 /* Load the years in the current decade and populate the years grid */
 const loadYears = function (year = new Date().getFullYear()) {
-    const { currentCentury, currentDecadeYear } = getYearsData(year);
-    addYears(currentCentury, currentDecadeYear);
+    addYears(year);
 };
 const handleMonthControl = function () {
     console.log("Clicked on month button");
@@ -178,4 +187,6 @@ const init = (function () {
     calendarYears === null || calendarYears === void 0 ? void 0 : calendarYears.addEventListener("click", handleYear);
     monthButton === null || monthButton === void 0 ? void 0 : monthButton.addEventListener("click", handleMonthControl);
     yearButton === null || yearButton === void 0 ? void 0 : yearButton.addEventListener("click", handleYearControl);
+    nextDecadeButton === null || nextDecadeButton === void 0 ? void 0 : nextDecadeButton.addEventListener("click", switchDecade);
+    previousDecadeButton === null || previousDecadeButton === void 0 ? void 0 : previousDecadeButton.addEventListener("click", switchDecade);
 })();

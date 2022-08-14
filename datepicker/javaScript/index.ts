@@ -23,6 +23,17 @@ const previousDecadeButton = document.querySelector(
   ".years--controls > span:nth-child(2)"
 );
 
+const switchDecade = function (event: MouseEvent) {
+  const currentYearDisplayed = +yearButton.textContent;
+
+  if ((event.target as HTMLSpanElement).textContent.includes("forward")) {
+    yearButton.textContent = `${currentYearDisplayed + 10}`;
+  } else {
+    yearButton.textContent = `${currentYearDisplayed - 10}`;
+  }
+  addYears(+yearButton.textContent);
+};
+
 const getMonthDays = function (
   monthType: Month,
   noOfMonthDays: number,
@@ -89,8 +100,8 @@ const addMonthDays = function (monthType: Month, monthDays: DateDetails[]) {
   });
 };
 
-const addYears = function (currentCentury: string, currentDecadeYear: string) {
-  const decadeYearPrefix = currentDecadeYear[0]; // ex: 22 -> prefix 2;
+const addYears = function (currentDecadeYear: number) {
+  const decadeStartYear = currentDecadeYear - (currentDecadeYear % 10);
 
   /* Clear all the years which may be currently displayed */
   calendarDecade.innerHTML = "";
@@ -98,7 +109,7 @@ const addYears = function (currentCentury: string, currentDecadeYear: string) {
   /* Use a for loop to add all the years in the concerned decade */
   for (let i = 0; i < 10; i++) {
     const yearDiv = document.createElement("div");
-    yearDiv.innerText = currentCentury + decadeYearPrefix + i;
+    yearDiv.innerText = `${decadeStartYear + i}`;
     calendarDecade.appendChild(yearDiv);
 
     /* Highlight the current year */
@@ -180,8 +191,7 @@ const getYearsData = function (year: number) {
 
 /* Load the years in the current decade and populate the years grid */
 const loadYears = function (year = new Date().getFullYear()) {
-  const { currentCentury, currentDecadeYear } = getYearsData(year);
-  addYears(currentCentury, currentDecadeYear);
+  addYears(year);
 };
 
 const handleMonthControl = function () {
@@ -270,4 +280,6 @@ const init = (function () {
   calendarYears?.addEventListener("click", handleYear);
   monthButton?.addEventListener("click", handleMonthControl);
   yearButton?.addEventListener("click", handleYearControl);
+  nextDecadeButton?.addEventListener("click", switchDecade);
+  previousDecadeButton?.addEventListener("click", switchDecade);
 })();

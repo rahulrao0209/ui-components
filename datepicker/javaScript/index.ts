@@ -8,6 +8,22 @@ type DateDetails = {
 
 type Month = "previous" | "current" | "next";
 
+/* Store all months in an array */
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 /* Get all the necessary DOM nodes and initialize any global variables if required */
 const calendarMonthDays = document.querySelector(".calendar__monthdays");
 const calendarDays = document.querySelector(".calendar__days");
@@ -251,8 +267,47 @@ const handleYear = function (event: MouseEvent) {
 const selectDay = function (event: MouseEvent) {
   const dayClicked = (event.target as HTMLDivElement).textContent;
 
+  /* Next month day selected */
+  if (
+    (event.target as HTMLDivElement).style.color === "rgb(138, 138, 138)" &&
+    +dayClicked <= 6
+  ) {
+    const nextMonth =
+      months[+(monthButton as HTMLDivElement).dataset.month + 1];
+
+    if (!nextMonth) {
+      dateSelected.textContent = `January ${dayClicked} ${
+        +yearButton.textContent + 1
+      }`;
+      return;
+    }
+
+    dateSelected.textContent = `${nextMonth} ${dayClicked} ${yearButton.textContent}`;
+    return;
+  }
+
+  /* Previous month day selected */
+  if (
+    (event.target as HTMLDivElement).style.color === "rgb(138, 138, 138)" &&
+    +dayClicked >= 26
+  ) {
+    const prevMonth =
+      months[+(monthButton as HTMLDivElement).dataset.month - 1];
+
+    if (!prevMonth) {
+      dateSelected.textContent = `December ${dayClicked} ${
+        +yearButton.textContent - 1
+      }`;
+      return;
+    }
+
+    dateSelected.textContent = `${prevMonth} ${dayClicked} ${yearButton.textContent}`;
+    return;
+  }
+
   if (+dayClicked <= 31) {
     dateSelected.textContent = `${monthButton.textContent} ${dayClicked} ${yearButton.textContent}`;
+    return;
   }
 };
 

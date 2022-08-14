@@ -17,6 +17,8 @@ const calendarDecade = document.querySelector(".years--decade");
 const monthButton = document.querySelector(".controls--month");
 const yearButton = document.querySelector(".controls--year");
 const dateSelected = document.querySelector(".date-selected--date");
+const datepickerButton = document.querySelector(".date-selected > .icon");
+const datepicker = document.querySelector(".datepicker");
 const nextDecadeButton = document.querySelector(
   ".years--controls > span:nth-child(1)"
 );
@@ -203,8 +205,6 @@ const handleMonthControl = function () {
 };
 
 const handleMonth = function (event: MouseEvent) {
-  ("Handling months");
-
   calendarMonths.classList.add("hide");
   calendarMonthDays.classList.remove("hide");
 
@@ -222,7 +222,6 @@ const handleMonth = function (event: MouseEvent) {
 };
 
 const handleYearControl = function () {
-  ("Clicked on year button");
   /* Change the display */
   calendarMonthDays.classList.add("hide");
   calendarMonths.classList.add("hide");
@@ -231,8 +230,6 @@ const handleYearControl = function () {
 };
 
 const handleYear = function (event: MouseEvent) {
-  ("Handling years");
-
   const yearClicked = (event.target as HTMLDivElement).textContent;
 
   /* If a year option is not the target then return */
@@ -254,7 +251,7 @@ const handleYear = function (event: MouseEvent) {
 const selectDay = function (event: MouseEvent) {
   const dayClicked = (event.target as HTMLDivElement).textContent;
 
-  if (+dayClicked) {
+  if (+dayClicked <= 31) {
     dateSelected.textContent = `${monthButton.textContent} ${dayClicked} ${yearButton.textContent}`;
   }
 };
@@ -274,6 +271,10 @@ const populateToday = function () {
   dateSelected.textContent = `${monthString} ${today.getDate()} ${year}`;
 };
 
+const toggleDatepicker = function () {
+  datepicker.classList.toggle("datepicker-hide");
+};
+
 /* Add event listeners and load the month */
 const init = (function () {
   /* Add initial data for current month and year */
@@ -288,4 +289,5 @@ const init = (function () {
   yearButton?.addEventListener("click", handleYearControl);
   nextDecadeButton?.addEventListener("click", switchDecade);
   previousDecadeButton?.addEventListener("click", switchDecade);
+  datepickerButton.addEventListener("click", toggleDatepicker);
 })();

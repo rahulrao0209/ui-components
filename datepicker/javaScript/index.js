@@ -7,6 +7,8 @@ const calendarDecade = document.querySelector(".years--decade");
 const monthButton = document.querySelector(".controls--month");
 const yearButton = document.querySelector(".controls--year");
 const dateSelected = document.querySelector(".date-selected--date");
+const datepickerButton = document.querySelector(".date-selected > .icon");
+const datepicker = document.querySelector(".datepicker");
 const nextDecadeButton = document.querySelector(".years--controls > span:nth-child(1)");
 const previousDecadeButton = document.querySelector(".years--controls > span:nth-child(2)");
 const switchDecade = function (event) {
@@ -128,7 +130,6 @@ const handleMonthControl = function () {
     calendarMonths.classList.remove("hide");
 };
 const handleMonth = function (event) {
-    ("Handling months");
     calendarMonths.classList.add("hide");
     calendarMonthDays.classList.remove("hide");
     const monthClicked = event.target.textContent;
@@ -142,14 +143,12 @@ const handleMonth = function (event) {
     monthButton.dataset.month = `${monthIndex}`;
 };
 const handleYearControl = function () {
-    ("Clicked on year button");
     /* Change the display */
     calendarMonthDays.classList.add("hide");
     calendarMonths.classList.add("hide");
     calendarYears.classList.remove("hide");
 };
 const handleYear = function (event) {
-    ("Handling years");
     const yearClicked = event.target.textContent;
     /* If a year option is not the target then return */
     if (!+yearClicked)
@@ -165,7 +164,7 @@ const handleYear = function (event) {
 };
 const selectDay = function (event) {
     const dayClicked = event.target.textContent;
-    if (+dayClicked) {
+    if (+dayClicked <= 31) {
         dateSelected.textContent = `${monthButton.textContent} ${dayClicked} ${yearButton.textContent}`;
     }
 };
@@ -181,6 +180,9 @@ const populateToday = function () {
     /* Populate the selected date display with today's date on load */
     dateSelected.textContent = `${monthString} ${today.getDate()} ${year}`;
 };
+const toggleDatepicker = function () {
+    datepicker.classList.toggle("datepicker-hide");
+};
 /* Add event listeners and load the month */
 const init = (function () {
     /* Add initial data for current month and year */
@@ -194,4 +196,5 @@ const init = (function () {
     yearButton === null || yearButton === void 0 ? void 0 : yearButton.addEventListener("click", handleYearControl);
     nextDecadeButton === null || nextDecadeButton === void 0 ? void 0 : nextDecadeButton.addEventListener("click", switchDecade);
     previousDecadeButton === null || previousDecadeButton === void 0 ? void 0 : previousDecadeButton.addEventListener("click", switchDecade);
+    datepickerButton.addEventListener("click", toggleDatepicker);
 })();

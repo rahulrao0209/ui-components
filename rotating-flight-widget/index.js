@@ -36,3 +36,16 @@ const flights = [
     },
 ];
 const tableBody = document.querySelector("#table-body");
+const populateTable = function () {
+    console.log("I am here");
+    flights.forEach((flight) => {
+        const tableRow = document.createElement("tr");
+        for (const flDetail in flight) {
+            const tableCell = document.createElement("td");
+            tableCell.innerText = flight[flDetail];
+            tableRow.appendChild(tableCell);
+        }
+        tableBody.appendChild(tableRow);
+    });
+};
+populateTable();

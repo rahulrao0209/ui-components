@@ -38,7 +38,22 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
+  min-width: 60rem;
+  color: #f0f0f0;
+  background-color: #060606;
+  border-radius: 4px;
+  padding: 1rem;
+}
+.departures table {
+  background-color: #2e2e2e;
+  border-radius: inherit;
+  text-align: left;
+}
+.departures table div {
+  float: left;
+  background-color: #060606;
+  margin: 0 0.2rem;
 }
 
 /*# sourceMappingURL=style.css.map */

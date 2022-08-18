@@ -42,7 +42,15 @@ const populateTable = function () {
         const tableRow = document.createElement("tr");
         for (const flDetail in flight) {
             const tableCell = document.createElement("td");
-            tableCell.innerText = flight[flDetail];
+            console.log("fl detail: ", flDetail);
+            const word = Array.from(flight[flDetail]);
+            console.log("Word: ", word);
+            for (const letter of word) {
+                const letterElement = document.createElement("div");
+                letterElement.classList.add("flip");
+                letterElement.textContent = letter;
+                tableCell.appendChild(letterElement);
+            }
             tableRow.appendChild(tableCell);
         }
         tableBody.appendChild(tableRow);

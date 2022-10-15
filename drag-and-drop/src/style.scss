@@ -13,8 +13,13 @@
 }
 
 html {
-  font-size: 50%; /* 1rem = 8px (8/16 * 100 = 50) */
+  font-size: 37.5%; /* 1rem = 6px (6/16 * 100 = 37.5) */
   font-family: "Poppins", sans-serif;
+
+  /* Mobile Portrait */
+  @media only screen and (min-width: 290px) {
+    font-size: 43.75%;
+  }
 
   /* Mobile Landscape */
   @media only screen and (min-width: 478px) {
@@ -71,24 +76,45 @@ body {
     border-radius: 4px;
 
     /* Styling the individual lists */
-    &:nth-child(1) {
-      outline: 1px solid var(--light-orange);
-    }
+    // &:nth-child(1) {
+    //   outline: 1px solid var(--light-orange);
+    // }
 
-    &:nth-child(2) {
-      outline: 1px solid var(--light-green);
-    }
+    // &:nth-child(2) {
+    //   outline: 1px solid var(--light-green);
+    // }
 
-    &__title {
+    /* Style the list header to display the title and number of tasks */
+    &__header {
+      display: flex;
+      justify-content: space-between;
+
       font-size: 2rem;
       font-weight: 700;
 
       margin: 0 auto;
       padding: 0.1em 0;
-      width: 80%;
+      width: 100%;
 
       text-align: left;
       border-bottom: 0.4px solid var(--light-grey);
+    }
+
+    /* Style the list */
+    &__tasks {
+      margin: 2.5rem 0;
+      list-style-type: none;
+    }
+
+    /* Style the individual tasks in the list */
+    &__task {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      border-radius: 4px;
+      min-height: 5rem;
+      cursor: grab;
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     }
   }
 }

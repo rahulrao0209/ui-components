@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+// :root {
+//   // Set color and other variables
+// }
+
+html {
+  font-size: 50%; /* 1rem = 8px (8/16 * 100 = 50) */
+  font-family: "Poppins", sans-serif;
+
+  /* Mobile Landscape */
+  @media only screen and (min-width: 478px) {
+    font-size: 50%;
+  }
+
+  /* Tablet landscape */
+  @media only screen and (min-width: 768px) {
+    font-size: 56.25%;
+  }
+
+  /* Desktop */
+  @media only screen and (min-width: 992px) {
+    font-size: 62.5%;
+  }
+
+  /* Big desktop */
+  @media only screen and (min-width: 1440px) {
+    font-size: 75%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 90rem;
+  height: 60rem;
+  outline: 1px solid salmon;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  .list {
+    height: 40rem;
+    width: 40rem;
+  }
+
+  .list:nth-child(1) {
+    outline: 1px solid greenyellow;
+  }
+
+  .list:nth-child(2) {
+    outline: 1px solid orange;
+  }
+}

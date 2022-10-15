@@ -6,9 +6,11 @@
   box-sizing: inherit;
 }
 
-// :root {
-//   // Set color and other variables
-// }
+:root {
+  --light-grey: rgba(133, 133, 133, 0.4);
+  --light-green: #aaffa9;
+  --light-orange: #ffd194;
+}
 
 html {
   font-size: 50%; /* 1rem = 8px (8/16 * 100 = 50) */
@@ -39,28 +41,54 @@ body {
   box-sizing: border-box;
 }
 
+/* Styling the container */
 .container {
-  width: 90rem;
-  height: 60rem;
-  outline: 1px solid salmon;
+  max-width: 90rem;
+  padding: 4rem;
+  border-radius: 8px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
+  flex-flow: column nowrap;
+  gap: 6rem;
   align-items: center;
   justify-content: space-around;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 
+  /* Tablet landscape */
+  @media only screen and (min-width: 768px) {
+    flex-flow: row nowrap;
+  }
+
+  /* Styling the lists */
   .list {
     height: 40rem;
-    width: 40rem;
-  }
+    width: 30rem;
+    padding: 1.5rem;
+    border-radius: 4px;
 
-  .list:nth-child(1) {
-    outline: 1px solid greenyellow;
-  }
+    /* Styling the individual lists */
+    &:nth-child(1) {
+      outline: 1px solid var(--light-orange);
+    }
 
-  .list:nth-child(2) {
-    outline: 1px solid orange;
+    &:nth-child(2) {
+      outline: 1px solid var(--light-green);
+    }
+
+    &__title {
+      font-size: 2rem;
+      font-weight: 700;
+
+      margin: 0 auto;
+      padding: 0.1em 0;
+      width: 80%;
+
+      text-align: left;
+      border-bottom: 0.4px solid var(--light-grey);
+    }
   }
 }

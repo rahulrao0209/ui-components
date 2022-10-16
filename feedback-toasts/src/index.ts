@@ -11,7 +11,7 @@ const closeButtons: NodeListOf<HTMLButtonElement | HTMLSpanElement> =
   document.querySelectorAll(".close-btn");
 console.log("close buttons: ", closeButtons);
 
-const toggleToast = (event) => {
+const toggleToast = (event: any) => {
   const button = event.target.closest("button");
 
   const success = button?.classList.contains("button--success");

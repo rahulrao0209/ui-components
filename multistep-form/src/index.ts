@@ -23,10 +23,6 @@ const animationClasses = [
 ];
 
 /* Get the CSS color values from the variables */
-const primaryOrange = getComputedStyle(
-  document.documentElement
-).getPropertyValue("--primary-orange");
-
 const primaryGreen = getComputedStyle(
   document.documentElement
 ).getPropertyValue("--primary-green");

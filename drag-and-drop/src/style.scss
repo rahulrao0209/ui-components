@@ -8,6 +8,7 @@
 
 :root {
   --light-grey: rgba(133, 133, 133, 0.4);
+  --done-green: #16a04b;
   --light-green: #aaffa9;
   --light-orange: #ffd194;
 }
@@ -106,15 +107,40 @@ body {
       list-style-type: none;
     }
 
+    /* Style the lists - todo and done */
+    &__tasks {
+      &--todo {
+        & span:nth-child(1) {
+          width: 1.4em;
+          height: 1.4em;
+
+          color: var(--light-orange);
+          border: 2px solid currentColor;
+          border-radius: 100%;
+        }
+      }
+
+      &--done {
+        & span:nth-child(1) {
+          color: var(--done-green);
+        }
+      }
+    }
+
     /* Style the individual tasks in the list */
     &__task {
       margin: 1.5rem 0;
       padding: 1rem;
-      border-radius: 4px;
       min-height: 5rem;
-      cursor: grab;
+
+      border-radius: 4px;
       box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
         rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+      font-size: 1.6em;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      cursor: grab;
     }
   }
 }

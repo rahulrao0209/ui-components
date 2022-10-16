@@ -12,9 +12,9 @@ let startingPositionX: number;
 let positionX: number;
 
 /* 
-  This is the value(px) by which we can allow additonal dragging at the boundaries on both ends
-  Find the checkBoundary function below to see its usage.
-*/
+    This is the value(px) by which we can allow additonal dragging at the boundaries on both ends
+    Find the checkBoundary function below to see its usage.
+  */
 const allowedExtraDrag = 100;
 
 const getXOffset = function (event: MouseEvent | TouchEvent) {

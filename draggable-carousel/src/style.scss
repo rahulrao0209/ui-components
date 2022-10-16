@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
+
 *,
 *::before,
 *::after {
@@ -15,15 +16,13 @@ html {
   font-size: 43.75%;
   font-family: "Merriweather", serif;
   scroll-behavior: smooth;
-}
-@media only screen and (min-width: 478px) {
-  html {
-    font-size: 43.75%;
+
+  @media only screen and (min-width: 478px) {
+    font-size: 43.75%; // 1rem = 7px
   }
-}
-@media only screen and (min-width: 768px) {
-  html {
-    font-size: 62.5%;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 62.5%; // 1rem = 10px
   }
 }
 
@@ -42,13 +41,13 @@ body {
   height: 30rem;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+
   border-radius: 6px;
-}
-.carousel__container:hover {
-  cursor: grab;
-}
-@media only screen and (min-width: 768px) {
-  .carousel__container {
+  &:hover {
+    cursor: grab;
+  }
+
+  @media only screen and (min-width: 768px) {
     width: 60%;
   }
 }
@@ -76,17 +75,17 @@ body {
   text-underline-offset: 2px;
   background-color: #fff;
   border-radius: 6px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-}
-.carousel__card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 20%;
-  width: 100%;
-  background-color: var(--primary-color);
-  border-radius: 6px 6px 0 0;
-}
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
-/*# sourceMappingURL=style.css.map */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20%;
+    width: 100%;
+    background-color: var(--primary-color);
+    border-radius: 6px 6px 0 0;
+  }
+}

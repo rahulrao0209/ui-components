@@ -1,0 +1,23 @@
+.button {
+  padding: 1.8rem 3rem;
+  border-radius: 0.5rem;
+  border: none;
+  min-width: 12rem;
+  font-size: 2rem;
+  outline: currentColor;
+  color: #fff;
+  box-shadow: 6px 6px 12px #afafaf, -6px -6px 12px #fff;
+  transition: all 0.25s;
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+    opacity: 0.9;
+    scale: 1.1;
+  }
+
+  &:active {
+    box-shadow: 2px 2px 4px #afafaf, -6px -6px 12px #fff;
+    scale: 1;
+  }
+}

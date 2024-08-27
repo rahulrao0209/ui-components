@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;700&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "Catamaran", sans-serif;
+
+  @media only screen and (min-width: 478px) {
+    font-size: 50%;
+  }
+
+  @media only screen and (min-width: 768px) {
+    font-size: 62.5%;
+  }
+
+  @media only screen and (min-width: 1190px) {
+    font-size: 100%;
+  }
+}

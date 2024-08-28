@@ -1,0 +1,38 @@
+.days {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(7, 1fr);
+  justify-content: center;
+  justify-items: center;
+}
+
+.weekday {
+  display: flex;
+  gap: 1rem;
+  font-weight: bold;
+  color: var(--current-blue);
+}
+
+.weekday:hover {
+  cursor: pointer;
+}
+
+.days__day {
+  width: 2em;
+  height: 2em;
+  text-align: center;
+}
+
+.days__day:hover {
+  cursor: pointer;
+  background-color: var(--hover-blue);
+}
+
+.today {
+  color: var(--current-blue);
+}
+
+.days--previous,
+.days--next {
+  color: var(--primary-gray);
+}

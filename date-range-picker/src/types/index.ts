@@ -1,7 +1,10 @@
 export type DateDetails = {
-  day: string;
-  month: string;
-  dayNumeric: number;
-  monthNumeric: number;
+  dayName: string;
+  monthName: string;
+  day: number;
+  month: number;
   year: number;
+  monthOrder: MonthOrder;
 };
+
+export type MonthOrder = "previous" | "current" | "next";

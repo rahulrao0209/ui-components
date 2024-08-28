@@ -1,13 +1,7 @@
 .picker {
-  display: grid;
+  display: block;
+  font-size: 1.6rem;
   min-width: 24rem;
   padding: 1.25rem;
-  outline: 1px solid peachpuff;
-}
-
-.weekdays {
-  display: flex;
-  justify-content: space-evenly;
-  font-size: 1.25rem;
-  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

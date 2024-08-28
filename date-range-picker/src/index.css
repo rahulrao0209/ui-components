@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;700&display=swap");
 
+:root {
+  --hover-blue: #9ddde7;
+  --current-blue: #00a2c7;
+  --primary-gray: #838383;
+}
+
 *,
 *::before,
 *::after {

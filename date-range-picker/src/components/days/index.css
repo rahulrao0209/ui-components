@@ -9,7 +9,6 @@
 .weekday {
   display: flex;
   gap: 1rem;
-  font-weight: bold;
   color: var(--current-blue);
 }
 

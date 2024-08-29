@@ -1,9 +1,7 @@
 import { PickerContextProps, PickerState } from "./interfaces";
 import {
-  PREVIOUS_MONTH_PICKER_ONE,
-  PREVIOUS_MONTH_PICKER_TWO,
-  NEXT_MONTH_PICKER_ONE,
-  NEXT_MONTH_PICKER_TWO,
+  PREVIOUS_MONTH,
+  NEXT_MONTH,
   getPreviousMonth,
   getNextMonth,
 } from "./actions";
@@ -18,9 +16,9 @@ export const pickerReducer = (
   action: Action
 ): PickerState => {
   switch (action.type) {
-    case PREVIOUS_MONTH_PICKER_ONE:
+    case PREVIOUS_MONTH:
       return getPreviousMonth(state, action.payload);
-    case NEXT_MONTH_PICKER_ONE:
+    case NEXT_MONTH:
       return getNextMonth(state, action.payload);
   }
   return state;

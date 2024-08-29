@@ -19,9 +19,12 @@ const MONTH_NAMES = [
 interface PickerControllerProps {
   month: number;
   year: number;
+  dispatchPreviousMonth: () => void;
+  dispatchNextMonth: () => void;
 }
 
-const PickerController = ({ month, year }: PickerControllerProps) => {
+const PickerController = (props: PickerControllerProps) => {
+  const { month, year, dispatchPreviousMonth, dispatchNextMonth } = props;
   const YearController = () => {};
   const MonthController = () => {};
 
@@ -35,13 +38,16 @@ const PickerController = ({ month, year }: PickerControllerProps) => {
 
     return (
       <div className="day-controller">
-        <button className="day-controller__back">
+        <button
+          className="day-controller__back"
+          onClick={dispatchPreviousMonth}
+        >
           <span className="day-controller__back-icon">
             <MdArrowBackIos />
           </span>
         </button>
         <button className="day-controller__btn">{`${monthName}, ${year}`}</button>
-        <button className="day-controller__next">
+        <button className="day-controller__next" onClick={dispatchNextMonth}>
           <span className="day-controller__next-icon">
             <MdArrowForwardIos />
           </span>

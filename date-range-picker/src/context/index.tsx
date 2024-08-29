@@ -7,12 +7,18 @@
 
 import { createContext, PropsWithChildren, useReducer } from "react";
 import { pickerReducer } from "./reducer";
-import { PickerContextProps, PickerProps } from "./interfaces";
+import { PickerContextProps, PickerProps, PickerState } from "./interfaces";
+import {
+  getPreviousMonth,
+  getNextMonth,
+  PREVIOUS_MONTH_PICKER_ONE,
+  NEXT_MONTH_PICKER_ONE,
+} from "./actions";
 
 export const PickerContext = createContext<PickerContextProps | null>(null);
 
 export const PickerContextProvider = (props: PropsWithChildren) => {
-  const initialPickerState: PickerContextProps = {
+  const initialPickerState: PickerState = {
     pickerOne: {
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
@@ -31,8 +37,28 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
   };
   const [state, dispatch] = useReducer(pickerReducer, initialPickerState);
 
+  const dispatchPreviousMonth = (pickerNumber: number) => {
+    dispatch({
+      type: PREVIOUS_MONTH_PICKER_ONE,
+      payload: pickerNumber,
+    });
+  };
+
+  const dispatchNextMonth = (pickerNumber: number) => {
+    dispatch({
+      type: NEXT_MONTH_PICKER_ONE,
+      payload: pickerNumber,
+    });
+  };
+
   return (
-    <PickerContext.Provider value={state}>
+    <PickerContext.Provider
+      value={{
+        state,
+        dispatchPreviousMonth,
+        dispatchNextMonth,
+      }}
+    >
       {props.children}
     </PickerContext.Provider>
   );

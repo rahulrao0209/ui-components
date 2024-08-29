@@ -1,6 +1,5 @@
 .days {
   display: grid;
-  gap: 1rem;
   grid-template-columns: repeat(7, 1fr);
   justify-content: center;
   justify-items: center;
@@ -17,9 +16,12 @@
 }
 
 .days__day {
-  width: 2em;
-  height: 2em;
+  width: 2.25em;
+  height: 2.25em;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .days__day:hover {

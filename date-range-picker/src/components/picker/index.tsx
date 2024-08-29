@@ -9,8 +9,8 @@ const Picker = () => {
 
   return (
     <div className="picker">
-      <PickerController />
       <div className="picker__view">
+        <PickerController />
         <Days
           currentMonthDays={currentMonthDays}
           previousMonthDays={previousMonthDays}

@@ -1,0 +1,9 @@
+.picker-container {
+  padding: 1.25rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.pickers {
+  display: flex;
+  padding: 2rem;
+}

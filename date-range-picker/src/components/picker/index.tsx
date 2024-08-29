@@ -2,15 +2,21 @@ import { Days, Months, Years, PickerController } from "../index";
 import { getMonthData } from "../../utils";
 import "./index.css";
 
-const WEEK_DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+interface PickerProps {
+  month: number;
+  year: number;
+}
 
-const Picker = () => {
-  const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData();
+const Picker = ({ month, year }: PickerProps) => {
+  const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData(
+    month,
+    year
+  );
 
   return (
     <div className="picker">
       <div className="picker__view">
-        <PickerController />
+        <PickerController month={month} year={year} />
         <Days
           currentMonthDays={currentMonthDays}
           previousMonthDays={previousMonthDays}

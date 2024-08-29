@@ -16,7 +16,12 @@ const MONTH_NAMES = [
   "Dec",
 ];
 
-const PickerController = () => {
+interface PickerControllerProps {
+  month: number;
+  year: number;
+}
+
+const PickerController = ({ month, year }: PickerControllerProps) => {
   const YearController = () => {};
   const MonthController = () => {};
 
@@ -48,10 +53,7 @@ const PickerController = () => {
   return (
     <div className="picker-controller">
       <div>
-        <DayController
-          month={new Date().getMonth()}
-          year={new Date().getFullYear()}
-        />
+        <DayController month={month} year={year} />
       </div>
     </div>
   );

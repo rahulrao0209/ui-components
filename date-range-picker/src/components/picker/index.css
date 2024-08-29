@@ -3,7 +3,7 @@
   font-size: 1.25rem;
   min-width: 24rem;
   padding: 2rem;
-  border: 0.5px solid var(--hover-blue);
+  border: 0.5px solid var(--hover-gray);
 }
 
 .picker:nth-of-type(1) {

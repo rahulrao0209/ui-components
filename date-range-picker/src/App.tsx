@@ -1,11 +1,14 @@
 import { PickerContainer } from "./components";
+import { PickerContextProvider } from "./context";
 import "./App.css";
 
 function App() {
   return (
     <>
       <div className="app">
-        <PickerContainer />
+        <PickerContextProvider>
+          <PickerContainer />
+        </PickerContextProvider>
       </div>
     </>
   );

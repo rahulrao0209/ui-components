@@ -25,4 +25,5 @@ export interface PickerContextProps {
   dispatchDisplayYears: (pickerNumber: number) => void;
   dispatchDisplayMonths: (pickerNumber: number) => void;
   dispatchDisplayDays: (pickerNumber: number) => void;
+  dispatchSyncPickers: (pickerNumber: number) => void;
 }

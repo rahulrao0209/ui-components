@@ -15,6 +15,7 @@ interface PickerProps {
   dispatchPreviousMonth: (pickerNumber: number) => void;
   dispatchNextMonth: (pickerNumber: number) => void;
   dispatchDisplayYears: (pickerNumber: number) => void;
+  dispatchSyncPickers: (pickerNumber: number) => void;
 }
 
 const Picker = ({
@@ -37,6 +38,7 @@ const Picker = ({
   const dispatchUpdateDay = pickerContext!.dispatchUpdateDay;
   const dispatchUpdateMonth = pickerContext!.dispatchUpdateMonth;
   const dispatchUpdateYear = pickerContext!.dispatchUpdateYear;
+  const dispatchSyncPickers = pickerContext!.dispatchSyncPickers;
 
   const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData(
     month,
@@ -73,6 +75,7 @@ const Picker = ({
             pickerNumber={pickerNumber}
             dispatchDisplayDays={() => dispatchDisplayDays(pickerNumber)}
             dispatchUpdateMonth={dispatchUpdateMonth}
+            dispatchSyncPickers={dispatchSyncPickers}
           />
         ) : null}
         {displayYears ? (

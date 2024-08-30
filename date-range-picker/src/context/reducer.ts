@@ -8,6 +8,7 @@ import {
   getPreviousMonth,
   getNextMonth,
   displayYearController,
+  syncPickers,
   PREVIOUS_DECADE,
   getPreviousDecade,
   NEXT_DECADE,
@@ -20,6 +21,7 @@ import {
   updateMonth,
   UPDATE_YEAR,
   updateYear,
+  SYNC_PICKERS,
 } from "./actions";
 
 interface Action {
@@ -52,6 +54,8 @@ export const pickerReducer = (
       return displayMonthController(state, action.payload);
     case DISPLAY_DAYS:
       return displayDayController(state, action.payload);
+    case SYNC_PICKERS:
+      return syncPickers(state, action.payload);
     default:
       return state;
   }

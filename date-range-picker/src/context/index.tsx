@@ -19,6 +19,7 @@ import {
   DISPLAY_DAYS,
   DISPLAY_MONTHS,
   DISPLAY_YEARS,
+  SYNC_PICKERS,
 } from "./actions";
 
 export const PickerContext = createContext<PickerContextProps | null>(null);
@@ -126,6 +127,13 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
     });
   };
 
+  const dispatchSyncPickers = (pickerNumber: number) => {
+    dispatch({
+      type: SYNC_PICKERS,
+      payload: pickerNumber,
+    });
+  };
+
   return (
     <PickerContext.Provider
       value={{
@@ -140,6 +148,7 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
         dispatchDisplayYears,
         dispatchDisplayMonths,
         dispatchDisplayDays,
+        dispatchSyncPickers,
       }}
     >
       {props.children}

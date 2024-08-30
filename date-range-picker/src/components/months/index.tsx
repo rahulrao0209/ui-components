@@ -19,12 +19,14 @@ interface MonthProps {
   pickerNumber: number;
   dispatchDisplayDays: () => void;
   dispatchUpdateMonth: (pickerNumber: number, month: number) => void;
+  dispatchSyncPickers: (pickerNumber: number) => void;
 }
 
 const Months = ({
   pickerNumber,
   dispatchDisplayDays,
   dispatchUpdateMonth,
+  dispatchSyncPickers,
 }: MonthProps) => {
   const handleSelectMonth = (event: any) => {
     const element = event.target;
@@ -36,6 +38,7 @@ const Months = ({
     dispatchDisplayDays();
     console.log("month: ", month);
     dispatchUpdateMonth(pickerNumber, parseInt(month));
+    dispatchSyncPickers(pickerNumber);
   };
 
   return (

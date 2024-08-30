@@ -15,6 +15,8 @@ export const DISPLAY_DAYS = "DISPLAY_DAYS";
 export const DISPLAY_YEARS = "DISPLAY_YEARS";
 export const DISPLAY_MONTHS = "DISPLAY_MONTHS";
 
+export const SYNC_PICKERS = "SYNC_PICKERS";
+
 // Actions
 export const getPreviousMonth = (
   state: PickerState,
@@ -379,4 +381,54 @@ export const updateDay = (
       },
     };
   }
+};
+
+export const syncPickers = (
+  state: PickerState,
+  pickerNumber: number
+): PickerState => {
+  const { pickerOne, pickerTwo } = state;
+  const { month: monthOne, year: yearOne } = pickerOne;
+  const { month: monthTwo, year: yearTwo } = pickerTwo;
+
+  // Set initial values to have compatible return types.
+  let updatedMonthOne = monthOne;
+  let updatedMonthTwo = monthTwo;
+  let updatedYearOne = yearOne;
+  let updatedYearTwo = yearTwo;
+
+  // Picker2's date should not be less than picker1's date.
+  if (pickerNumber === 1) {
+    if (yearOne > yearTwo) {
+      updatedMonthTwo = monthOne === 11 ? 0 : monthOne + 1;
+      updatedYearTwo = monthOne === 11 ? yearOne + 1 : yearOne;
+    } else {
+      if (monthOne > monthTwo) {
+        updatedMonthTwo = monthOne === 11 ? 0 : monthOne + 1;
+      }
+    }
+  } else {
+    if (yearTwo < yearOne) {
+      updatedMonthOne = monthTwo === 0 ? 11 : monthTwo - 1;
+      updatedYearOne = monthTwo === 0 ? yearTwo - 1 : yearTwo;
+    } else {
+      if (monthTwo < monthOne) {
+        updatedMonthOne = monthTwo === 0 ? 11 : monthTwo - 1;
+      }
+    }
+  }
+
+  return {
+    ...state,
+    pickerOne: {
+      ...pickerOne,
+      month: updatedMonthOne,
+      year: updatedYearOne,
+    },
+    pickerTwo: {
+      ...pickerTwo,
+      month: updatedMonthTwo,
+      year: updatedYearTwo,
+    },
+  };
 };

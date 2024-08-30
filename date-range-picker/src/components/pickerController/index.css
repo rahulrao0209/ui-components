@@ -1,22 +1,26 @@
-.day-controller {
+.day-controller,
+.year-controller {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.day-controller > button {
+.day-controller > button,
+.year-controller > button {
   padding: 0.5em;
   border: none;
   cursor: pointer;
   background-color: transparent;
 }
 
-.day-controller > button:hover {
+.day-controller > button:hover,
+.year-controller > button:hover {
   background-color: var(--hover-gray);
 }
 
-.day-controller__back {
+.day-controller__back,
+.year-controller__back {
   font-size: 1rem;
   display: flex;
   align-items: center;
@@ -26,7 +30,8 @@
   border-radius: 100%;
 }
 
-.day-controller__next {
+.day-controller__next,
+.year-controller__next {
   font-size: 1rem;
   display: flex;
   align-items: center;
@@ -36,16 +41,19 @@
   border-radius: 100%;
 }
 
-.day-controller__btn {
+.day-controller__btn,
+.year-controller__btn {
   font-size: 1.25rem;
   min-width: 40%;
   border-radius: 8px;
 }
 
-.day-controller__back-icon {
+.day-controller__back-icon,
+.year-controller__back-icon {
   margin: 2px 0 0 5px;
 }
 
-.day-controller__next-icon {
+.day-controller__next-icon,
+.year-controller__next-icon {
   margin: 2px 0 0 5px;
 }

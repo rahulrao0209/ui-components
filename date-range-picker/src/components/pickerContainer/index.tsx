@@ -12,27 +12,54 @@ const PickerContainer = () => {
   const pickerOneYear = pickerContext?.state.pickerOne.year ?? defaultYear;
   const pickerTwoMonth = pickerContext?.state.pickerTwo.month ?? defaultMonth;
   const pickerTwoYear = pickerContext?.state.pickerTwo.year ?? defaultYear;
+  const pickerOneCurrentDecadeYear =
+    pickerContext?.state.pickerOne.currentDecadeYear ?? defaultYear;
+  const pickerTwoCurrentDecadeYear =
+    pickerContext?.state.pickerTwo.currentDecadeYear ?? defaultYear;
+  const pickerOneDisplayDays =
+    pickerContext?.state.pickerOne.displayDays ?? true;
+  const pickerTwoDisplayDays =
+    pickerContext?.state.pickerTwo.displayDays ?? true;
+  const pickerOneDisplayMonths =
+    pickerContext?.state.pickerOne.displayMonths ?? false;
+  const pickerTwoDisplayMonths =
+    pickerContext?.state.pickerTwo.displayMonths ?? false;
+  const pickerOneDisplayYears =
+    pickerContext?.state.pickerOne.displayYears ?? false;
+  const pickerTwoDisplayYears =
+    pickerContext?.state.pickerTwo.displayYears ?? false;
 
   // Picker methods
   const dispatchPreviousMonth = pickerContext!.dispatchPreviousMonth;
   const dispatchNextMonth = pickerContext!.dispatchNextMonth;
+  const dispatchDisplayYears = pickerContext!.dispatchDisplayYears;
 
   return (
     <main className="picker-container">
       <div className="pickers">
         <Picker
+          pickerNumber={1}
           month={pickerOneMonth}
           year={pickerOneYear}
-          pickerNumber={1}
+          currentDecadeYear={pickerOneCurrentDecadeYear}
+          displayDays={pickerOneDisplayDays}
+          displayMonths={pickerOneDisplayMonths}
+          displayYears={pickerOneDisplayYears}
           dispatchPreviousMonth={dispatchPreviousMonth}
           dispatchNextMonth={dispatchNextMonth}
+          dispatchDisplayYears={dispatchDisplayYears}
         />
         <Picker
+          pickerNumber={2}
           month={pickerTwoMonth}
           year={pickerTwoYear}
-          pickerNumber={2}
+          currentDecadeYear={pickerTwoCurrentDecadeYear}
+          displayDays={pickerTwoDisplayDays}
+          displayMonths={pickerTwoDisplayMonths}
+          displayYears={pickerTwoDisplayYears}
           dispatchPreviousMonth={dispatchPreviousMonth}
           dispatchNextMonth={dispatchNextMonth}
+          dispatchDisplayYears={dispatchDisplayYears}
         />
       </div>
     </main>

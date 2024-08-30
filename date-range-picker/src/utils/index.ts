@@ -3,6 +3,47 @@
  */
 import { DateDetails, MonthOrder } from "../types";
 
+export const getYears = (year: number) => {
+  console.log("Year: ", year);
+
+  const previousYearsInDecade: number[] = [];
+  const remainingYearsInDecade: number[] = [];
+
+  // const firstTwoDigits = Math.round(year / 100);
+  // const lastTwoDigits = year % 100;
+  const lastDigit = year % 10;
+
+  // Get previous years in a given decade.
+  const startDecadeYear = year - lastDigit;
+  for (let i = 0; i < lastDigit; i++) {
+    previousYearsInDecade.push(startDecadeYear + i);
+  }
+
+  // Get remaining in a given decade.
+  const firstYearOfDecade = previousYearsInDecade[0];
+  const lastYearOfDecade = previousYearsInDecade[0] + 9;
+  const offsetForRemainingYears =
+    firstYearOfDecade + previousYearsInDecade.length;
+
+  for (let i = offsetForRemainingYears; i <= lastYearOfDecade; i++) {
+    remainingYearsInDecade.push(i);
+  }
+
+  const decade = [...previousYearsInDecade, ...remainingYearsInDecade];
+
+  /**
+   * Add 2 more years to display from the next decade as the
+   * grid must display 12 years at once.
+   */
+  const allYearsInGrid = [...decade];
+  for (let i = 1; i < 3; i++) allYearsInGrid.push(lastYearOfDecade + i);
+
+  return {
+    decade,
+    allYearsInGrid,
+  };
+};
+
 export const getMonthDays = (
   month = new Date().getMonth(),
   year = new Date().getFullYear(),

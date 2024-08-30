@@ -8,7 +8,13 @@
 import { createContext, PropsWithChildren, useReducer } from "react";
 import { pickerReducer } from "./reducer";
 import { PickerContextProps, PickerState } from "./interfaces";
-import { PREVIOUS_MONTH, NEXT_MONTH } from "./actions";
+import {
+  PREVIOUS_MONTH,
+  NEXT_MONTH,
+  DISPLAY_YEARS,
+  NEXT_DECADE,
+  PREVIOUS_DECADE,
+} from "./actions";
 
 export const PickerContext = createContext<PickerContextProps | null>(null);
 
@@ -17,6 +23,7 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
     pickerOne: {
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
+      currentDecadeYear: new Date().getFullYear(),
       displayDays: true,
       displayYears: false,
       displayMonths: false,
@@ -25,6 +32,7 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
     pickerTwo: {
       month: new Date().getMonth() + 1,
       year: new Date().getFullYear(),
+      currentDecadeYear: new Date().getFullYear(),
       displayDays: true,
       displayYears: false,
       displayMonths: false,
@@ -46,12 +54,36 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
     });
   };
 
+  const dispatchPreviousDecade = (pickerNumber: number) => {
+    dispatch({
+      type: PREVIOUS_DECADE,
+      payload: pickerNumber,
+    });
+  };
+
+  const dispatchNextDecade = (pickerNumber: number) => {
+    dispatch({
+      type: NEXT_DECADE,
+      payload: pickerNumber,
+    });
+  };
+
+  const dispatchDisplayYears = (pickerNumber: number) => {
+    dispatch({
+      type: DISPLAY_YEARS,
+      payload: pickerNumber,
+    });
+  };
+
   return (
     <PickerContext.Provider
       value={{
         state,
         dispatchPreviousMonth,
         dispatchNextMonth,
+        dispatchPreviousDecade,
+        dispatchNextDecade,
+        dispatchDisplayYears,
       }}
     >
       {props.children}

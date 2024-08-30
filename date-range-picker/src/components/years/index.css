@@ -1,0 +1,23 @@
+.years {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  justify-items: center;
+}
+
+.year {
+  cursor: pointer;
+  padding: 1rem 2rem;
+}
+
+.year:hover {
+  background-color: var(--hover-blue);
+}
+
+.year--next {
+  color: var(--primary-gray);
+}
+
+.year--current {
+  color: var(--current-blue);
+}

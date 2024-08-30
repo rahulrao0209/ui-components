@@ -1,22 +1,24 @@
-import { PickerContextProps, PickerState } from "./interfaces";
+import { PickerState } from "./interfaces";
 
 // Action types.
 export const NEXT_MONTH = "NEXT_MONTH";
 export const PREVIOUS_MONTH = "PREVIOUS_MONTH";
 
-export const UPDATE_MONTH_PICKER_ONE = "UPDATE_MONTH_PICKER_ONE";
-export const UPDATE_MONTH_PICKER_TWO = "UPDATE_MONTH_PICKER_TWO";
-export const UPDATE_YEAR_PICKER_ONE = "UPDATE_YEAR_PICKER_ONE";
-export const UPDATE_YEAR_PICKER_TWO = "UPDATE_YEAR_PICKER_TWO";
-export const DISPLAY_DAYS_PICKER_ONE = "DISPLAY_DAYS_PICKER_ONE";
-export const DISPLAY_DAYS_PICKER_TWO = "DISPLAY_DAYS_PICKER_TWO";
-export const DISPLAY_YEARS_PICKER_ONE = "DISPLAY_YEARS_PICKER_ONE";
-export const DISPLAY_YEARS_PICKER_TWO = "DISPLAY_YEARS_PICKER_TWO";
-export const DISPLAY_MONTHS_PICKER_ONE = "DISPLAY_MONTHS_PICKER_ONE";
-export const DISPLAY_MONTHS_PICKER_TWO = "DISPLAY_MONTHS_PICKER_TWO";
+export const UPDATE_MONTH = "UPDATE_MONTH";
+export const UPDATE_YEAR = "UPDATE_YEAR";
+
+export const NEXT_DECADE = "NEXT_DECADE";
+export const PREVIOUS_DECADE = "PREVIOUS_DECADE";
+
+export const DISPLAY_DAYS = "DISPLAY_DAYS";
+export const DISPLAY_YEARS = "DISPLAY_YEARS";
+export const DISPLAY_MONTHS = "DISPLAY_MONTHS";
 
 // Actions
-export const getPreviousMonth = (state: PickerState, pickerNumber: number) => {
+export const getPreviousMonth = (
+  state: PickerState,
+  pickerNumber: number
+): PickerState => {
   const { pickerOne, pickerTwo } = state;
   const { month: monthOne, year: yearOne } = pickerOne;
   const { month: monthTwo, year: yearTwo } = pickerTwo;
@@ -64,7 +66,10 @@ export const getPreviousMonth = (state: PickerState, pickerNumber: number) => {
   };
 };
 
-export const getNextMonth = (state: PickerState, pickerNumber: number) => {
+export const getNextMonth = (
+  state: PickerState,
+  pickerNumber: number
+): PickerState => {
   const { pickerOne, pickerTwo } = state;
   const { month: monthOne, year: yearOne } = pickerOne;
   const { month: monthTwo, year: yearTwo } = pickerTwo;
@@ -109,4 +114,102 @@ export const getNextMonth = (state: PickerState, pickerNumber: number) => {
       year: updatedYearTwo,
     },
   };
+};
+
+/** Decides which picker controller to display */
+export const displayYearController = (
+  state: PickerState,
+  pickerNumber: number
+): PickerState => {
+  const { pickerOne, pickerTwo } = state;
+
+  if (pickerNumber === 1) {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+        displayYears: true,
+        displayDays: false,
+        displayMonths: false,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+      },
+    };
+  } else {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+        displayYears: true,
+        displayDays: false,
+        displayMonths: false,
+      },
+    };
+  }
+};
+
+export const getPreviousDecade = (
+  state: PickerState,
+  pickerNumber: number
+): PickerState => {
+  const { pickerOne, pickerTwo } = state;
+
+  if (pickerNumber === 1) {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+        currentDecadeYear: pickerOne.currentDecadeYear - 10,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+      },
+    };
+  } else {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+        currentDecadeYear: pickerTwo.currentDecadeYear - 10,
+      },
+    };
+  }
+};
+
+export const getNextDecade = (
+  state: PickerState,
+  pickerNumber: number
+): PickerState => {
+  const { pickerOne, pickerTwo } = state;
+
+  if (pickerNumber === 1) {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+        currentDecadeYear: pickerOne.currentDecadeYear + 10,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+      },
+    };
+  } else {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+        currentDecadeYear: pickerTwo.currentDecadeYear + 10,
+      },
+    };
+  }
 };

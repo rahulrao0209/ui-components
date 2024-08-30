@@ -94,7 +94,7 @@ const PickerController = (props: PickerControllerProps) => {
         </button>
         <button
           className="year-controller__btn"
-          // onClick={dispatchDisplayYears}
+          onClick={() => {}}
         >{`${decadeStartYear} - ${decadeEndYear}`}</button>
         <button className="year-controller__next" onClick={dispatchNextDecade}>
           <span className="year-controller__next-icon">
@@ -106,7 +106,13 @@ const PickerController = (props: PickerControllerProps) => {
   };
 
   const MonthController = () => {
-    return <div>Month controller</div>;
+    const monthName = MONTH_NAMES[month];
+    return (
+      <div className="month-controller">
+        {monthName}
+        <hr></hr>
+      </div>
+    );
   };
 
   return (

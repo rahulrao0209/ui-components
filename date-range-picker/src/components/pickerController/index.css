@@ -6,6 +6,12 @@
   align-items: center;
 }
 
+.month-controller {
+  width: 100%;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
 .day-controller > button,
 .year-controller > button {
   padding: 0.5em;

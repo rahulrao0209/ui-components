@@ -11,9 +11,14 @@ import { PickerContextProps, PickerState } from "./interfaces";
 import {
   PREVIOUS_MONTH,
   NEXT_MONTH,
-  DISPLAY_YEARS,
-  NEXT_DECADE,
   PREVIOUS_DECADE,
+  NEXT_DECADE,
+  UPDATE_DAY,
+  UPDATE_MONTH,
+  UPDATE_YEAR,
+  DISPLAY_DAYS,
+  DISPLAY_MONTHS,
+  DISPLAY_YEARS,
 } from "./actions";
 
 export const PickerContext = createContext<PickerContextProps | null>(null);
@@ -21,6 +26,7 @@ export const PickerContext = createContext<PickerContextProps | null>(null);
 export const PickerContextProvider = (props: PropsWithChildren) => {
   const initialPickerState: PickerState = {
     pickerOne: {
+      day: new Date().getDay(),
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
       currentDecadeYear: new Date().getFullYear(),
@@ -30,6 +36,7 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
     },
 
     pickerTwo: {
+      day: new Date().getDay(),
       month: new Date().getMonth() + 1,
       year: new Date().getFullYear(),
       currentDecadeYear: new Date().getFullYear(),
@@ -68,9 +75,53 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
     });
   };
 
+  const dispatchUpdateDay = (pickerNumber: number, day: number) => {
+    dispatch({
+      type: UPDATE_DAY,
+      payload: {
+        pickerNumber,
+        day,
+      },
+    });
+  };
+
+  const dispatchUpdateMonth = (pickerNumber: number, month: number) => {
+    dispatch({
+      type: UPDATE_MONTH,
+      payload: {
+        pickerNumber,
+        month,
+      },
+    });
+  };
+
+  const dispatchUpdateYear = (pickerNumber: number, year: number) => {
+    dispatch({
+      type: UPDATE_YEAR,
+      payload: {
+        pickerNumber,
+        year,
+      },
+    });
+  };
+
   const dispatchDisplayYears = (pickerNumber: number) => {
     dispatch({
       type: DISPLAY_YEARS,
+      payload: pickerNumber,
+    });
+  };
+
+  const dispatchDisplayMonths = (pickerNumber: number) => {
+    dispatch({
+      type: DISPLAY_MONTHS,
+      payload: pickerNumber,
+    });
+  };
+
+  const dispatchDisplayDays = (pickerNumber: number) => {
+    dispatch({
+      type: DISPLAY_DAYS,
       payload: pickerNumber,
     });
   };
@@ -83,7 +134,12 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
         dispatchNextMonth,
         dispatchPreviousDecade,
         dispatchNextDecade,
+        dispatchUpdateDay,
+        dispatchUpdateMonth,
+        dispatchUpdateYear,
         dispatchDisplayYears,
+        dispatchDisplayMonths,
+        dispatchDisplayDays,
       }}
     >
       {props.children}

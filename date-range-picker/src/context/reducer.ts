@@ -12,6 +12,14 @@ import {
   getPreviousDecade,
   NEXT_DECADE,
   getNextDecade,
+  displayMonthController,
+  displayDayController,
+  UPDATE_DAY,
+  updateDay,
+  UPDATE_MONTH,
+  updateMonth,
+  UPDATE_YEAR,
+  updateYear,
 } from "./actions";
 
 interface Action {
@@ -32,8 +40,19 @@ export const pickerReducer = (
       return getPreviousDecade(state, action.payload);
     case NEXT_DECADE:
       return getNextDecade(state, action.payload);
+    case UPDATE_DAY:
+      return updateDay(state, action.payload);
+    case UPDATE_MONTH:
+      return updateMonth(state, action.payload);
+    case UPDATE_YEAR:
+      return updateYear(state, action.payload);
     case DISPLAY_YEARS:
       return displayYearController(state, action.payload);
+    case DISPLAY_MONTHS:
+      return displayMonthController(state, action.payload);
+    case DISPLAY_DAYS:
+      return displayDayController(state, action.payload);
+    default:
+      return state;
   }
-  return state;
 };

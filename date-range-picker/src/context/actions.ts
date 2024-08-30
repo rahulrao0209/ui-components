@@ -1,11 +1,12 @@
 import { PickerState } from "./interfaces";
 
 // Action types.
-export const NEXT_MONTH = "NEXT_MONTH";
-export const PREVIOUS_MONTH = "PREVIOUS_MONTH";
-
 export const UPDATE_MONTH = "UPDATE_MONTH";
 export const UPDATE_YEAR = "UPDATE_YEAR";
+export const UPDATE_DAY = "UPDATE_DAY";
+
+export const NEXT_MONTH = "NEXT_MONTH";
+export const PREVIOUS_MONTH = "PREVIOUS_MONTH";
 
 export const NEXT_DECADE = "NEXT_DECADE";
 export const PREVIOUS_DECADE = "PREVIOUS_DECADE";
@@ -152,6 +153,76 @@ export const displayYearController = (
   }
 };
 
+export const displayMonthController = (
+  state: PickerState,
+  pickerNumber: number
+): PickerState => {
+  const { pickerOne, pickerTwo } = state;
+
+  if (pickerNumber === 1) {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+        displayMonths: true,
+        displayYears: false,
+        displayDays: false,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+      },
+    };
+  } else {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+        displayMonths: true,
+        displayYears: false,
+        displayDays: false,
+      },
+    };
+  }
+};
+
+export const displayDayController = (
+  state: PickerState,
+  pickerNumber: number
+): PickerState => {
+  const { pickerOne, pickerTwo } = state;
+
+  if (pickerNumber === 1) {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+        displayDays: true,
+        displayMonths: false,
+        displayYears: false,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+      },
+    };
+  } else {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+        displayDays: true,
+        displayMonths: false,
+        displayYears: false,
+      },
+    };
+  }
+};
+
 export const getPreviousDecade = (
   state: PickerState,
   pickerNumber: number
@@ -209,6 +280,102 @@ export const getNextDecade = (
       pickerTwo: {
         ...pickerTwo,
         currentDecadeYear: pickerTwo.currentDecadeYear + 10,
+      },
+    };
+  }
+};
+
+export const updateMonth = (
+  state: PickerState,
+  payload: { pickerNumber: number; month: number }
+): PickerState => {
+  const { pickerOne, pickerTwo } = state;
+  const { pickerNumber, month } = payload;
+
+  if (pickerNumber === 1) {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+        month,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+      },
+    };
+  } else {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+        month,
+      },
+    };
+  }
+};
+
+export const updateYear = (
+  state: PickerState,
+  payload: { pickerNumber: number; year: number }
+): PickerState => {
+  const { pickerOne, pickerTwo } = state;
+  const { pickerNumber, year } = payload;
+
+  if (pickerNumber === 1) {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+        year,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+      },
+    };
+  } else {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+        year,
+      },
+    };
+  }
+};
+
+export const updateDay = (
+  state: PickerState,
+  payload: { pickerNumber: number; day: number }
+): PickerState => {
+  const { pickerOne, pickerTwo } = state;
+  const { pickerNumber, day } = payload;
+
+  if (pickerNumber === 1) {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+        day,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+      },
+    };
+  } else {
+    return {
+      ...state,
+      pickerOne: {
+        ...pickerOne,
+      },
+      pickerTwo: {
+        ...pickerTwo,
+        day,
       },
     };
   }

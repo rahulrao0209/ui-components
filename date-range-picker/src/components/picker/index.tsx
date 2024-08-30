@@ -32,6 +32,11 @@ const Picker = ({
   const pickerContext = useContext(PickerContext);
   const dispatchNextDecade = pickerContext!.dispatchNextDecade;
   const dispatchPreviousDecade = pickerContext!.dispatchPreviousDecade;
+  const dispatchDisplayMonths = pickerContext!.dispatchDisplayMonths;
+  const dispatchDisplayDays = pickerContext!.dispatchDisplayDays;
+  const dispatchUpdateDay = pickerContext!.dispatchUpdateDay;
+  const dispatchUpdateMonth = pickerContext!.dispatchUpdateMonth;
+  const dispatchUpdateYear = pickerContext!.dispatchUpdateYear;
 
   const { previousMonthDays, currentMonthDays, nextMonthDays } = getMonthData(
     month,
@@ -56,13 +61,28 @@ const Picker = ({
         />
         {displayDays ? (
           <Days
+            pickerNumber={pickerNumber}
             currentMonthDays={currentMonthDays}
             previousMonthDays={previousMonthDays}
             nextMonthDays={nextMonthDays}
+            dispatchUpdateDay={dispatchUpdateDay}
           />
         ) : null}
-        {displayMonths ? <Months /> : null}
-        {displayYears ? <Years currentDecadeYear={currentDecadeYear} /> : null}
+        {displayMonths ? (
+          <Months
+            pickerNumber={pickerNumber}
+            dispatchDisplayDays={() => dispatchDisplayDays(pickerNumber)}
+            dispatchUpdateMonth={dispatchUpdateMonth}
+          />
+        ) : null}
+        {displayYears ? (
+          <Years
+            pickerNumber={pickerNumber}
+            currentDecadeYear={currentDecadeYear}
+            dispatchDisplayMonths={() => dispatchDisplayMonths(pickerNumber)}
+            dispatchUpdateYear={dispatchUpdateYear}
+          />
+        ) : null}
       </div>
     </div>
   );

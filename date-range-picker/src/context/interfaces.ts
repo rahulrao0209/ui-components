@@ -1,4 +1,5 @@
 export interface PickerProps {
+  day: number;
   month: number;
   year: number;
   currentDecadeYear: number;
@@ -18,5 +19,10 @@ export interface PickerContextProps {
   dispatchNextMonth: (pickerNumber: number) => void;
   dispatchPreviousDecade: (pickerNumber: number) => void;
   dispatchNextDecade: (pickerNumber: number) => void;
+  dispatchUpdateDay: (pickerNumber: number, day: number) => void;
+  dispatchUpdateMonth: (pickerNumber: number, month: number) => void;
+  dispatchUpdateYear: (pickerNumber: number, year: number) => void;
   dispatchDisplayYears: (pickerNumber: number) => void;
+  dispatchDisplayMonths: (pickerNumber: number) => void;
+  dispatchDisplayDays: (pickerNumber: number) => void;
 }

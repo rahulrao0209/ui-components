@@ -4,7 +4,7 @@
 import { DateDetails, MonthOrder } from "../types";
 
 export const getYears = (year: number) => {
-  console.log("Year: ", year);
+  // console.log("Year: ", year);
 
   const previousYearsInDecade: number[] = [];
   const remainingYearsInDecade: number[] = [];

@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { MdCalendarMonth } from "react-icons/md";
 import { Picker } from "../index";
 import { PickerContext } from "../../context";
 import "./index.css";
@@ -36,6 +37,21 @@ const PickerContainer = () => {
 
   return (
     <main className="picker-container">
+      <div className="range-display">
+        <div className="range-display__start-date">
+          <span className="range-display__icon">
+            <MdCalendarMonth className="range-display__icon-icon" />
+          </span>
+          <span className="range-display__value">{`${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`}</span>
+        </div>
+        <div className="range-display__separator">~</div>
+        <div className="range-display__start-date">
+          <span className="range-display__icon">
+            <MdCalendarMonth className="range-display__icon-icon" />
+          </span>
+          <span className="range-display__value">{`${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`}</span>
+        </div>
+      </div>
       <div className="pickers">
         <Picker
           pickerNumber={1}

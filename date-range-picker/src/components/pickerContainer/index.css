@@ -1,9 +1,39 @@
 .picker-container {
-  padding: 1.25rem;
+  padding: 2rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .pickers {
   display: flex;
-  padding: 2rem;
+}
+
+.range-display {
+  display: flex;
+  margin: 0rem 0;
+  border: 1px solid var(--primary-gray);
+  border-bottom: none;
+  color: var(--dark-gray);
+  font-size: 1.6rem;
+  width: 100%;
+  align-items: center;
+}
+
+.range-display__separator {
+  padding: 0.25rem 0 0 0;
+}
+
+.range-display__start-date {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 1rem 0 1rem;
+  align-items: start;
+}
+
+.range-display__icon {
+  display: inline-block;
+}
+
+.range-display__value {
+  display: inline-block;
+  margin-top: -0.25rem;
 }

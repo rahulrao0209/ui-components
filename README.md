@@ -7,3 +7,4 @@ A repo for _simple and creative UI Components_
 - [Draggable Carousel](https://codepen.io/rahulr0209/full/LYdjzpP)
 - [Multistep Form](https://codepen.io/rahulr0209/full/LYdeWgd)
 - [Datepicker](https://codepen.io/rahulr0209/full/oNqaWrL)
+- [Date Range Picker](https://date-range-picker-b2f4df.netlify.app/)

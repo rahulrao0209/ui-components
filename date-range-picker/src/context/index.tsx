@@ -5,7 +5,13 @@
  * the second picker should always be at least one month ahead of the first picker.
  */
 
-import { createContext, PropsWithChildren, useReducer, useState } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { pickerReducer } from "./reducer";
 import { PickerContextProps, PickerState, SelectedDate } from "./interfaces";
 import {
@@ -23,6 +29,7 @@ import {
   RESET_PICKERS,
   SET_PREDEFINED_RANGE,
 } from "./actions";
+import { filterWeekends } from "../utils";
 
 export const PickerContext = createContext<PickerContextProps | null>(null);
 export const SelectedDateContext = createContext<SelectedDate | null>(null);
@@ -204,6 +211,11 @@ export const SelectedDatesContextProvider = (props: PropsWithChildren) => {
     setStartDate(startDate);
     setEndDate(endDate);
   };
+
+  useEffect(() => {
+    if (!(startDate && endDate)) return;
+    filterWeekends(startDate, endDate);
+  }, [endDate]);
 
   return (
     <SelectedDateContext.Provider

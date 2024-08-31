@@ -51,6 +51,7 @@ const Days = ({
     if (classes.includes("previous")) return;
     if (classes.includes("next")) return;
     if (classes.includes("weekend")) return;
+    classlist.add("selected-day-outline");
     dispatchUpdateDay(pickerNumber, parseInt(day));
     handleSetDate(parseInt(day));
   };

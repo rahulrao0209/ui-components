@@ -143,3 +143,31 @@ export const isToday = (currentDate: DateDetails) => {
     todayYear === currentDate.year
   );
 };
+
+// Filter weekends
+export const filterWeekends = (startDate: Date, endDate: Date) => {
+  const isWeekend = (date: Date) => {
+    const day = date.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+    return day === 0 || day === 6;
+  };
+
+  const daysBetween = Math.floor(
+    (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)
+  );
+
+  const weekendDates = [];
+  for (let i = 0; i < daysBetween; i++) {
+    const date = new Date(startDate.getTime() + i * 86400000);
+    if (isWeekend(date)) {
+      weekendDates.push(date.toLocaleDateString("en-US"));
+    }
+  }
+
+  console.log("SELECTED RANGE: ", [
+    startDate.toLocaleDateString("en-US"),
+    endDate.toLocaleDateString("en-US"),
+  ]);
+  console.log("WEEKENDS: ", [weekendDates]);
+
+  return [[startDate, endDate], [...weekendDates]];
+};

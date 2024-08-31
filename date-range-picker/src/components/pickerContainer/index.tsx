@@ -59,60 +59,62 @@ const PickerContainer = () => {
   };
 
   return (
-    <main className="picker-container">
-      <div className="range-display">
-        <div className="range-display__start-date">
-          <span className="range-display__icon">
-            <MdCalendarMonth className="range-display__icon-icon" />
-          </span>
-          <span className="range-display__value">{`${startYear}-${
-            startMonth + 1
-          }-${startDay}`}</span>
+    <>
+      <main className="picker-container">
+        <div className="range-display">
+          <div className="range-display__start-date">
+            <span className="range-display__icon">
+              <MdCalendarMonth className="range-display__icon-icon" />
+            </span>
+            <span className="range-display__value">{`${startYear}-${
+              startMonth + 1
+            }-${startDay}`}</span>
+          </div>
+          <div className="range-display__separator">~</div>
+          <div className="range-display__end-date">
+            <span className="range-display__icon">
+              <MdCalendarMonth className="range-display__icon-icon" />
+            </span>
+            <span className="range-display__value">{`${endYear}-${
+              endMonth + 1
+            }-${endDay}`}</span>
+          </div>
+          <button className="reset-range-button" onClick={onReset}>
+            Reset
+          </button>
         </div>
-        <div className="range-display__separator">~</div>
-        <div className="range-display__end-date">
-          <span className="range-display__icon">
-            <MdCalendarMonth className="range-display__icon-icon" />
-          </span>
-          <span className="range-display__value">{`${endYear}-${
-            endMonth + 1
-          }-${endDay}`}</span>
+        <div className="pickers">
+          <Picker
+            pickerNumber={1}
+            month={pickerOneMonth}
+            year={pickerOneYear}
+            currentDecadeYear={pickerOneCurrentDecadeYear}
+            displayDays={pickerOneDisplayDays}
+            displayMonths={pickerOneDisplayMonths}
+            displayYears={pickerOneDisplayYears}
+            dispatchPreviousMonth={dispatchPreviousMonth}
+            dispatchNextMonth={dispatchNextMonth}
+            dispatchDisplayYears={dispatchDisplayYears}
+          />
+          <Picker
+            pickerNumber={2}
+            month={pickerTwoMonth}
+            year={pickerTwoYear}
+            currentDecadeYear={pickerTwoCurrentDecadeYear}
+            displayDays={pickerTwoDisplayDays}
+            displayMonths={pickerTwoDisplayMonths}
+            displayYears={pickerTwoDisplayYears}
+            dispatchPreviousMonth={dispatchPreviousMonth}
+            dispatchNextMonth={dispatchNextMonth}
+            dispatchDisplayYears={dispatchDisplayYears}
+          />
         </div>
-        <button className="reset-range-button" onClick={onReset}>
-          Reset
-        </button>
-      </div>
-      <div className="pickers">
-        <Picker
-          pickerNumber={1}
-          month={pickerOneMonth}
-          year={pickerOneYear}
-          currentDecadeYear={pickerOneCurrentDecadeYear}
-          displayDays={pickerOneDisplayDays}
-          displayMonths={pickerOneDisplayMonths}
-          displayYears={pickerOneDisplayYears}
-          dispatchPreviousMonth={dispatchPreviousMonth}
-          dispatchNextMonth={dispatchNextMonth}
-          dispatchDisplayYears={dispatchDisplayYears}
+        <PredefinedDateRanges
+          dispatchSetPredefinedRange={dispatchSetPredefinedRange}
+          onPredefinedRange={onPredefinedRange}
         />
-        <Picker
-          pickerNumber={2}
-          month={pickerTwoMonth}
-          year={pickerTwoYear}
-          currentDecadeYear={pickerTwoCurrentDecadeYear}
-          displayDays={pickerTwoDisplayDays}
-          displayMonths={pickerTwoDisplayMonths}
-          displayYears={pickerTwoDisplayYears}
-          dispatchPreviousMonth={dispatchPreviousMonth}
-          dispatchNextMonth={dispatchNextMonth}
-          dispatchDisplayYears={dispatchDisplayYears}
-        />
-      </div>
-      <PredefinedDateRanges
-        dispatchSetPredefinedRange={dispatchSetPredefinedRange}
-        onPredefinedRange={onPredefinedRange}
-      />
-    </main>
+      </main>
+    </>
   );
 };
 

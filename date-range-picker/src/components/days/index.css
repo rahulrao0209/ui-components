@@ -53,3 +53,7 @@
   color: var(--primary-red);
   background-color: transparent;
 }
+
+.selected-day-outline {
+  outline: 1px solid var(--current-blue);
+}

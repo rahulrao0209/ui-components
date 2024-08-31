@@ -18,19 +18,22 @@
   box-sizing: inherit;
 }
 
+html {
+  font-size: 62.5%;
+
+  @media (min-width: 600px) {
+    font-size: 71.45%;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 83.84%;
+  }
+
+  @media (min-width: 900px) {
+    font-size: 100%; /* 1rem = 16px */
+  }
+}
 body {
   box-sizing: border-box;
   font-family: "Catamaran", sans-serif;
-
-  @media only screen and (min-width: 478px) {
-    font-size: 50%;
-  }
-
-  @media only screen and (min-width: 768px) {
-    font-size: 62.5%;
-  }
-
-  @media only screen and (min-width: 1190px) {
-    font-size: 100%;
-  }
 }

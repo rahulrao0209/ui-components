@@ -8,8 +8,13 @@
 
 .picker__view {
   min-height: 22rem;
+  min-width: 280px;
 }
 
 .picker:nth-of-type(1) {
-  border-right: none;
+  border-bottom: none;
+  @media screen and (min-width: 600px) {
+    border-right: none;
+    border-bottom: 1px solid var(--primary-gray);
+  }
 }

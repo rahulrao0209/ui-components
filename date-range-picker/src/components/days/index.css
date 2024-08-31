@@ -50,6 +50,6 @@
 }
 
 .weekend {
-  color: red;
+  color: var(--primary-red);
   background-color: transparent;
 }

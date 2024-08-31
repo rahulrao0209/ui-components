@@ -21,6 +21,8 @@ import {
   updateMonth,
   UPDATE_YEAR,
   updateYear,
+  resetPickers,
+  RESET_PICKERS,
   SYNC_PICKERS,
 } from "./actions";
 
@@ -56,6 +58,8 @@ export const pickerReducer = (
       return displayDayController(state, action.payload);
     case SYNC_PICKERS:
       return syncPickers(state, action.payload);
+    case RESET_PICKERS:
+      return resetPickers(state);
     default:
       return state;
   }

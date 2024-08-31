@@ -16,9 +16,7 @@ export const DISPLAY_YEARS = "DISPLAY_YEARS";
 export const DISPLAY_MONTHS = "DISPLAY_MONTHS";
 
 export const SYNC_PICKERS = "SYNC_PICKERS";
-
-export const SET_START_DATE = "SET_START_DATE";
-export const SET_END_DATE = "SET_END_DATE";
+export const RESET_PICKERS = "RESET_PICKERS";
 
 // Actions
 export const getPreviousMonth = (
@@ -436,6 +434,31 @@ export const syncPickers = (
   };
 };
 
-export const setStartDate = () => {};
+export const resetPickers = (state: PickerState): PickerState => {
+  const date = new Date();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const { pickerOne, pickerTwo } = state;
 
-export const setEndDate = () => {};
+  return {
+    ...state,
+    pickerOne: {
+      ...pickerOne,
+      day: 1,
+      month,
+      year,
+      displayDays: true,
+      displayMonths: false,
+      displayYears: false,
+    },
+    pickerTwo: {
+      ...pickerTwo,
+      day: 1,
+      month: month + 1,
+      year: month === 11 ? year + 1 : year,
+      displayDays: true,
+      displayMonths: false,
+      displayYears: false,
+    },
+  };
+};

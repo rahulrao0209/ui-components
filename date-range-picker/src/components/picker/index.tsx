@@ -15,7 +15,6 @@ interface PickerProps {
   dispatchPreviousMonth: (pickerNumber: number) => void;
   dispatchNextMonth: (pickerNumber: number) => void;
   dispatchDisplayYears: (pickerNumber: number) => void;
-  dispatchSyncPickers: (pickerNumber: number) => void;
 }
 
 const Picker = ({

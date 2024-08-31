@@ -20,6 +20,7 @@ import {
   DISPLAY_MONTHS,
   DISPLAY_YEARS,
   SYNC_PICKERS,
+  RESET_PICKERS,
 } from "./actions";
 
 export const PickerContext = createContext<PickerContextProps | null>(null);
@@ -135,6 +136,12 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
     });
   };
 
+  const dispatchResetPickers = () => {
+    dispatch({
+      type: RESET_PICKERS,
+    });
+  };
+
   return (
     <PickerContext.Provider
       value={{
@@ -150,6 +157,7 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
         dispatchDisplayMonths,
         dispatchDisplayDays,
         dispatchSyncPickers,
+        dispatchResetPickers,
       }}
     >
       {props.children}

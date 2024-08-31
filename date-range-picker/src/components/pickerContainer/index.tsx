@@ -36,6 +36,7 @@ const PickerContainer = () => {
   const dispatchPreviousMonth = pickerContext!.dispatchPreviousMonth;
   const dispatchNextMonth = pickerContext!.dispatchNextMonth;
   const dispatchDisplayYears = pickerContext!.dispatchDisplayYears;
+  const dispatchResetPickers = pickerContext!.dispatchResetPickers;
 
   // Selected dates state
   const startDate = selectedDateContext!.startDate;
@@ -43,12 +44,17 @@ const PickerContainer = () => {
   const startDay = startDate ? startDate.getDate() : 1;
   const startMonth = startDate ? startDate.getMonth() : defaultMonth;
   const startYear = startDate ? startDate.getFullYear() : defaultYear;
-  const endDay = endDate ? endDate.getDate() : 30;
-  const endMonth = endDate ? endDate.getMonth() : defaultMonth;
+  const endDay = endDate ? endDate.getDate() : 1;
+  const endMonth = endDate ? endDate.getMonth() : defaultMonth + 1;
   const endYear = endDate ? endDate.getFullYear() : defaultYear;
 
   // Reset date
   const resetDate = selectedDateContext!.onResetDate;
+
+  const onReset = () => {
+    resetDate();
+    dispatchResetPickers();
+  };
 
   return (
     <main className="picker-container">
@@ -70,7 +76,7 @@ const PickerContainer = () => {
             endMonth + 1
           }-${endDay}`}</span>
         </div>
-        <button className="reset-range-button" onClick={resetDate}>
+        <button className="reset-range-button" onClick={onReset}>
           Reset
         </button>
       </div>

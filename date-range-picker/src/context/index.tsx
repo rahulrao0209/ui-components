@@ -21,7 +21,6 @@ import {
   DISPLAY_YEARS,
   SYNC_PICKERS,
 } from "./actions";
-import { CgEditBlackPoint } from "react-icons/cg";
 
 export const PickerContext = createContext<PickerContextProps | null>(null);
 export const SelectedDateContext = createContext<SelectedDate | null>(null);
@@ -163,18 +162,23 @@ export const SelectedDatesContextProvider = (props: PropsWithChildren) => {
   const [endDate, setEndDate] = useState<Date | null>(null);
 
   const onSelectDate = (date: Date) => {
-    if (startDate) setEndDate(date);
-    else setStartDate(date);
+    if (startDate) {
+      if (startDate < date) setEndDate(date);
+      else {
+        setEndDate(startDate);
+        setStartDate(date);
+      }
+    } else setStartDate(date);
   };
 
-  const onClearDate = () => {
+  const onResetDate = () => {
     setStartDate(null);
     setEndDate(null);
   };
 
   return (
     <SelectedDateContext.Provider
-      value={{ startDate, endDate, onSelectDate, onClearDate }}
+      value={{ startDate, endDate, onSelectDate, onResetDate }}
     >
       {props.children}
     </SelectedDateContext.Provider>

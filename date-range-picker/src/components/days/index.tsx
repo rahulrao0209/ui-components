@@ -48,12 +48,37 @@ const Days = ({
     const classes = classlist.value;
 
     if (!classes.includes("days")) return;
+    if (classes.includes("previous")) return;
+    if (classes.includes("next")) return;
     // console.log(day);
     dispatchUpdateDay(pickerNumber, parseInt(day));
     handleSetDate(parseInt(day));
   };
 
-  const isInRange = () => {};
+  const isInRange = (day: number) => {
+    if (!selectedDateContext) return false;
+    if (!pickerContext) return false;
+
+    const { startDate, endDate } = selectedDateContext;
+    if (!startDate || !endDate) return false;
+    const { state } = pickerContext;
+    const { pickerOne, pickerTwo } = state;
+    let inRange = false;
+
+    if (pickerNumber === 1) {
+      const month = pickerOne.month;
+      const year = pickerOne.year;
+      const currentDate = new Date(year, month, day);
+      inRange = currentDate >= startDate && currentDate <= endDate;
+    } else {
+      const month = pickerTwo.month;
+      const year = pickerTwo.year;
+      const currentDate = new Date(year, month, day);
+      inRange = currentDate >= startDate && currentDate <= endDate;
+    }
+
+    return inRange;
+  };
 
   return (
     <div className="days" onClick={handleSelectDay}>
@@ -77,7 +102,7 @@ const Days = ({
         <span
           className={`days__day days--current ${
             isToday(dateDetail) ? "today" : ""
-          }`}
+          } ${isInRange(dateDetail.day) ? "in-range" : ""}`}
           key={`${dateDetail.year}-${dateDetail.month}-${dateDetail.day}`}
           data-day={dateDetail.day}
         >

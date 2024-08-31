@@ -47,6 +47,9 @@ const PickerContainer = () => {
   const endMonth = endDate ? endDate.getMonth() : defaultMonth;
   const endYear = endDate ? endDate.getFullYear() : defaultYear;
 
+  // Reset date
+  const resetDate = selectedDateContext!.onResetDate;
+
   return (
     <main className="picker-container">
       <div className="range-display">
@@ -59,7 +62,7 @@ const PickerContainer = () => {
           }-${startDay}`}</span>
         </div>
         <div className="range-display__separator">~</div>
-        <div className="range-display__start-date">
+        <div className="range-display__end-date">
           <span className="range-display__icon">
             <MdCalendarMonth className="range-display__icon-icon" />
           </span>
@@ -67,6 +70,9 @@ const PickerContainer = () => {
             endMonth + 1
           }-${endDay}`}</span>
         </div>
+        <button className="reset-range-button" onClick={resetDate}>
+          Reset
+        </button>
       </div>
       <div className="pickers">
         <Picker

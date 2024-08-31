@@ -37,3 +37,7 @@
 .days--next {
   color: var(--primary-gray);
 }
+
+.in-range {
+  background-color: var(--hover-blue);
+}

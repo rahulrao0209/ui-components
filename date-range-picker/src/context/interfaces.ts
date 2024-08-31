@@ -32,5 +32,5 @@ export interface SelectedDate {
   startDate: Date | null;
   endDate: Date | null;
   onSelectDate: (date: Date) => void;
-  onClearDate: () => void;
+  onResetDate: () => void;
 }

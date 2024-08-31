@@ -38,6 +38,18 @@
   color: var(--primary-gray);
 }
 
+.days--previous:hover,
+.days--next:hover,
+.weekend:hover {
+  cursor: default;
+  background-color: transparent;
+}
+
 .in-range {
   background-color: var(--hover-blue);
+}
+
+.weekend {
+  color: red;
+  background-color: transparent;
 }

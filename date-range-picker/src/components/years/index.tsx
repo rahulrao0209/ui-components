@@ -25,7 +25,6 @@ const Years = ({
 
     if (!classes.includes("year")) return;
     dispatchDisplayMonths();
-    console.log("year: ", year);
     dispatchUpdateYear(pickerNumber, parseInt(year));
   };
 

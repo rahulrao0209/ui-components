@@ -50,7 +50,7 @@ const Days = ({
     if (!classes.includes("days")) return;
     if (classes.includes("previous")) return;
     if (classes.includes("next")) return;
-    // console.log(day);
+    if (classes.includes("weekend")) return;
     dispatchUpdateDay(pickerNumber, parseInt(day));
     handleSetDate(parseInt(day));
   };
@@ -80,6 +80,13 @@ const Days = ({
     return inRange;
   };
 
+  const isWeekend = (dateDetail: DateDetails) => {
+    const date = new Date(dateDetail.year, dateDetail.month, dateDetail.day);
+    const day = date.getDay();
+    if (day === 0 || day === 6) return true;
+    return false;
+  };
+
   return (
     <div className="days" onClick={handleSelectDay}>
       {WEEK_DAYS.map((day: string) => {
@@ -102,7 +109,9 @@ const Days = ({
         <span
           className={`days__day days--current ${
             isToday(dateDetail) ? "today" : ""
-          } ${isInRange(dateDetail.day) ? "in-range" : ""}`}
+          } ${isInRange(dateDetail.day) ? "in-range" : ""} ${
+            isWeekend(dateDetail) ? "weekend" : ""
+          }`}
           key={`${dateDetail.year}-${dateDetail.month}-${dateDetail.day}`}
           data-day={dateDetail.day}
         >

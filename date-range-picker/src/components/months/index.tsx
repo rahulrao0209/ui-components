@@ -36,7 +36,6 @@ const Months = ({
 
     if (!classes.includes("month")) return;
     dispatchDisplayDays();
-    // console.log("month: ", month);
     dispatchUpdateMonth(pickerNumber, parseInt(month));
     dispatchSyncPickers(pickerNumber);
   };

@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { MdCalendarMonth } from "react-icons/md";
 import { Picker } from "../index";
-import { PickerContext } from "../../context";
+import { PickerContext, SelectedDateContext } from "../../context";
 import "./index.css";
 
 const PickerContainer = () => {
   const pickerContext = useContext(PickerContext);
+  const selectedDateContext = useContext(SelectedDateContext);
+
   // Picker state
   const defaultMonth = new Date().getMonth();
   const defaultYear = new Date().getFullYear();
@@ -35,6 +37,16 @@ const PickerContainer = () => {
   const dispatchNextMonth = pickerContext!.dispatchNextMonth;
   const dispatchDisplayYears = pickerContext!.dispatchDisplayYears;
 
+  // Selected dates state
+  const startDate = selectedDateContext!.startDate;
+  const endDate = selectedDateContext!.endDate;
+  const startDay = startDate ? startDate.getDate() : 1;
+  const startMonth = startDate ? startDate.getMonth() : defaultMonth;
+  const startYear = startDate ? startDate.getFullYear() : defaultYear;
+  const endDay = endDate ? endDate.getDate() : 30;
+  const endMonth = endDate ? endDate.getMonth() : defaultMonth;
+  const endYear = endDate ? endDate.getFullYear() : defaultYear;
+
   return (
     <main className="picker-container">
       <div className="range-display">
@@ -42,14 +54,18 @@ const PickerContainer = () => {
           <span className="range-display__icon">
             <MdCalendarMonth className="range-display__icon-icon" />
           </span>
-          <span className="range-display__value">{`${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`}</span>
+          <span className="range-display__value">{`${startYear}-${
+            startMonth + 1
+          }-${startDay}`}</span>
         </div>
         <div className="range-display__separator">~</div>
         <div className="range-display__start-date">
           <span className="range-display__icon">
             <MdCalendarMonth className="range-display__icon-icon" />
           </span>
-          <span className="range-display__value">{`${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`}</span>
+          <span className="range-display__value">{`${endYear}-${
+            endMonth + 1
+          }-${endDay}`}</span>
         </div>
       </div>
       <div className="pickers">

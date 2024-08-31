@@ -17,6 +17,9 @@ export const DISPLAY_MONTHS = "DISPLAY_MONTHS";
 
 export const SYNC_PICKERS = "SYNC_PICKERS";
 
+export const SET_START_DATE = "SET_START_DATE";
+export const SET_END_DATE = "SET_END_DATE";
+
 // Actions
 export const getPreviousMonth = (
   state: PickerState,
@@ -432,3 +435,7 @@ export const syncPickers = (
     },
   };
 };
+
+export const setStartDate = () => {};
+
+export const setEndDate = () => {};

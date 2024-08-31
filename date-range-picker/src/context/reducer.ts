@@ -1,4 +1,4 @@
-import { PickerContextProps, PickerState } from "./interfaces";
+import { PickerState } from "./interfaces";
 import {
   PREVIOUS_MONTH,
   NEXT_MONTH,

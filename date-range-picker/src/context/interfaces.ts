@@ -27,3 +27,10 @@ export interface PickerContextProps {
   dispatchDisplayDays: (pickerNumber: number) => void;
   dispatchSyncPickers: (pickerNumber: number) => void;
 }
+
+export interface SelectedDate {
+  startDate: Date | null;
+  endDate: Date | null;
+  onSelectDate: (date: Date) => void;
+  onClearDate: () => void;
+}

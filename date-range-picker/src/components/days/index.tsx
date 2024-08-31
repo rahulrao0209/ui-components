@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { PickerContext, SelectedDateContext } from "../../context";
 import { DateDetails } from "../../types";
 import { isToday } from "../../utils";
 import "./index.css";
@@ -18,6 +20,27 @@ const Days = ({
   nextMonthDays,
   dispatchUpdateDay,
 }: DayProps) => {
+  const selectedDateContext = useContext(SelectedDateContext);
+  const pickerContext = useContext(PickerContext);
+
+  const handleSetDate = (day: number) => {
+    if (!selectedDateContext) return;
+    if (!pickerContext) return;
+
+    const { state } = pickerContext;
+    const { onSelectDate } = selectedDateContext;
+    let picker;
+
+    if (pickerNumber === 1) {
+      picker = state.pickerOne;
+    } else {
+      picker = state.pickerTwo;
+    }
+
+    const date = new Date(picker.year, picker.month, day);
+    onSelectDate(date);
+  };
+
   const handleSelectDay = (event: any) => {
     const element = event.target;
     const day = element?.dataset.day;
@@ -25,9 +48,12 @@ const Days = ({
     const classes = classlist.value;
 
     if (!classes.includes("days")) return;
-    console.log(day);
+    // console.log(day);
     dispatchUpdateDay(pickerNumber, parseInt(day));
+    handleSetDate(parseInt(day));
   };
+
+  const isInRange = () => {};
 
   return (
     <div className="days" onClick={handleSelectDay}>

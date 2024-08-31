@@ -1,5 +1,5 @@
 import { PickerContainer } from "./components";
-import { PickerContextProvider } from "./context";
+import { PickerContextProvider, SelectedDatesContextProvider } from "./context";
 import "./App.css";
 
 function App() {
@@ -7,7 +7,9 @@ function App() {
     <>
       <div className="app">
         <PickerContextProvider>
-          <PickerContainer />
+          <SelectedDatesContextProvider>
+            <PickerContainer />
+          </SelectedDatesContextProvider>
         </PickerContextProvider>
       </div>
     </>

@@ -5,9 +5,9 @@
  * the second picker should always be at least one month ahead of the first picker.
  */
 
-import { createContext, PropsWithChildren, useReducer } from "react";
+import { createContext, PropsWithChildren, useReducer, useState } from "react";
 import { pickerReducer } from "./reducer";
-import { PickerContextProps, PickerState } from "./interfaces";
+import { PickerContextProps, PickerState, SelectedDate } from "./interfaces";
 import {
   PREVIOUS_MONTH,
   NEXT_MONTH,
@@ -21,13 +21,15 @@ import {
   DISPLAY_YEARS,
   SYNC_PICKERS,
 } from "./actions";
+import { CgEditBlackPoint } from "react-icons/cg";
 
 export const PickerContext = createContext<PickerContextProps | null>(null);
+export const SelectedDateContext = createContext<SelectedDate | null>(null);
 
 export const PickerContextProvider = (props: PropsWithChildren) => {
   const initialPickerState: PickerState = {
     pickerOne: {
-      day: new Date().getDay(),
+      day: new Date().getDate(),
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
       currentDecadeYear: new Date().getFullYear(),
@@ -37,7 +39,7 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
     },
 
     pickerTwo: {
-      day: new Date().getDay(),
+      day: new Date().getDate(),
       month: new Date().getMonth() + 1,
       year: new Date().getFullYear(),
       currentDecadeYear: new Date().getFullYear(),
@@ -156,4 +158,25 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
   );
 };
 
-export default PickerContextProvider;
+export const SelectedDatesContextProvider = (props: PropsWithChildren) => {
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
+
+  const onSelectDate = (date: Date) => {
+    if (startDate) setEndDate(date);
+    else setStartDate(date);
+  };
+
+  const onClearDate = () => {
+    setStartDate(null);
+    setEndDate(null);
+  };
+
+  return (
+    <SelectedDateContext.Provider
+      value={{ startDate, endDate, onSelectDate, onClearDate }}
+    >
+      {props.children}
+    </SelectedDateContext.Provider>
+  );
+};

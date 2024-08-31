@@ -97,7 +97,7 @@ const Days = ({
           </span>
         );
       })}
-      {previousMonthDays.map((dateDetail: DateDetails) => (
+      {[...previousMonthDays].reverse().map((dateDetail: DateDetails) => (
         <span
           className="days__day days--previous"
           key={`${dateDetail.year}-${dateDetail.month}-${dateDetail.day}`}

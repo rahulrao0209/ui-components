@@ -106,7 +106,7 @@ export const getMonthData = (
   const noOfNextMonthDays = 7 - weekdays.indexOf(firstWeekdayOfNextMonth);
 
   const previousMonthDays = getMonthDays(
-    month - 1,
+    month,
     year,
     noOfPreviousMonthDays,
     "previous"

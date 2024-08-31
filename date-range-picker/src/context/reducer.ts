@@ -24,6 +24,8 @@ import {
   resetPickers,
   RESET_PICKERS,
   SYNC_PICKERS,
+  SET_PREDEFINED_RANGE,
+  setPredefinedRange,
 } from "./actions";
 
 interface Action {
@@ -60,6 +62,8 @@ export const pickerReducer = (
       return syncPickers(state, action.payload);
     case RESET_PICKERS:
       return resetPickers(state);
+    case SET_PREDEFINED_RANGE:
+      return setPredefinedRange(state, action.payload);
     default:
       return state;
   }

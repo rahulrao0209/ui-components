@@ -17,6 +17,7 @@ export const DISPLAY_MONTHS = "DISPLAY_MONTHS";
 
 export const SYNC_PICKERS = "SYNC_PICKERS";
 export const RESET_PICKERS = "RESET_PICKERS";
+export const SET_PREDEFINED_RANGE = "SET_PREDEFINED_RANGE";
 
 // Actions
 export const getPreviousMonth = (
@@ -456,6 +457,38 @@ export const resetPickers = (state: PickerState): PickerState => {
       day: 1,
       month: month + 1,
       year: month === 11 ? year + 1 : year,
+      displayDays: true,
+      displayMonths: false,
+      displayYears: false,
+    },
+  };
+};
+
+export const setPredefinedRange = (
+  state: PickerState,
+  days: number
+): PickerState => {
+  const date = new Date();
+  const newDate = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate() - days
+  );
+  const { pickerOne, pickerTwo } = state;
+
+  return {
+    ...state,
+    pickerOne: {
+      ...pickerOne,
+      day: newDate.getDate(),
+      month: newDate.getMonth(),
+      year: newDate.getFullYear(),
+      displayDays: true,
+      displayMonths: false,
+      displayYears: false,
+    },
+    pickerTwo: {
+      ...pickerTwo,
       displayDays: true,
       displayMonths: false,
       displayYears: false,

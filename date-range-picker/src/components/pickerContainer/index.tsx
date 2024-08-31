@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { MdCalendarMonth } from "react-icons/md";
-import { Picker } from "../index";
 import { PickerContext, SelectedDateContext } from "../../context";
+import { Picker, PredefinedDateRanges } from "../index";
 import "./index.css";
 
 const PickerContainer = () => {
@@ -37,6 +37,7 @@ const PickerContainer = () => {
   const dispatchNextMonth = pickerContext!.dispatchNextMonth;
   const dispatchDisplayYears = pickerContext!.dispatchDisplayYears;
   const dispatchResetPickers = pickerContext!.dispatchResetPickers;
+  const dispatchSetPredefinedRange = pickerContext!.dispatchSetPredefinedRange;
 
   // Selected dates state
   const startDate = selectedDateContext!.startDate;
@@ -48,8 +49,9 @@ const PickerContainer = () => {
   const endMonth = endDate ? endDate.getMonth() : defaultMonth + 1;
   const endYear = endDate ? endDate.getFullYear() : defaultYear;
 
-  // Reset date
+  // SelectedDates methods
   const resetDate = selectedDateContext!.onResetDate;
+  const onPredefinedRange = selectedDateContext!.onPredefinedRange;
 
   const onReset = () => {
     resetDate();
@@ -106,6 +108,10 @@ const PickerContainer = () => {
           dispatchDisplayYears={dispatchDisplayYears}
         />
       </div>
+      <PredefinedDateRanges
+        dispatchSetPredefinedRange={dispatchSetPredefinedRange}
+        onPredefinedRange={onPredefinedRange}
+      />
     </main>
   );
 };

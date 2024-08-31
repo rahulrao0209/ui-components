@@ -21,6 +21,7 @@ import {
   DISPLAY_YEARS,
   SYNC_PICKERS,
   RESET_PICKERS,
+  SET_PREDEFINED_RANGE,
 } from "./actions";
 
 export const PickerContext = createContext<PickerContextProps | null>(null);
@@ -142,6 +143,13 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
     });
   };
 
+  const dispatchSetPredefinedRange = (days: number) => {
+    dispatch({
+      type: SET_PREDEFINED_RANGE,
+      payload: days,
+    });
+  };
+
   return (
     <PickerContext.Provider
       value={{
@@ -158,6 +166,7 @@ export const PickerContextProvider = (props: PropsWithChildren) => {
         dispatchDisplayDays,
         dispatchSyncPickers,
         dispatchResetPickers,
+        dispatchSetPredefinedRange,
       }}
     >
       {props.children}
@@ -184,9 +193,27 @@ export const SelectedDatesContextProvider = (props: PropsWithChildren) => {
     setEndDate(null);
   };
 
+  const onPredefinedRange = (days: number) => {
+    const endDate = new Date();
+    const startDate = new Date(
+      endDate.getFullYear(),
+      endDate.getMonth(),
+      endDate.getDate() - days
+    );
+
+    setStartDate(startDate);
+    setEndDate(endDate);
+  };
+
   return (
     <SelectedDateContext.Provider
-      value={{ startDate, endDate, onSelectDate, onResetDate }}
+      value={{
+        startDate,
+        endDate,
+        onSelectDate,
+        onResetDate,
+        onPredefinedRange,
+      }}
     >
       {props.children}
     </SelectedDateContext.Provider>

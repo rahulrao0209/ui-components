@@ -4,3 +4,4 @@ export { default as PickerContainer } from "./pickerContainer";
 export { default as Days } from "./days";
 export { default as Months } from "./months";
 export { default as Years } from "./years";
+export { default as PredefinedDateRanges } from "./predefinedRange";

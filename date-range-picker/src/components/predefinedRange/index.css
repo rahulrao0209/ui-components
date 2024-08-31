@@ -1,0 +1,17 @@
+.predefined-date-ranges {
+  padding: 1rem 0.25rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.predefined-date-ranges > button {
+  border: none;
+  background-color: transparent;
+  font-size: 1.2rem;
+  color: var(--current-blue);
+}
+
+.predefined-date-ranges > button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

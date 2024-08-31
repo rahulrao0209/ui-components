@@ -27,6 +27,7 @@ export interface PickerContextProps {
   dispatchDisplayDays: (pickerNumber: number) => void;
   dispatchSyncPickers: (pickerNumber: number) => void;
   dispatchResetPickers: () => void;
+  dispatchSetPredefinedRange: (days: number) => void;
 }
 
 export interface SelectedDate {
@@ -34,4 +35,5 @@ export interface SelectedDate {
   endDate: Date | null;
   onSelectDate: (date: Date) => void;
   onResetDate: () => void;
+  onPredefinedRange: (days: number) => void;
 }
